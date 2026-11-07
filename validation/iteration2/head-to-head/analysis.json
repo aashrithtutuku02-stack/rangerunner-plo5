@@ -1,0 +1,27 @@
+{
+  "mean_change": 0.17485,
+  "ci": [
+    -0.007773239628809686,
+    0.3574732396288097
+  ],
+  "opponents": 1,
+  "independent_deal_clusters": 10000,
+  "paired_policy_observations": 10000,
+  "played_hands": 40000,
+  "per_opponent": [
+    {
+      "opponent": "incumbent",
+      "change": 0.17485,
+      "ci": [
+        -0.007773239628809686,
+        0.3574732396288097
+      ],
+      "deals": 10000
+    }
+  ],
+  "source_sha256": {
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "range_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "strategy.py": "2eba4f3f2bc6c8c3c908550df0a7e10c3b8c8cbb78542d20508d938705c57932"
+  }
+}

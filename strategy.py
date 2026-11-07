@@ -29,7 +29,7 @@ def initialize(config, memory):
     )
 
 
-def history_events(obs):
+def history_events(obs,raise_cap=4):
     """Recover each opponent action's price from the public action log."""
     # Recover forced contributions from chip conservation. This remains
     # correct if blind/stack settings change, rather than hard-coding 1/2.
@@ -37,7 +37,9 @@ def history_events(obs):
     mine=start-obs.my_stack-sum(a.amount for a in obs.action_history if a.is_me)
     theirs=start-obs.opp_stack-sum(a.amount for a in obs.action_history if not a.is_me)
     pot = mine+theirs
+    my_remaining=start-mine;opp_remaining=start-theirs
     street = Street.PREFLOP
+    raises=0
     opponent_raised=False
     events = []
     for idx, action in enumerate(obs.action_history):
@@ -45,15 +47,20 @@ def history_events(obs):
             mine = theirs = 0
             street = action.street
             opponent_raised=False
+            raises=0
         if not action.is_me:
             facing = max(0, mine - theirs)
             context=0 if not facing else 2 if opponent_raised else 1
+            available=raises<raise_cap and opp_remaining>facing and my_remaining>0
             events.append((idx, int(street), context, int(action.action),
-                           facing / max(1, pot + facing)))
+                           facing / max(1, pot + facing),int(available)))
             theirs = action.street_total
             if action.action in (Action.RAISE_HALF,Action.RAISE_POT):opponent_raised=True
         else:
             mine = action.street_total
+        if action.is_me:my_remaining-=action.amount
+        else:opp_remaining-=action.amount
+        if action.action in (Action.RAISE_HALF,Action.RAISE_POT):raises+=1
         pot += action.amount
     return events
 
@@ -62,31 +69,35 @@ def learn_actions(obs, memory):
     if memory['seen_hand'] != obs.hand_index:
         memory['seen_hand'] = obs.hand_index
         memory['seen_count'] = 0
-    for idx, street, facing, action, price in history_events(obs):
+    for event in history_events(obs,memory['config'].raise_cap):
+        idx,street,facing,action,price=event[:5]
         if idx >= memory['seen_count']:
-            memory['counts'][street, facing, min(action, 2)] += 1
+            observe_event(memory,event)
     memory['seen_count'] = len(obs.action_history)
 
 
-def action_prob(q, frequencies, slope, facing, price=0.25):
-    """Smooth value/bluff models, including a card-independent model.
+def observe_event(memory,event):
+    """Update opportunity-adjusted frequencies from a possibly censored action.
 
-    Flatten selectivity as empirical behavior approaches a constant action.
-    This prevents inventing a strong range for an opponent who always pots.
+    A call when raising is impossible reveals only 'did not fold'. Preserve
+    the existing call/raise ratio instead of counting it as evidence against
+    raising. A compulsory free check reveals no preference at all.
     """
-    p = frequencies / frequencies.sum()
-    if facing:
-        p=p.copy()
-        p[0]*=math.exp(3.0*(price-.28))
-        p[1]*=math.exp(-1.5*(price-.28))
-        p/=p.sum()
-    sharpness = slope * min(1.0, 4.0 * (1.0 - float(p.max())))
-    x = np.clip(q, 0.01, 0.99) - 0.5
-    r = p[2] * np.exp(sharpness * x)
-    c = np.full_like(q, p[1])
-    f = p[0] * np.exp(-sharpness * x) if facing else np.zeros_like(q)
-    total = f + c + r
-    return f / total, c / total, r / total
+    _,street,context,action,price=event[:5]
+    counts=memory['counts'][street,context]
+    available=len(event)<6 or bool(event[5])
+    action=min(action,2)
+    if available or action==0:
+        counts[action]+=1
+    elif action==1 and context:
+        nonfold=counts[1]+counts[2]
+        share=counts[2]/nonfold if nonfold else 0.
+        counts[1]+=1-share;counts[2]+=share
+
+
+def action_prob(q, frequencies, slope, facing, price=0.25,can_raise=True):
+    """Predict actions without inflating marginal frequencies as slope grows."""
+    return range_model.action_prob(q,frequencies,slope,facing,price,can_raise)
 
 
 def cache_samples(obs, memory):
@@ -121,7 +132,7 @@ def cache_samples(obs, memory):
 
 def range_weights(obs, memory, cache):
     q = cache['q']
-    events = history_events(obs)
+    events = history_events(obs,memory['config'].raise_cap)
     weights = range_model.likelihoods(q,memory['counts'],range_model.event_array(events),SLOPES)
     sums = weights.sum(axis=1)
     weights /= np.maximum(sums[:, None], 1e-100)
@@ -139,7 +150,10 @@ def response_prob(obs, memory, cache, additional, price, model_weights=None):
     # prospective responses, so cheap calls do not imply the same range
     # as expensive ones.
     q = cache['q'][:, street]
-    fp, cp, rp = action_prob(q[None, :], frequencies, SLOPES[:, None], True, price)
+    call=min(obs.opp_stack,max(0,obs.my_bet+additional-obs.opp_bet))
+    available=(obs.raises_this_street+1<memory['config'].raise_cap
+               and obs.my_stack>additional and obs.opp_stack>call)
+    fp, cp, rp = action_prob(q[None, :], frequencies, SLOPES[:, None], True, price,available)
     if model_weights is None:
         return memory['models'] @ fp, memory['models'] @ rp
     # The response model and its hand range describe the same opponent.
@@ -218,49 +232,71 @@ def decide(obs, memory):
     return action
 
 
-def finish(result, memory):
-    begin = time.perf_counter()
-    memory['hands_played'] = memory.get('hands_played', 0) + 1
-    last = memory.get('last')
-    if last is None or last[0].hand_index != result.hand_index:
-        return
-    obs, action, cache = last
-    # A final opponent call/fold isn't visible in another Observation.
-    facing = action in (Action.RAISE_HALF, Action.RAISE_POT)
-    if facing:
-        response = 1 if result.went_to_showdown else 0
+def terminal_event(obs,action,result,raise_cap=4):
+    """Infer a missing final response only when chip and street totals agree.
+
+    Finished-hand callbacks do not contain action history. Inconsistent or
+    stale results (for example after skipped requests) must not invent actions.
+    """
+    if action in (Action.RAISE_HALF,Action.RAISE_POT):
+        invest=obs.raise_to[action]-obs.my_bet
+        call=min(obs.opp_stack,max(0,obs.raise_to[action]-obs.opp_bet))
         context=2 if obs.to_call and obs.raises_this_street else 1
-        memory['counts'][int(obs.street), context, response] += 1
-    elif (action == Action.CHECK_CALL and obs.to_call == 0
-          and (obs.is_button == (obs.street == Street.PREFLOP))
-          and result.went_to_showdown):
-        memory['counts'][int(obs.street), 0, 1] += 1
-    if result.opp_hole and len(obs.board) >= 3:
-        # Learn whether betting is related to card strength. A mixture keeps
-        # uncertain reads conservative, rather than hard-classifying a bot.
-        opp = np.asarray(result.opp_hole, dtype=np.int32)
-        values = cache['values']
-        actual = np.zeros((1, 4))
-        actual[0, 0] = engine.preflop_quality(opp)
-        for s, n in ((1, 3), (2, 4), (3, 5)):
-            if len(obs.board) >= n:
-                actual[0, s] = engine.score(opp, cache['board'][:n])
-        actual_q = np.zeros((1, 4))
+        if not result.went_to_showdown:
+            if (result.winner!='me' or result.pot!=obs.pot+invest
+                    or tuple(result.board)!=tuple(obs.board)):
+                return None
+            response=0
+        else:
+            immediate=(obs.street==Street.RIVER or invest==obs.my_stack or call==obs.opp_stack)
+            if (not immediate or result.pot!=obs.pot+invest+call
+                    or tuple(result.board[:len(obs.board)])!=tuple(obs.board)):
+                return None
+            response=1
+        price=call/max(1,obs.pot+invest+call)
+        available=(obs.raises_this_street+1<raise_cap and obs.my_stack>invest and obs.opp_stack>call)
+        return (len(obs.action_history)+1,int(obs.street),context,response,price,int(available))
+    if (action==Action.CHECK_CALL and obs.to_call==0 and obs.street==Street.RIVER
+            and not obs.is_button and result.went_to_showdown
+            and result.pot==obs.pot and tuple(result.board)==tuple(obs.board)):
+        return (len(obs.action_history)+1,int(obs.street),0,1,0.,1)
+    return None
+
+
+def finish(result, memory):
+    begin=time.perf_counter()
+    memory['hands_played']=memory.get('hands_played',0)+1
+    last=memory.get('last')
+    if last is None or last[0].hand_index!=result.hand_index:
+        return
+    obs,action,cache=last
+    events=history_events(obs,memory['config'].raise_cap)
+    final=terminal_event(obs,action,result,memory['config'].raise_cap)
+    if final is not None:
+        events.append(final)
+        observe_event(memory,final)
+    complete=not (action in (Action.RAISE_HALF,Action.RAISE_POT) and final is None)
+    if result.opp_hole and complete:
+        opp=np.asarray(result.opp_hole,dtype=np.int32)
+        values=cache['values']
+        actual=np.zeros(4)
+        actual[0]=engine.preflop_quality(opp)
+        for s,n in ((1,3),(2,4),(3,5)):
+            if len(obs.board)>=n:
+                actual[s]=engine.score(opp,cache['board'][:n])
+        actual_q=np.zeros((1,4))
         for s in range(4):
-            if s == 0 or len(obs.board) >= (0, 3, 4, 5)[s]:
-                col = values[:, s]
-                actual_q[0, s] = (np.sum(col < actual[0, s]) + .5 * np.sum(col == actual[0, s])) / len(col)
-        actual_q[0, 1] = .78 * actual_q[0, 1] + .22 * actual_q[0, 0]
-        actual_q[0, 2] = .90 * actual_q[0, 2] + .10 * actual_q[0, 0]
-        combined_q = np.concatenate((cache['q'], actual_q), axis=0)
-        likelihood = range_model.likelihoods(combined_q,memory['counts'],
-                                             range_model.event_array(history_events(obs)),SLOPES)
-        evidence = (np.log(np.maximum(1e-100, likelihood[:, -1]))
-                    - np.log(np.maximum(1e-100, likelihood[:, :-1].mean(axis=1))))
-        evidence -= evidence[0]
-        posterior = memory['models'] * np.exp(np.clip(evidence, -.6, .6))
-        posterior /= posterior.sum()
-        memory['models'] = .985 * posterior + .015 / len(SLOPES)
-    memory['last'] = None
-    memory['cache'] = None
-    memory['cpu'] += time.perf_counter() - begin
+            if s==0 or len(obs.board)>=(0,3,4,5)[s]:
+                col=values[:,s]
+                actual_q[0,s]=(np.sum(col<actual[s])+.5*np.sum(col==actual[s]))/len(col)
+        actual_q[0,1]=.78*actual_q[0,1]+.22*actual_q[0,0]
+        actual_q[0,2]=.90*actual_q[0,2]+.10*actual_q[0,0]
+        combined=np.concatenate((cache['q'],actual_q))
+        L=range_model.likelihoods(combined,memory['counts'],range_model.event_array(events),SLOPES)
+        evidence=(np.log(np.maximum(L[:,-1],1e-100))
+                  -np.log(np.maximum(L[:,:-1].mean(axis=1),1e-100)))
+        evidence-=evidence[0]
+        posterior=memory['models']*np.exp(np.clip(evidence,-.6,.6))
+        memory['models']=.985*posterior/posterior.sum()+.015/len(SLOPES)
+    memory['last']=None;memory['cache']=None
+    memory['cpu']+=time.perf_counter()-begin

@@ -26,14 +26,20 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: python -m pytest -q
       - name: Full HTTP matches
-        run: python benchmark.py --deals 1000 --seeds ci-holdout-61117 --opponents random calling_station always_half always_pot reference_agent.py adversary:nit adversary:range-tight adversary:bluffer adversary:switcher
+        run: python benchmark.py --deals 1000 --seeds ci-holdout-61117 --opponents random calling_station always_half always_pot reference_agent.py adversary:nit adversary:range-tight adversary:bluffer adversary:switcher adversary:incumbent adversary:opportunist
       - name: Verify judge fault counters
         run: python tools/check_results.py benchmark-results
+      - name: Fresh servers between duplicate halves
+        run: python tools/fresh_match.py --opponent adversary:incumbent --seed ci-fresh-iteration2
+      - name: Verify fresh-process fault counters
+        run: python tools/check_results.py fresh-results
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: judge-reports
-          path: benchmark-results/
+          path: |
+            benchmark-results/
+            fresh-results/
   organizer-container:
     runs-on: ubuntu-latest
     timeout-minutes: 30

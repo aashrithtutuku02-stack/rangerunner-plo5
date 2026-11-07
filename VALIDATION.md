@@ -1,161 +1,181 @@
-# Release validation
+# Release validation — iteration 2
 
-Measured on 2026-11-07. All confidence intervals are ordinary 95% normal
-intervals of the judge's paired duplicate-deal returns. They are not a
-multiple-comparison guarantee and do not establish universal superiority.
+Measured on 2026-11-07 against frozen release
+[`36ba2d9`](https://github.com/aashrithtutuku02-stack/rangerunner-plo5/commit/36ba2d9719d0cad40d67d900c887d4f03727f2ae).
+The previous release's [validation report](https://github.com/aashrithtutuku02-stack/rangerunner-plo5/blob/36ba2d9719d0cad40d67d900c887d4f03727f2ae/VALIDATION.md)
+and raw evidence remain available. Older `validation/` folders describe that
+release; the current evidence is under `validation/iteration2/`.
 
-## Final source tests
+## Changes and selection
 
-**50 automated tests passed.** This includes the unchanged supplied HTTP
-protocol tests, every one of the 376,992 five-card rankings against the supplied
-evaluator, full/partial Omaha boards, native/Numba sample and RNG equivalence,
-a forced fallback subprocess, invalid native inputs, model posterior arithmetic,
-compiled/Python likelihood equivalence, the unbeatable-flush case, and all 678
-reachable numeric betting states for one fixed legal deal. Two warnings concern
-third-party pytest/Starlette deprecations.
+The action model now calibrates fold/call/raise frequencies under a uniform
+strength-rank assumption. Terminal learning includes verified final responses
+and preflop all-in showdowns. History reconstruction tracks whether raising was
+legal, and compulsory calls/checks no longer teach a false preference against
+raising. Proposed raises cannot be penalized for an illegal fifth raise or an
+all-in opponent's impossible re-raise.
 
-## Final evaluation scope
+Development compared terminal-evidence changes, calibration, full per-hand
+Bayesian model updates, and recency decay. More aggressive Bayesian updating and
+decay produced mixed opponent-specific results and were left out of production.
+The posterior experiment records and their losses are retained under
+`iteration2/development-posterior/`; they used development deals and a prior
+research snapshot, not the final production policy. `research_candidates.py`
+contains those exploratory variants; `--candidate release` selects production.
 
-The final policy, compiled likelihood kernel, source and asset identities were
-frozen before this suite. The final checks cover **142,000 dealt hands**:
-42 direct-call matches across 21 opponent policies on two held-out seeds,
-16 direct-call matches across eight selected-search opponents on two new seeds,
-11 full HTTP matches, one match with fresh servers between halves, and one
-single-CPU container match. Each match is 1,000 duplicate deals / 2,000 hands.
+Production changes were frozen before the final comparisons below. The
+incumbent strategy and likelihood helper are frozen separately under
+`opponents/`, with only the helper import redirected. Both use the same unchanged
+card engine and equity asset. An automated mirror control and every final
+incumbent self-match returned exactly zero on paired duplicate deals.
 
-Direct-call suites enforce legal game actions and reset half memory but do not
-enforce the HTTP time bank. Runtime claims below come from the real HTTP judge.
-The test policies share this project's equity engine; they are not independent
-elite poker bots. Development seeds were used for the 32-profile adversary search
-and prior selection. The final independent seeds were not used for further strategy selection. Earlier
-evaluation failures that led to changes are classified as development evidence.
+## Tests and evaluation scope
 
-## Policy-family suite
+**88 automated tests passed**, including the unchanged supplied protocol tests,
+all 376,992 five-card rankings against the supplied evaluator, native/fallback
+sampling equivalence and invalid-input guards, 678 reachable numeric betting
+states for one fixed legal deal, normalization and numerical calibration checks,
+terminal-learning consistency, reconstruction of legal raise opportunities,
+censored learning, frozen self-play, report checking, and shared-deal analysis.
+Two warnings concern third-party pytest/Starlette deprecations.
 
-Each row pools two held-out seeds (2,000 duplicate deals / 4,000 hands).
+The final cohort contains **164,000 physically played hands**, including control
+matches: 40,000 in the incumbent comparison, 96,000 in the opponent pool, 24,000
+through the actual HTTP judge, 2,000 with fresh processes, and 2,000 in the
+one-CPU container. This count includes reused duplicate/common deals and does
+not mean 164,000 independent observations.
 
-| Opponent policy | Mean bb/deal | 95% interval | Verdict |
-|---|---:|---|---|
-| balanced | +3.028 | [+2.466, +3.590] | Win |
-| bluffer | +6.235 | [+5.301, +7.169] | Win |
-| call | +11.947 | [+11.248, +12.646] | Win |
-| checkraise | +2.348 | [+1.823, +2.873] | Win |
-| fold | +1.500 | [+1.500, +1.500] | Win |
-| half | +13.205 | [+12.324, +14.085] | Win |
-| loose | +5.616 | [+4.815, +6.417] | Win |
-| maniac | +8.595 | [+7.590, +9.600] | Win |
-| nit | +0.795 | [+0.479, +1.112] | Win |
-| overfolder | +0.672 | [+0.367, +0.977] | Win |
-| polarized | +2.517 | [+1.879, +3.154] | Win |
-| pot | +8.045 | [+6.958, +9.132] | Win |
-| random | +11.891 | [+10.799, +12.982] | Win |
-| range-aware | +1.044 | [+0.518, +1.570] | Win |
-| range-flat | +9.376 | [+8.424, +10.328] | Win |
-| range-tight | +0.106 | [-0.275, +0.487] | Draw |
-| smallball | +3.790 | [+3.262, +4.318] | Win |
-| sticky | +6.718 | [+5.980, +7.457] | Win |
-| switcher | +3.069 | [+2.319, +3.819] | Win |
-| tight | +2.224 | [+1.788, +2.661] | Win |
-| trapper | +2.092 | [+1.608, +2.577] | Win |
+Returns are big blinds per duplicate deal, summing both seat-swapped hands.
+Intervals use normal 95% standard-error estimates of paired returns. The pool
+first averages opponents sharing the same seed/deal, so it does not count those
+repeated deals as independent. These are descriptive finite-suite estimates,
+not simultaneous guarantees, exact bounds for adaptive learning, or evidence of
+universal superiority. No independent elite engine or solved-game exploitability
+bound was used.
 
-Pooled family verdicts: 20 wins, 1 draws,
-0 losses. Raw files are in `validation/final-policy-suite/`.
+## Held-out comparison with the incumbent
 
-## Selected parameter-search challengers
+Ten fresh seeds, each with 1,000 duplicate deals, gave **+0.175 bb/deal** against
+the frozen previous release, 95% interval **[-0.008, +0.357]**. This is
+statistically close; a direct head-to-head win has not been established.
 
-Eight harder cases were selected from 32 discovery profiles before final tests.
-Each row pools two independent final seeds (2,000 duplicate deals).
+Raw per-deal candidate and control returns, source identities and summaries:
+`iteration2/head-to-head/`. The controls are exactly zero.
 
-| Case | Mean bb/deal | 95% interval | Verdict |
-|---|---:|---|---|
-| search000 | -0.293 | [-0.910, +0.323] | Draw |
-| search005 | +0.523 | [+0.152, +0.894] | Win |
-| search013 | +2.102 | [+1.683, +2.521] | Win |
-| search014 | +1.054 | [+0.641, +1.467] | Win |
-| search021 | +0.574 | [+0.264, +0.883] | Win |
-| search022 | +1.739 | [+1.363, +2.115] | Win |
-| search024 | -0.165 | [-0.793, +0.464] | Draw |
-| search030 | +1.131 | [+0.783, +1.479] | Win |
+Offline comparisons use an 80-second internal accounting budget to keep default
+simulation counts fixed. The real tournament bank remains 8 seconds; runtime
+claims come from the separate HTTP tests. An early timing-dependent comparison
+failed its mirror control because host scheduling changed sample allocation;
+that experiment was discarded. Fixed sampling and the zero mirror assertion
+were added before this final suite.
 
-Raw cases and their preselected parameters are in `adversary_cases.json` and
-`validation/final-selected-cases/`. Draws and negative point estimates are
-retained rather than reported as wins.
+## Held-out opponent-pool comparison
 
-## Real HTTP judge
+Twelve opponent policies on two new 1,000-deal seeds gave an equally weighted
+average improvement of **+0.565 bb/deal**, interval **[+0.339, +0.792]**, over
+the incumbent playing the same opponents and cards. There are 2,000 shared-deal
+clusters and 24,000 paired policy observations. The pool includes tight betting,
+check-raising, polarized play, changing styles, two selected search challengers,
+baselines, and a policy that attacks checked pots.
 
-The final HTTP matches used separate servers and the unchanged referee, with
-its 8-second bank, 1-second request deadline and 5-error forfeit rule.
-Every bot in all 11 matches had **zero errors, forfeits, exhausted banks and
-skipped calls**. Advanced draws are allowed and shown explicitly.
+| Opponent | New score | Change from incumbent | 95% interval of change |
+|---|---:|---:|---|
+| nit | +1.494 | +0.305 | [+0.041, +0.570] |
+| balanced | +3.155 | +0.104 | [-0.506, +0.714] |
+| checkraise | +2.774 | +0.736 | [+0.205, +1.266] |
+| polarized | +3.436 | +1.342 | [+0.587, +2.097] |
+| switcher | +3.874 | +0.854 | [+0.077, +1.631] |
+| search000 | +0.715 | +0.903 | [+0.363, +1.442] |
+| search024 | +1.286 | +1.226 | [+0.649, +1.802] |
+| pot | +8.165 | +0.340 | [-0.326, +1.005] |
+| call | +11.616 | +0.010 | [-0.054, +0.074] |
+| random | +11.402 | +0.621 | [-0.862, +2.103] |
+| opportunist | +2.322 | -0.425 | [-1.069, +0.218] |
+| oscillating | +3.306 | +0.770 | [-0.065, +1.605] |
+
+The opportunist has a negative change point estimate; its interval includes zero.
+This tradeoff is retained. High positive scores against simple baselines are
+not evidence of strength against elite bots. Test policies share project code
+and the equity engine. See `iteration2/opponent-pool/` for paired raw returns,
+source fingerprints and the clustered analysis.
+
+Reproduce analysis without replaying matches:
+
+```sh
+python tools/summarize_comparison.py validation/iteration2/head-to-head
+python tools/summarize_comparison.py validation/iteration2/opponent-pool
+```
+
+For a new independent comparison, choose new seeds:
+
+```sh
+python evaluate_candidate.py --candidate release --opponents incumbent nit search024 --seeds new-a new-b --output comparison-results
+python tools/summarize_comparison.py comparison-results
+```
+
+## Actual HTTP judge and lifecycle
+
+All 12 full HTTP matches used the unchanged referee and separate servers with
+the real 8-second bank, 1-second request deadline, and 5-error forfeit rule.
+**Both players in every match had zero errors, forfeits, exhausted banks and
+skipped calls.** All four supplied baselines were beaten; advanced draws remain
+visible. Raw reports are in `iteration2/http/`.
 
 | Opponent | Mean bb/deal | 95% interval | Max charged time/half | Verdict |
 |---|---:|---|---:|---|
-| EquityValueReference | +1.887 | [+1.218, +2.556] | 1.98 s | AGENT1_WIN |
-| Adversary-bluffer | +5.295 | [+3.928, +6.661] | 2.01 s | AGENT1_WIN |
-| Adversary-nit | +1.007 | [+0.479, +1.535] | 3.13 s | AGENT1_WIN |
-| Adversary-switcher | +2.795 | [+1.678, +3.912] | 2.02 s | AGENT1_WIN |
-| Adversary-checkraise | +1.790 | [+1.025, +2.555] | 1.74 s | AGENT1_WIN |
-| CallingStation | +11.637 | [+10.644, +12.630] | 7.79 s | AGENT1_WIN |
-| Adversary-range-tight | +0.511 | [-0.053, +1.075] | 2.53 s | CHOP |
-| RandomBot | +11.666 | [+10.085, +13.247] | 6.50 s | AGENT1_WIN |
-| Adversary-search000 | +0.390 | [-0.438, +1.217] | 1.41 s | CHOP |
-| AlwaysPot | +6.834 | [+5.253, +8.415] | 1.50 s | AGENT1_WIN |
-| AlwaysHalf | +12.521 | [+11.252, +13.790] | 1.55 s | AGENT1_WIN |
+| adversary-bluffer | +5.978 | [+4.686, +7.269] | 1.90 s | AGENT1_WIN |
+| adversary-checkraise | +2.588 | [+1.833, +3.343] | 1.85 s | AGENT1_WIN |
+| adversary-incumbent | +0.605 | [+0.053, +1.157] | 2.29 s | AGENT1_WIN |
+| adversary-nit | +1.392 | [+0.972, +1.812] | 2.03 s | AGENT1_WIN |
+| adversary-opportunist | +2.140 | [+1.288, +2.992] | 1.96 s | AGENT1_WIN |
+| adversary-oscillating | +3.076 | [+2.078, +4.074] | 1.98 s | AGENT1_WIN |
+| adversary-range-tight | +0.199 | [-0.375, +0.773] | 1.96 s | CHOP |
+| always_half | +15.008 | [+13.816, +16.200] | 1.49 s | AGENT1_WIN |
+| always_pot | +8.523 | [+6.987, +10.059] | 1.75 s | AGENT1_WIN |
+| calling_station | +12.123 | [+11.133, +13.114] | 1.75 s | AGENT1_WIN |
+| random | +11.068 | [+9.531, +12.605] | 1.83 s | AGENT1_WIN |
+| reference_agent | +3.062 | [+2.403, +3.722] | 2.12 s | AGENT1_WIN |
 
-Raw reports: `validation/final-http/`.
+The fresh-process test restarted both servers between duplicate halves, against
+the frozen incumbent. It returned +0.205 bb/deal, interval [-0.357, +0.767],
+a draw, with zero faults or skipped calls. See `iteration2/fresh-process/`.
 
-The fresh-process test restarted both servers between half 1 and half 2 and
-combined their reports with the official judge: CHOP,
--0.032 bb/deal. Both players again had zero faults and
-no skipped decisions. See `validation/fresh-process/`.
+## Restricted runtime and organizer build
 
-## Restricted runtime and the repaired time-bank failure
+The supplied smoke test passed with outbound network disabled, read-only files,
+user 10001, writable 512 MB `/tmp`, one CPU, 4 GB RAM, dropped capabilities,
+no-new-privileges and a 256-PID limit. Startup took 2.0 seconds and the sampled
+requests 2–3 milliseconds. See `iteration2/offline-smoke.txt`.
 
-The final code passed the supplied smoke test with network disabled, read-only
-files, user 10001, a 512 MB writable /tmp, 1 CPU, 4 GB RAM, all capabilities
-dropped, no-new-privileges, and a 256 PID limit. The health check answered after
-about 2.3 seconds, within the 15-second startup deadline. Sample decisions took
-2–4 milliseconds, within the 1-second deadline.
+A separate full real-judge match gave the bot its own one-CPU/4-GB read-only
+container and a local HTTP port, with the judge and CallingStation on the host.
+It returned +11.296 bb/deal, interval [+10.320, +12.272], and charged **3.23 and
+3.30 seconds of each 8-second bank**, with zero faults or skipped calls for
+either player. Core runtime source, native binary and preflop asset hashes
+matched this source tree (`iteration2/runtime-source-sha256.json`). Local
+restricted runs used the small sandbox image with current source mounted
+read-only; they do not replace the exact organizer image build.
 
-A separate full match gave the bot its own 1-CPU/4-GB, read-only container while
-the judge and CallingStation ran on the host. Only the local HTTP port was
-published; the separate no-network smoke test checks offline operation.
-The final bot won +11.995 bb/deal,
-interval [+11.029, +12.962], with charged half times
-2.49 and
-2.30 seconds out of 8, and zero
-errors, forfeits, exhausted banks or skipped calls. Runtime image core sources,
-native binary and equity asset were verified to match this release by SHA-256.
+The shared host has only two parent CPU cores. Earlier oversubscribed timing
+runs exhausted banks; final runtime checks ran with CPU capacity available.
+A CPU quota sets a maximum and does not reserve a CPU. The original development
+bank failure and other earlier losses remain under `validation/development*`.
 
-The earlier development build exhausted both half banks and skipped 207 and
-427 decisions. Those failed reports are preserved as
-`validation/development-time-bank-failure.*`. The final compiled likelihood loop
-and more conservative internal budget address the computation cost. Additional
-parallel runs over-subscribed the two-core development parent and exhausted
-banks; those reports are preserved in `validation/development/`. The reported
-release CPU and fresh-process checks were run serially with available CPU
-capacity. A container CPU quota is a maximum, not an exclusive reservation.
+GitHub Actions runs the unchanged organizer Dockerfiles, added-image-size check
+and restricted smoke test on the pushed commit. It also runs the 88 tests,
+11 full HTTP matches, and a fresh-server match, checking faults in both players.
+Check the current commit's [workflow result](https://github.com/aashrithtutuku02-stack/rangerunner-plo5/actions/workflows/validate.yml)
+for build status; historical success alone does not validate a new commit.
 
-The local VFS Docker storage could not build every organizer image layer within
-this workspace's disk limit. Local restricted tests use `docker/Dockerfile.sandbox`,
-with the exact bot dependencies. The committed GitHub Actions workflow runs the
-unchanged full organizer Dockerfiles, added-image-size check and restricted smoke
-test on an Ubuntu Docker runner. The workflow result must be checked for the
-actual pushed commit; local sandbox success is not a substitute for that result.
+## Integrity and limits
 
-A selected check-raising policy also beat the earlier release candidate on one
-seed by -1.152 bb/deal, interval [-2.074, -0.229]. That result, its source snapshot,
-and final independent-seed draws after separating initial-bet and re-raise
-statistics are retained. This was a measured weakness, not evidence of universal
-winning play.
+The supplied rules, evaluator, referee, protocol tests, original organizer
+Dockerfiles/build checker and `agent.py` server are unchanged. The native engine
+and preflop asset are also unchanged from the incumbent. The verified list is in
+`iteration2/protected-files.json`; `SOURCE_SHA256.json` identifies release files
+outside the evidence directory.
 
-## Remaining limits and original files
-
-See [WEAKNESSES.md](WEAKNESSES.md). The hardest similar range-aware strategy and
-some selected challengers draw statistically; this is not an unbeatable bot.
-No elite independent engine or solved-game exploitability bound was used.
-
-The original rules, evaluator, referee, supplied tests, organizer Dockerfiles,
-and server plumbing were verified unchanged. Strategy modules, native kernel,
-preflop asset, local adversaries, tests and CI are added. Set the registered team
-identity in `agent.py` before submitting.
+The rank calibration is a model assumption, especially imperfect for early
+streets and tied strengths. Betting remains approximate and the game is not
+solved. See [WEAKNESSES.md](WEAKNESSES.md) for remaining strategic and runtime
+limits. Set the registered team identity in `agent.py` before submission.

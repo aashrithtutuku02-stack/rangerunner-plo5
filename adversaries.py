@@ -38,7 +38,10 @@ class Opponent:
         self.name = name
         self.params = params if params is not None else CASES.get(name)
         self.range_policy = None
-        if name in ('range-aware','range-tight','range-flat'):
+        if name=='incumbent':
+            from opponents import incumbent_36ba
+            self.range_policy=incumbent_36ba
+        elif name in ('range-aware','range-tight','range-flat'):
             spec=importlib.util.spec_from_file_location('challenger_'+name.replace('-','_'),
                                                        Path(__file__).with_name('reference_range.py'))
             module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
@@ -71,6 +74,14 @@ class Opponent:
         profile = self.params or PROFILES.get(self.name, PROFILES['balanced'])
         if self.name == 'switcher':
             profile = PROFILES[('nit','maniac','trapper','bluffer')[(obs.hand_index//100)%4]]
+        if self.name == 'oscillating':
+            profile = PROFILES[('nit','bluffer','checkraise','maniac')[(obs.hand_index//25)%4]]
+        if self.name == 'opportunist':
+            profile=dict(PROFILES['balanced'])
+            checked=any(not a.is_me and a.street==obs.street and
+                        a.action==Action.CHECK_CALL and a.amount==0 for a in obs.action_history)
+            if checked and obs.street!=Street.PREFLOP:
+                profile['bluff']=.95
         key = (obs.hand_index, obs.hole_cards, obs.board)
         if memory['key'] != key:
             hole = np.asarray(obs.hole_cards, dtype=np.int32)
@@ -113,5 +124,5 @@ class Opponent:
 
 
 def names():
-    return ['fold','call','pot','half','random',*PROFILES,'switcher',
-            'range-aware','range-tight','range-flat']
+    return ['fold','call','pot','half','random',*PROFILES,'switcher','incumbent',
+            'range-aware','range-tight','range-flat','opportunist','oscillating']

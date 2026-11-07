@@ -55,14 +55,14 @@ errors, forfeits, exhausted banks, skipped decisions, and baseline losses/draws.
 Advanced opponents may draw; their confidence intervals remain in the reports.
 
 For accelerated discovery on duplicate deals (direct calls, without HTTP time-bank
-enforcement), including 21 policy families and eight selected search opponents:
+enforcement), including 24 policy families and eight selected search opponents:
 
 ```sh
 python stress_benchmark.py --deals 1000 --seeds discovery-example
 python stress_benchmark.py --deals 1000 --cases adversary_cases.json
 ```
 
-Use genuinely fresh servers between halves to check tournament lifecycle behavior:
+Use fresh servers between halves to check tournament lifecycle behavior:
 
 ```sh
 python tools/fresh_match.py --opponent adversary:range-tight
@@ -72,6 +72,23 @@ Deals repeat with the same seed. Timing-based sample allocation can change
 individual decisions across machines, so identical cards do not guarantee
 identical numeric reports. Confidence intervals are in **bb per duplicate deal**,
 summing both seat-swapped hands, as defined by the supplied judge.
+
+## Compare with the previous release
+
+The previous released strategy and its helper are frozen under `opponents/`.
+They cannot silently inherit the new action model. A negative-control self-play
+test verifies zero paired returns for identical frozen policies.
+
+```sh
+python evaluate_candidate.py --candidate release --opponents incumbent nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
+python tools/summarize_comparison.py comparison-results
+```
+
+These offline comparisons use a generous internal bank to hold simulation counts
+fixed and prevent host scheduling from changing the comparison. They do not
+certify tournament timing; the separate HTTP and container checks use the real
+8-second bank. Common-deal comparisons use paired returns. The opponent-pool
+summary groups shared deals across opponents before calculating uncertainty.
 
 ## Implementation
 
@@ -84,11 +101,20 @@ summing both seat-swapped hands, as defined by the supplied judge.
 * `fast_engine.py` validates card arrays before passing pointers to native code.
   Other platforms, or `RANGERUNNER_ENGINE=numba`, use the tested Numba fallback
   in `equity_engine.py`.
-* `strategy.py` learns action frequencies per street for checks, initial bets,
-  and re-raises. It mixes card-independent and selective value/bluff models,
-  conditions the model and hand range jointly, and accounts for the price of
-  observed calls and prospective responses.
-* `range_model.py` compiles the repeated likelihood loops at startup. This
+* `strategy.py` learns opportunity-adjusted frequencies per street for checks,
+  initial bets, and re-raises. Calls when raising is unavailable reveal only
+  a decision to continue, so they preserve the learned call/raise preference.
+  Model likelihoods merge unavailable raises into calls and raise evaluation
+  assigns zero probability to an illegal re-raise.
+* `range_model.py` uses ordered probabilities whose uniform-rank averages match
+  the estimated fold/call/raise frequencies, even for selective opponents.
+  A closed-form intercept avoids repeatedly solving numerical calibration
+  problems during a match. This is a rank-model assumption, not a solved
+  model of an opponent's equity.
+* Hand learning includes verified final opponent calls, folds and checks,
+  including preflop all-in showdowns. Chip totals and street consistency are
+  checked so stale callbacks do not invent a missing action.
+* The repeated likelihood loops compile at startup. This
   keeps the model calculations out of slow repeated Python/NumPy dispatch.
 * Live samples are reused within a street and decrease if measured decision
   and result-processing time gets ahead of the half's internal budget.
@@ -137,8 +163,7 @@ The project can run with a read-only repository, no outbound network, 1 CPU,
 ## Submit
 
 Set the registered team name, run the checks on the final commit, and push all
-files. The challenge requires a public repository for submission; change the
-repository's visibility when ready. Register your team and submit the public
+files. The challenge requires a public repository for submission. Register your team and submit the public
 URL and full commit SHA through the challenge forms. No registration or form
 submission is performed by this project.
 

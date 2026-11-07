@@ -16,8 +16,8 @@ from adversaries import Opponent, names
 from game import AgentConfig, Game, make_deal
 
 
-def run(opponent, seed, deals, hero=agent):
-    config = AgentConfig(num_hands=deals)
+def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0):
+    config = AgentConfig(num_hands=deals,time_bank_seconds=time_bank_seconds)
     paired = [0.0]*deals
     timings = []
     for seat in (0,1):
@@ -40,7 +40,7 @@ def run(opponent, seed, deals, hero=agent):
         timings.append(dict(hero=cost[seat],opponent=cost[1-seat]))
     mean=statistics.mean(paired)
     se=statistics.stdev(paired)/(deals**.5) if deals>1 else 0.0
-    return dict(opponent=opponent.name,seed=seed,deals=deals,mean=mean,
+    return dict(opponent=opponent.name,seed=seed,deals=deals,time_bank_seconds=time_bank_seconds,mean=mean,
                 ci=[mean-1.96*se,mean+1.96*se],timings=timings,paired=paired)
 
 

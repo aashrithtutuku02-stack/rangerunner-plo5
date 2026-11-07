@@ -1,0 +1,126 @@
+{
+  "mean_change": 0.5652916666666666,
+  "ci": [
+    0.33864543742666153,
+    0.7919378959066717
+  ],
+  "opponents": 12,
+  "independent_deal_clusters": 2000,
+  "paired_policy_observations": 24000,
+  "played_hands": 96000,
+  "per_opponent": [
+    {
+      "opponent": "balanced",
+      "change": 0.10375,
+      "ci": [
+        -0.5064009742632943,
+        0.7139009742632944
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "call",
+      "change": 0.01,
+      "ci": [
+        -0.05414279280585207,
+        0.07414279280585206
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "checkraise",
+      "change": 0.7355,
+      "ci": [
+        0.20516332594688225,
+        1.265836674053118
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "nit",
+      "change": 0.3055,
+      "ci": [
+        0.04108383406038674,
+        0.5699161659396133
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "opportunist",
+      "change": -0.4255,
+      "ci": [
+        -1.0685268830040724,
+        0.2175268830040723
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "oscillating",
+      "change": 0.76975,
+      "ci": [
+        -0.06505443733382599,
+        1.604554437333826
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "polarized",
+      "change": 1.34225,
+      "ci": [
+        0.5873397259721084,
+        2.0971602740278916
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "pot",
+      "change": 0.3395,
+      "ci": [
+        -0.3260095232786584,
+        1.0050095232786584
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "random",
+      "change": 0.6205,
+      "ci": [
+        -0.8620120473335264,
+        2.1030120473335265
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "search000",
+      "change": 0.90275,
+      "ci": [
+        0.36343804045450256,
+        1.4420619595454975
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "search024",
+      "change": 1.2255,
+      "ci": [
+        0.6490318714869003,
+        1.8019681285130997
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "switcher",
+      "change": 0.854,
+      "ci": [
+        0.07671517017213048,
+        1.6312848298278695
+      ],
+      "deals": 2000
+    }
+  ],
+  "source_sha256": {
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "range_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "strategy.py": "2eba4f3f2bc6c8c3c908550df0a7e10c3b8c8cbb78542d20508d938705c57932"
+  }
+}

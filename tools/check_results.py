@@ -6,8 +6,12 @@ import sys
 root=Path(sys.argv[1])
 files=list(root.glob('*.json'))
 assert files, f'No judge reports in {root}'
+full=0
 for path in files:
     result=json.loads(path.read_text())
+    if result.get('kind')=='half_result':continue
+    assert result.get('kind')=='match_result',(path,'unrecognized report type')
+    full+=1
     assert result['num_deals']==1000,(path,'not a full match')
     for player in ('agent1','agent2'):
         assert len(result['agent_stats'][player])==2
@@ -18,4 +22,5 @@ for path in files:
             assert not half['skipped_calls'],(path,player,half)
     if path.stem.split('-')[0] in ('random','calling_station','always_half','always_pot'):
         assert result['verdict']=='AGENT1_WIN',(path,result['verdict'])
-print(f'{len(files)} full matches: no errors, forfeits, exhausted banks or skipped decisions.')
+assert full, f'No combined full matches in {root}'
+print(f'{full} full matches: no errors, forfeits, exhausted banks or skipped decisions.')

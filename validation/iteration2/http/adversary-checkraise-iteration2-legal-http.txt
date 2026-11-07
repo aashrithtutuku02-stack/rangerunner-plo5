@@ -1,0 +1,21 @@
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://127.0.0.1:5008)
+agent2 = YOUR_TEAM_NAME / Adversary-checkraise (http://127.0.0.1:5017)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration2-legal-http
+agent1: +2.588 bb/deal  (std 12.19, stderr 0.385)
+Confidence interval (z=1.96): [+1.833, +3.343] bb/deal
+Reason: interval [+1.833, +3.343] is entirely above 0
+half1: agent1 +1459 chips, agent2 -1459 chips
+half2: agent1 +3717 chips, agent2 -3717 chips
+Faults:
+  agent1 half1: thinking 1.85s of 8s (wall 5.32s), calls 3532, errors 0
+  agent1 half2: thinking 1.82s of 8s (wall 5.33s), calls 3571, errors 0
+  agent2 half1: thinking 0.39s of 8s (wall 3.16s), calls 3713, errors 0
+  agent2 half2: thinking 0.30s of 8s (wall 3.05s), calls 3790, errors 0
+Speed: 2000 hands in 17.74s (113 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (YOUR_TEAM_NAME / RangeRunner (http://127.0.0.1:5008))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN

@@ -33,11 +33,29 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
    exception was removed. Four low hole-card quads can correctly fold even for
    the 1-chip completion price.
 
+8. **Selective likelihoods inflated action frequency.** Raising the old model
+   slope could turn a low observed raise rate into a much larger model average.
+   The new ordered model calibrates intercepts over a uniform rank percentile.
+   Its marginal frequencies, normalization and monotonicity are checked by
+   numerical integration and by compiled/Python equivalence.
+9. **Final responses were missing from learning evidence.** Verified final
+   calls and checks are now part of showdown learning, including preflop
+   showdowns. Inconsistent pots or stale callbacks are rejected.
+10. **Unavailable raises were treated as possible choices.** Observed action
+    history now reconstructs whether raising was legal. All-ins and capped
+    streets merge raise likelihood into call likelihood; censored calls do not
+    spuriously teach that an opponent dislikes raising. A final allowed raise
+    is no longer penalized for an impossible immediate re-raise.
+
 ## Remaining strategic limits
 
 * The game has not been solved to a Nash equilibrium. Betting policy and
   opponent likelihoods are approximate, and action selection is mostly
   deterministic given the samples and learned state.
+* The calibration assumes rank percentiles, which imperfectly represent actual
+  equity and can contain ties or compressed early-street distributions. Matching
+  the rank-model margins does not guarantee calibrated predictions for every
+  board, history, opponent, or population.
 * There are only a few opponent selectivity models. Highly unusual sizing,
   multi-street traps, or opponents that deliberately change their strategy can
   differ from every model. Street and facing-bet frequency buckets are coarse.

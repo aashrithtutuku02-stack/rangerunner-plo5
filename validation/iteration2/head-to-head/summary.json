@@ -1,0 +1,12 @@
+[
+  {
+    "opponent": "incumbent",
+    "candidate_score": 0.17485,
+    "improvement": 0.17485,
+    "ci": [
+      -0.007773239628809686,
+      0.3574732396288097
+    ],
+    "deals": 10000
+  }
+]

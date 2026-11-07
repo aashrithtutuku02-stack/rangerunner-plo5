@@ -1,0 +1,24 @@
+fb3e4c862ae69c1d848f58b4453435e919d83ffbbda1c2e27833a7e8dca16362
+waiting for agent1 at http://localhost:5020 ...
+waiting for agent2 at http://localhost:5021 ...
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://localhost:5020)
+agent2 = Challenges Team / CallingStation (http://localhost:5021)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration2-cpu-final
+agent1: +11.296 bb/deal  (std 15.75, stderr 0.498)
+Confidence interval (z=1.96): [+10.320, +12.272] bb/deal
+Reason: interval [+10.320, +12.272] is entirely above 0
+half1: agent1 +11324 chips, agent2 -11324 chips
+half2: agent1 +11268 chips, agent2 -11268 chips
+Faults:
+  agent1 half1: thinking 3.23s of 8s (wall 7.22s), calls 3996, errors 0
+  agent1 half2: thinking 3.30s of 8s (wall 7.30s), calls 4002, errors 0
+  agent2 half1: thinking 0.12s of 8s (wall 2.67s), calls 4757, errors 0
+  agent2 half2: thinking 0.20s of 8s (wall 2.80s), calls 4750, errors 0
+Speed: 2000 hands in 21.14s (95 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (YOUR_TEAM_NAME / RangeRunner (http://localhost:5020))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN

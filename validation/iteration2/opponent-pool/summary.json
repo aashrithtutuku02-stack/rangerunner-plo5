@@ -1,0 +1,122 @@
+[
+  {
+    "opponent": "nit",
+    "candidate_score": 1.4935,
+    "improvement": 0.3055,
+    "ci": [
+      0.04108383406038674,
+      0.5699161659396133
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "balanced",
+    "candidate_score": 3.155,
+    "improvement": 0.10375,
+    "ci": [
+      -0.5064009742632943,
+      0.7139009742632944
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "checkraise",
+    "candidate_score": 2.77425,
+    "improvement": 0.7355,
+    "ci": [
+      0.20516332594688225,
+      1.265836674053118
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "polarized",
+    "candidate_score": 3.43625,
+    "improvement": 1.34225,
+    "ci": [
+      0.5873397259721084,
+      2.0971602740278916
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "switcher",
+    "candidate_score": 3.87425,
+    "improvement": 0.854,
+    "ci": [
+      0.07671517017213048,
+      1.6312848298278695
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "search000",
+    "candidate_score": 0.71525,
+    "improvement": 0.90275,
+    "ci": [
+      0.36343804045450256,
+      1.4420619595454975
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "search024",
+    "candidate_score": 1.28625,
+    "improvement": 1.2255,
+    "ci": [
+      0.6490318714869003,
+      1.8019681285130997
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 8.16475,
+    "improvement": 0.3395,
+    "ci": [
+      -0.3260095232786584,
+      1.0050095232786584
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 11.61625,
+    "improvement": 0.01,
+    "ci": [
+      -0.05414279280585207,
+      0.07414279280585206
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "random",
+    "candidate_score": 11.40175,
+    "improvement": 0.6205,
+    "ci": [
+      -0.8620120473335264,
+      2.1030120473335265
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "opportunist",
+    "candidate_score": 2.32175,
+    "improvement": -0.4255,
+    "ci": [
+      -1.0685268830040724,
+      0.2175268830040723
+    ],
+    "deals": 2000
+  },
+  {
+    "opponent": "oscillating",
+    "candidate_score": 3.30625,
+    "improvement": 0.76975,
+    "ci": [
+      -0.06505443733382599,
+      1.604554437333826
+    ],
+    "deals": 2000
+  }
+]

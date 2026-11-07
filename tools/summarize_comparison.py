@@ -1,0 +1,49 @@
+"""Summarize paired policy changes without counting shared deals repeatedly."""
+import argparse
+import json
+from pathlib import Path
+import statistics
+
+
+def interval(values):
+    mean=statistics.mean(values)
+    se=statistics.stdev(values)/len(values)**.5 if len(values)>1 else 0.
+    return mean,[mean-1.96*se,mean+1.96*se]
+
+
+def summarize(rows):
+    assert rows,'No paired comparison records'
+    opponents={r['opponent'] for r in rows}
+    seen=set();groups={};by_opponent={};sources=set()
+    for r in rows:
+        key=(r['opponent'],r['seed']);assert key not in seen,'Duplicate opponent/seed'
+        seen.add(key)
+        assert r['sample_mode']=='fixed-default-counts'
+        sources.add(json.dumps(r['source_sha256'],sort_keys=True))
+        assert len(r['delta'])==len(r['candidate']['paired'])==len(r['baseline']['paired'])
+        for i,(delta,new,old) in enumerate(zip(r['delta'],r['candidate']['paired'],r['baseline']['paired'])):
+            assert abs(delta-(new-old))<1e-12
+            groups.setdefault((r['seed'],i),{})[r['opponent']]=delta
+        by_opponent.setdefault(r['opponent'],[]).extend(r['delta'])
+    assert len(sources)==1,'Mixed source versions'
+    assert all(set(group)==opponents for group in groups.values()),'Incomplete shared-deal grid'
+    clustered=[statistics.mean(group.values()) for group in groups.values()]
+    mean,ci=interval(clustered)
+    details=[]
+    for name,values in sorted(by_opponent.items()):
+        m,c=interval(values);details.append(dict(opponent=name,change=m,ci=c,deals=len(values)))
+    return dict(mean_change=mean,ci=ci,opponents=len(opponents),independent_deal_clusters=len(clustered),
+                paired_policy_observations=sum(len(r['delta']) for r in rows),
+                played_hands=4*sum(len(r['delta']) for r in rows),
+                per_opponent=details,source_sha256=json.loads(next(iter(sources))))
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('directory');p.add_argument('--output')
+    a=p.parse_args();rows=[]
+    for path in Path(a.directory).glob('*.json'):
+        obj=json.loads(path.read_text())
+        if isinstance(obj,dict) and 'delta' in obj:rows.append(obj)
+    text=json.dumps(summarize(rows),indent=2)+'\n'
+    if a.output:Path(a.output).write_text(text)
+    print(text)

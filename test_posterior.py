@@ -12,7 +12,7 @@ def test_response_mixture_conditions_model_on_candidate_hand(monkeypatch):
     memory['counts'][3,1]=[3,4,2]
     q=np.array([[.1,.1,.1,.1],[.5,.5,.5,.5],[.9,.9,.9,.9]])
     ranges=np.array([[.8,.1,.1],[.1,.8,.1],[.1,.1,.8],[.05,.15,.8]])
-    obs=SimpleNamespace(street=3,to_call=0)
+    obs=SimpleNamespace(street=3,to_call=0,raises_this_street=0,my_stack=100,opp_stack=100,my_bet=0,opp_bet=0)
     f,r=strategy.response_prob(obs,memory,{'q':q},1,.28,ranges)
     # Evaluate the conditional joint distribution directly, one hand/model
     # at a time. This is the law of total probability with model-dependent
@@ -54,7 +54,7 @@ def test_history_prices_match_replayed_official_game():
         before=replay.observation(replay.to_act)
         if replay.to_act!=game.to_act:
             expected.append((idx,int(before.street),int(before.to_call>0),int(record.action),
-                             before.to_call/max(1,before.pot+before.to_call)))
+                             before.to_call/max(1,before.pot+before.to_call),int(Action.RAISE_POT in before.legal_actions)))
         replay.apply(record.action)
     assert strategy.history_events(obs)==expected
 
@@ -67,7 +67,7 @@ def test_history_distinguishes_forced_blinds_from_voluntary_reraises():
     # Active seat 1 sees opponent seat 0's initial blind-facing raise and
     # subsequent voluntary re-raise in distinct contexts.
     obs=game.observation(1)
-    assert [(idx,context) for idx,street,context,action,price in strategy.history_events(obs)]==[(0,1),(2,2)]
+    assert [(event[0],event[2]) for event in strategy.history_events(obs)]==[(0,1),(2,2)]
 
 
 def test_response_uses_reraise_bucket_after_opponent_voluntary_bet():
@@ -75,8 +75,8 @@ def test_response_uses_reraise_bucket_after_opponent_voluntary_bet():
     memory['counts'][3,1]=[1.,20.,1.]
     memory['counts'][3,2]=[20.,1.,1.]
     cache={'q':np.array([[.5,.5,.5,.5]])}
-    first=SimpleNamespace(street=3,to_call=0,raises_this_street=0)
-    raised=SimpleNamespace(street=3,to_call=10,raises_this_street=1)
+    first=SimpleNamespace(street=3,to_call=0,raises_this_street=0,my_stack=100,opp_stack=100,my_bet=0,opp_bet=0)
+    raised=SimpleNamespace(street=3,to_call=10,raises_this_street=1,my_stack=100,opp_stack=100,my_bet=0,opp_bet=10)
     f1,r1=strategy.response_prob(first,memory,cache,10,.28)
     f2,r2=strategy.response_prob(raised,memory,cache,20,.28)
     assert f2[0]>f1[0]
