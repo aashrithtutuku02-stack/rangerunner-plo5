@@ -1,0 +1,98 @@
+[
+  {
+    "name": "search000",
+    "params": {
+      "value": 0.520286673606073,
+      "raise_value": 0.6263331039692677,
+      "call_extra": 0.23584141735766243,
+      "bluff": 0.15,
+      "half": false,
+      "trap": false,
+      "checkraise": true
+    }
+  },
+  {
+    "name": "search030",
+    "params": {
+      "value": 0.6586515800644569,
+      "raise_value": 0.7821654269447006,
+      "call_extra": 0.173890730316192,
+      "bluff": 0,
+      "half": false,
+      "trap": false,
+      "checkraise": false
+    }
+  },
+  {
+    "name": "search005",
+    "params": {
+      "value": 0.6553782449857998,
+      "raise_value": 0.7250717177047137,
+      "call_extra": 0.1783033172589173,
+      "bluff": 0,
+      "half": true,
+      "trap": false,
+      "checkraise": true
+    }
+  },
+  {
+    "name": "search021",
+    "params": {
+      "value": 0.7682600366376084,
+      "raise_value": 0.8810855083621447,
+      "call_extra": 0.21984021959825858,
+      "bluff": 0,
+      "half": false,
+      "trap": false,
+      "checkraise": false
+    }
+  },
+  {
+    "name": "search022",
+    "params": {
+      "value": 0.9254993723374025,
+      "raise_value": 0.99,
+      "call_extra": 0.0930092936014573,
+      "bluff": 0.05,
+      "half": true,
+      "trap": false,
+      "checkraise": false
+    }
+  },
+  {
+    "name": "search024",
+    "params": {
+      "value": 0.8539714004550003,
+      "raise_value": 0.99,
+      "call_extra": 0.24812761638197203,
+      "bluff": 0.3,
+      "half": false,
+      "trap": false,
+      "checkraise": false
+    }
+  },
+  {
+    "name": "search013",
+    "params": {
+      "value": 0.5404406826996383,
+      "raise_value": 0.6184463866705979,
+      "call_extra": 0.16376420514585718,
+      "bluff": 0.05,
+      "half": true,
+      "trap": false,
+      "checkraise": false
+    }
+  },
+  {
+    "name": "search014",
+    "params": {
+      "value": 0.7955742552324684,
+      "raise_value": 0.8921587403152098,
+      "call_extra": 0.11470037488963031,
+      "bluff": 0.15,
+      "half": true,
+      "trap": true,
+      "checkraise": false
+    }
+  }
+]

@@ -1,0 +1,13 @@
+.git
+.venv
+venv
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+benchmark-*/
+validation/
+stress-results/
+search-results/
+prior-search/
+fresh-results/

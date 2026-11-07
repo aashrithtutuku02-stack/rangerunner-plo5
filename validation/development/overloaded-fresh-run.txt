@@ -1,0 +1,47 @@
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://localhost:5030)  (seat 0)
+agent2 = YOUR_TEAM_NAME / Adversary-range-tight (http://localhost:5031)  (seat 1)
+
+Half 1: 1000 deals, seed final-context-fresh
+Chips: agent1 -425 (-0.212 bb/deal), agent2 +425
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 8.01s of 8s (wall 10.38s), calls 2390, errors 0  TIME BANK EMPTY (91 calls skipped)
+  agent2: thinking 8.00s of 8s (wall 10.22s), calls 2233, errors 0  TIME BANK EMPTY (303 calls skipped)
+Speed: 1000 hands in 20.88s (48 hands/s)
+RESULT: HALF_DONE
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://localhost:5030)  (seat 1)
+agent2 = YOUR_TEAM_NAME / Adversary-range-tight (http://localhost:5031)  (seat 0)
+
+Half 2: 1000 deals, seed final-context-fresh
+Chips: agent1 -373 (-0.186 bb/deal), agent2 +373
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 4.29s of 8s (wall 7.46s), calls 3258, errors 0
+  agent2: thinking 5.58s of 8s (wall 8.80s), calls 3298, errors 0
+Speed: 1000 hands in 16.61s (60 hands/s)
+RESULT: HALF_DONE
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://localhost:5030)
+agent2 = YOUR_TEAM_NAME / Adversary-range-tight (http://localhost:5031)
+
+Duplicate match: 1000 deals (2000 hands), seed final-context-fresh
+agent1: -0.399 bb/deal  (std 10.72, stderr 0.339)
+Confidence interval (z=1.96): [-1.063, +0.265] bb/deal
+Reason: interval [-1.063, +0.265] includes 0
+half1: agent1 -425 chips, agent2 +425 chips
+half2: agent1 -373 chips, agent2 +373 chips
+Faults:
+  agent1 half1: thinking 8.01s of 8s (wall 10.38s), calls 2390, errors 0  TIME BANK EMPTY (91 calls skipped)
+  agent1 half2: thinking 4.29s of 8s (wall 7.46s), calls 3258, errors 0
+  agent2 half1: thinking 8.00s of 8s (wall 10.22s), calls 2233, errors 0  TIME BANK EMPTY (303 calls skipped)
+  agent2 half2: thinking 5.58s of 8s (wall 8.80s), calls 3298, errors 0
+Speed: 2000 hands in 37.49s (53 hands/s)
+
+============================================================
+  VERDICT: CHOP  (too close to call - half a win each)
+  Points: agent1 0.5, agent2 0.5
+============================================================
+RESULT: CHOP

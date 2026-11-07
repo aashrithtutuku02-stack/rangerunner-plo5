@@ -1,0 +1,221 @@
+{
+  "final_hands": 142000,
+  "tests_passed": 50,
+  "policy_family_verdicts": {
+    "wins": 20,
+    "draws": 1,
+    "losses": 0
+  },
+  "policy_family_results": [
+    {
+      "opponent": "balanced",
+      "deals": 2000,
+      "mean": 3.02825,
+      "ci": [
+        2.4663021936602343,
+        3.5901978063397655
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "bluffer",
+      "deals": 2000,
+      "mean": 6.23525,
+      "ci": [
+        5.301166399891344,
+        7.169333600108655
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "call",
+      "deals": 2000,
+      "mean": 11.947,
+      "ci": [
+        11.247816605329838,
+        12.64618339467016
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "checkraise",
+      "deals": 2000,
+      "mean": 2.348,
+      "ci": [
+        1.8229226859502832,
+        2.8730773140497163
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "fold",
+      "deals": 2000,
+      "mean": 1.5,
+      "ci": [
+        1.5,
+        1.5
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "half",
+      "deals": 2000,
+      "mean": 13.20475,
+      "ci": [
+        12.324309320262167,
+        14.085190679737835
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "loose",
+      "deals": 2000,
+      "mean": 5.61575,
+      "ci": [
+        4.814902385686125,
+        6.416597614313876
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "maniac",
+      "deals": 2000,
+      "mean": 8.59525,
+      "ci": [
+        7.5903693944364985,
+        9.600130605563502
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "nit",
+      "deals": 2000,
+      "mean": 0.7955,
+      "ci": [
+        0.47939054892912775,
+        1.1116094510708723
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "overfolder",
+      "deals": 2000,
+      "mean": 0.672,
+      "ci": [
+        0.3672260020150606,
+        0.9767739979849395
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "polarized",
+      "deals": 2000,
+      "mean": 2.5165,
+      "ci": [
+        1.8794010494447515,
+        3.153598950555249
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "pot",
+      "deals": 2000,
+      "mean": 8.04525,
+      "ci": [
+        6.958376248813847,
+        9.132123751186151
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "random",
+      "deals": 2000,
+      "mean": 11.89075,
+      "ci": [
+        10.79939713964527,
+        12.98210286035473
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "range-aware",
+      "deals": 2000,
+      "mean": 1.044,
+      "ci": [
+        0.5175598976883876,
+        1.5704401023116126
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "range-flat",
+      "deals": 2000,
+      "mean": 9.376,
+      "ci": [
+        8.424338379202224,
+        10.327661620797775
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "range-tight",
+      "deals": 2000,
+      "mean": 0.106,
+      "ci": [
+        -0.27501097539688596,
+        0.4870109753968859
+      ],
+      "verdict": "Draw"
+    },
+    {
+      "opponent": "smallball",
+      "deals": 2000,
+      "mean": 3.79,
+      "ci": [
+        3.2618481652969007,
+        4.3181518347031
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "sticky",
+      "deals": 2000,
+      "mean": 6.71825,
+      "ci": [
+        5.979945506260265,
+        7.456554493739736
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "switcher",
+      "deals": 2000,
+      "mean": 3.06925,
+      "ci": [
+        2.319063904039247,
+        3.8194360959607527
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "tight",
+      "deals": 2000,
+      "mean": 2.22425,
+      "ci": [
+        1.7875063409717313,
+        2.660993659028269
+      ],
+      "verdict": "Win"
+    },
+    {
+      "opponent": "trapper",
+      "deals": 2000,
+      "mean": 2.0925,
+      "ci": [
+        1.6082679656543328,
+        2.576732034345667
+      ],
+      "verdict": "Win"
+    }
+  ]
+}

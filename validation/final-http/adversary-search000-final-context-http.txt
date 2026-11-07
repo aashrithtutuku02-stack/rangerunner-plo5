@@ -1,0 +1,21 @@
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://127.0.0.1:5008)
+agent2 = YOUR_TEAM_NAME / Adversary-search000 (http://127.0.0.1:5019)
+
+Duplicate match: 1000 deals (2000 hands), seed final-context-http
+agent1: +0.390 bb/deal  (std 13.36, stderr 0.422)
+Confidence interval (z=1.96): [-0.438, +1.217] bb/deal
+Reason: interval [-0.438, +1.217] includes 0
+half1: agent1 -9 chips, agent2 +9 chips
+half2: agent1 +788 chips, agent2 -788 chips
+Faults:
+  agent1 half1: thinking 1.41s of 8s (wall 3.85s), calls 2556, errors 0
+  agent1 half2: thinking 1.30s of 8s (wall 3.74s), calls 2585, errors 0
+  agent2 half1: thinking 0.21s of 8s (wall 2.13s), calls 2816, errors 0
+  agent2 half2: thinking 0.23s of 8s (wall 2.08s), calls 2821, errors 0
+Speed: 2000 hands in 12.34s (162 hands/s)
+
+============================================================
+  VERDICT: CHOP  (too close to call - half a win each)
+  Points: agent1 0.5, agent2 0.5
+============================================================
+RESULT: CHOP

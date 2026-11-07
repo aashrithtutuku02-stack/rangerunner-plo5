@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+benchmark-results/
+*.log
+stress-results/
+search-results/
+prior-search/
+fresh-results/

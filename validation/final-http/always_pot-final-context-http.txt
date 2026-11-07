@@ -1,0 +1,21 @@
+agent1 = YOUR_TEAM_NAME / RangeRunner (http://127.0.0.1:5008)
+agent2 = Challenges Team / AlwaysPot (http://127.0.0.1:5012)
+
+Duplicate match: 1000 deals (2000 hands), seed final-context-http
+agent1: +6.834 bb/deal  (std 25.51, stderr 0.807)
+Confidence interval (z=1.96): [+5.253, +8.415] bb/deal
+Reason: interval [+5.253, +8.415] is entirely above 0
+half1: agent1 +7401 chips, agent2 -7401 chips
+half2: agent1 +6267 chips, agent2 -6267 chips
+Faults:
+  agent1 half1: thinking 1.43s of 8s (wall 4.62s), calls 3535, errors 0
+  agent1 half2: thinking 1.50s of 8s (wall 4.68s), calls 3519, errors 0
+  agent2 half1: thinking 0.19s of 8s (wall 1.59s), calls 2877, errors 0
+  agent2 half2: thinking 0.17s of 8s (wall 1.57s), calls 2819, errors 0
+Speed: 2000 hands in 13.25s (151 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (YOUR_TEAM_NAME / RangeRunner (http://127.0.0.1:5008))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN

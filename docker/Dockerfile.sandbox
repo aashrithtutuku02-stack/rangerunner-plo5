@@ -1,0 +1,13 @@
+# A smaller optional sandbox for local runtime tests. The organizer build
+# remains docker/Dockerfile.agent on its supplied PyTorch base.
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HOME=/tmp PORT=5008 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+WORKDIR /app
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt \
+    && groupadd --gid 10001 bot \
+    && useradd --uid 10001 --gid 10001 --no-create-home --home-dir /tmp --shell /usr/sbin/nologin bot
+COPY . /app
+RUN chmod -R a+rX /app
+USER 10001:10001
+CMD ["python","agent.py"]
