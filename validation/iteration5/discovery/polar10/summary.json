@@ -1,0 +1,102 @@
+[
+  {
+    "opponent": "release-52c5",
+    "candidate_score": 0.16333333333333333,
+    "improvement": 0.16333333333333333,
+    "ci": [
+      -0.5059104977771991,
+      0.8325771644438658
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-value",
+    "candidate_score": 1.295,
+    "improvement": -0.6033333333333334,
+    "ci": [
+      -1.409525919990934,
+      0.20285925332426724
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-polar",
+    "candidate_score": 3.3933333333333335,
+    "improvement": 0.13416666666666666,
+    "ci": [
+      -1.625633504679481,
+      1.8939668380128145
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-adaptive",
+    "candidate_score": 0.7066666666666667,
+    "improvement": -0.6416666666666667,
+    "ci": [
+      -1.5439120767429442,
+      0.2605787434096106
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "polarized",
+    "candidate_score": 3.0091666666666668,
+    "improvement": -0.175,
+    "ci": [
+      -1.2817876836266806,
+      0.9317876836266805
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "bluffer",
+    "candidate_score": 7.5441666666666665,
+    "improvement": 2.1216666666666666,
+    "ci": [
+      0.30320957409566085,
+      3.9401237592376726
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "balanced",
+    "candidate_score": 2.625,
+    "improvement": -0.11333333333333333,
+    "ci": [
+      -1.1496445352704003,
+      0.9229778686037338
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "range-tight",
+    "candidate_score": 0.53,
+    "improvement": 0.7233333333333334,
+    "ci": [
+      -0.08955668900531799,
+      1.5362233556719849
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "search000",
+    "candidate_score": -0.050833333333333335,
+    "improvement": -0.2758333333333333,
+    "ci": [
+      -1.1366656261709889,
+      0.5849989595043221
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "search024",
+    "candidate_score": 1.5258333333333334,
+    "improvement": 0.43083333333333335,
+    "ci": [
+      -0.4104962246719927,
+      1.2721628913386593
+    ],
+    "deals": 600
+  }
+]

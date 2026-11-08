@@ -65,6 +65,13 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
     hole order and flop order while preserving turn/river arrival order.
 16. **Direct half initialization retained unknown keys.** Initialization now
     clears a reused dictionary as well as resetting all known learning fields.
+17. **Value-only raises did not represent weak bluffs.** Two polarized
+    likelihood models add both strong and weak raising tails without making
+    strong hands more likely to fold. An unconditional mixture improved some
+    bluff matchups but regressed against conservative and adaptive challengers.
+    The selected follow-up gates polarized mass using public postflop betting
+    aggression. Numerical validity is separate from playing performance;
+    the complete fresh-deal results and remaining regressions are reported.
 
 ## Remaining strategic limits
 
@@ -82,6 +89,12 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
   additional sampling uncertainty and mixed playing results did not justify
   replacing the current model. Both independent and pooled-prior variants are
   retained as research tools.
+* The polarized models use symmetric tails within the continuing range.
+  Real bluff/value ratios, draw selection and selective reveals can differ.
+  The aggression gate is an approximate read: frequent betting does not prove
+  an opponent is bluffing, and a patient opponent can still bluff well.
+  Joint within-hand mixture conditioning and prior-centered learning were
+  tested separately; their mixed playing results did not justify enabling them.
 * Early-street made-hand percentiles are imperfect proxies for how an opponent
   values draws. Hero equity is simulated, but opponent action likelihoods do not
   solve its decision problem.
@@ -103,6 +116,10 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
 * A few test opponents yield confidence intervals containing zero. Those are
   draws, not demonstrated wins. Passing local tests is not evidence of defeating
   independently developed elite bots or a guaranteed tournament result.
+  The final polarized/gated version improved the tested pool's average on all
+  four fresh seeds, but did not demonstrate a head-to-head win over 52c5.
+  Its largest negative paired point estimate was against the independently
+  written polarized challenger; that interval includes both loss and gain.
 
 ## Runtime and test scope
 

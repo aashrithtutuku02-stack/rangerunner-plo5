@@ -1,0 +1,20 @@
+release-52c5 iteration5-joint-discovery candidate 0.3633 change 0.3633
+POOLED {'opponent': 'release-52c5', 'candidate_score': 0.36333333333333334, 'improvement': 0.36333333333333334, 'ci': [-0.26943381936242666, 0.9961004860290934], 'deals': 600}
+independent-value iteration5-joint-discovery candidate 1.07 change -0.395
+POOLED {'opponent': 'independent-value', 'candidate_score': 1.07, 'improvement': -0.395, 'ci': [-1.0686803572546077, 0.2786803572546076], 'deals': 600}
+independent-polar iteration5-joint-discovery candidate 4.1 change -0.3225
+POOLED {'opponent': 'independent-polar', 'candidate_score': 4.1, 'improvement': -0.3225, 'ci': [-2.00785142181337, 1.36285142181337], 'deals': 600}
+independent-adaptive iteration5-joint-discovery candidate 1.25 change -0.1967
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.25, 'improvement': -0.19666666666666666, 'ci': [-0.8691989663573575, 0.4758656330240242], 'deals': 600}
+bluffer iteration5-joint-discovery candidate 6.7625 change 1.445
+POOLED {'opponent': 'bluffer', 'candidate_score': 6.7625, 'improvement': 1.445, 'ci': [-0.32384301267656657, 3.2138430126765667], 'deals': 600}
+range-tight iteration5-joint-discovery candidate 0.1233 change -0.4333
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.12333333333333334, 'improvement': -0.43333333333333335, 'ci': [-1.2200916049774078, 0.35342493831074107], 'deals': 600}
+checkraise iteration5-joint-discovery candidate 2.7725 change -0.3425
+POOLED {'opponent': 'checkraise', 'candidate_score': 2.7725, 'improvement': -0.3425, 'ci': [-1.2050984501585402, 0.5200984501585401], 'deals': 600}
+nit iteration5-joint-discovery candidate 0.9083 change -0.42
+POOLED {'opponent': 'nit', 'candidate_score': 0.9083333333333333, 'improvement': -0.42, 'ci': [-0.8683737617277563, 0.02837376172775624], 'deals': 600}
+search000 iteration5-joint-discovery candidate 0.4692 change 0.0925
+POOLED {'opponent': 'search000', 'candidate_score': 0.4691666666666667, 'improvement': 0.0925, 'ci': [-0.7194364216997425, 0.9044364216997426], 'deals': 600}
+search024 iteration5-joint-discovery candidate 1.315 change -0.0417
+POOLED {'opponent': 'search024', 'candidate_score': 1.315, 'improvement': -0.041666666666666664, 'ci': [-0.8323153608621937, 0.7489820275288605], 'deals': 600}

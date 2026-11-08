@@ -1,0 +1,32 @@
+release-52c5 iteration5-discovery-b candidate 0.1025 change 0.1025
+POOLED {'opponent': 'release-52c5', 'candidate_score': 0.1025, 'improvement': 0.1025, 'ci': [-0.4047812650195152, 0.6097812650195152], 'deals': 800}
+independent-value iteration5-discovery-b candidate 1.4212 change -0.1675
+POOLED {'opponent': 'independent-value', 'candidate_score': 1.42125, 'improvement': -0.1675, 'ci': [-0.7424644110551321, 0.4074644110551321], 'deals': 800}
+independent-polar iteration5-discovery-b candidate 3.98 change -0.6538
+POOLED {'opponent': 'independent-polar', 'candidate_score': 3.98, 'improvement': -0.65375, 'ci': [-2.2214185878154873, 0.9139185878154872], 'deals': 800}
+independent-adaptive iteration5-discovery-b candidate 1.63 change 0.29
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.63, 'improvement': 0.29, 'ci': [-0.36418138035104425, 0.9441813803510442], 'deals': 800}
+polarized iteration5-discovery-b candidate 3.4475 change -0.4631
+POOLED {'opponent': 'polarized', 'candidate_score': 3.4475, 'improvement': -0.463125, 'ci': [-1.4885652905666256, 0.5623152905666255], 'deals': 800}
+bluffer iteration5-discovery-b candidate 7.6831 change 1.4294
+POOLED {'opponent': 'bluffer', 'candidate_score': 7.683125, 'improvement': 1.429375, 'ci': [-0.1430892809672546, 3.0018392809672547], 'deals': 800}
+balanced iteration5-discovery-b candidate 3.7313 change 0.695
+POOLED {'opponent': 'balanced', 'candidate_score': 3.73125, 'improvement': 0.695, 'ci': [-0.17414035915085713, 1.5641403591508571], 'deals': 800}
+range-tight iteration5-discovery-b candidate 0.3187 change -0.1288
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.31875, 'improvement': -0.12875, 'ci': [-0.7275553077525413, 0.47005530775254123], 'deals': 800}
+search000 iteration5-discovery-b candidate 1.2419 change 0.1025
+POOLED {'opponent': 'search000', 'candidate_score': 1.241875, 'improvement': 0.1025, 'ci': [-0.6199334279431996, 0.8249334279431997], 'deals': 800}
+search024 iteration5-discovery-b candidate 1.8913 change 1.0188
+POOLED {'opponent': 'search024', 'candidate_score': 1.89125, 'improvement': 1.01875, 'ci': [0.3480722223760332, 1.6894277776239668], 'deals': 800}
+nit iteration5-discovery-b candidate 1.6275 change -0.12
+POOLED {'opponent': 'nit', 'candidate_score': 1.6275, 'improvement': -0.12, 'ci': [-0.4235793417228866, 0.1835793417228866], 'deals': 800}
+checkraise iteration5-discovery-b candidate 3.0244 change -0.1762
+POOLED {'opponent': 'checkraise', 'candidate_score': 3.024375, 'improvement': -0.17625, 'ci': [-0.8977596382373987, 0.5452596382373986], 'deals': 800}
+opportunist iteration5-discovery-b candidate 2.3975 change -0.2644
+POOLED {'opponent': 'opportunist', 'candidate_score': 2.3975, 'improvement': -0.264375, 'ci': [-1.1918236577313204, 0.6630736577313204], 'deals': 800}
+switcher iteration5-discovery-b candidate 4.5431 change 0.8137
+POOLED {'opponent': 'switcher', 'candidate_score': 4.543125, 'improvement': 0.81375, 'ci': [-0.2225475448072778, 1.8500475448072777], 'deals': 800}
+pot iteration5-discovery-b candidate 8.555 change 0.53
+POOLED {'opponent': 'pot', 'candidate_score': 8.555, 'improvement': 0.53, 'ci': [-0.1950209703583229, 1.255020970358323], 'deals': 800}
+call iteration5-discovery-b candidate 11.1144 change -0.06
+POOLED {'opponent': 'call', 'candidate_score': 11.114375, 'improvement': -0.06, 'ci': [-0.183093309133526, 0.06309330913352602], 'deals': 800}

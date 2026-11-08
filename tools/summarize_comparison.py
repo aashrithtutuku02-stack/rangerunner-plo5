@@ -36,13 +36,17 @@ def summarize(rows):
     assert all(set(group)==opponents for group in groups.values()),'Incomplete shared-deal grid'
     clustered=[statistics.mean(group.values()) for group in groups.values()]
     mean,ci=interval(clustered)
+    per_seed=[]
+    for seed in sorted({key[0] for key in groups}):
+        values=[statistics.mean(group.values()) for (name,_),group in groups.items() if name==seed]
+        per_seed.append(dict(seed=seed,mean_change=statistics.mean(values),deals=len(values)))
     details=[]
     for name,values in sorted(by_opponent.items()):
         m,c=interval(values);details.append(dict(opponent=name,change=m,ci=c,deals=len(values)))
     return dict(mean_change=mean,ci=ci,opponents=len(opponents),independent_deal_clusters=len(clustered),
                 paired_policy_observations=sum(len(r['delta']) for r in rows),
                 played_hands=4*sum(len(r['delta']) for r in rows),
-                per_opponent=details,source_sha256=json.loads(next(iter(sources))),
+                per_seed=per_seed,per_opponent=details,source_sha256=json.loads(next(iter(sources))),
                 additional_source_sha256=json.loads(next(iter(extras))))
 
 

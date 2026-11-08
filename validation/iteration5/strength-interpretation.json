@@ -1,0 +1,16 @@
+{
+  "mean_change_bb_per_duplicate_deal": 0.1205390625,
+  "deal_cluster_descriptive_normal_95_interval": [
+    0.024915028029706618,
+    0.2161630969702934
+  ],
+  "seed_block_descriptive_t_95_interval": [
+    0.043146138807909074,
+    0.19793198619209093
+  ],
+  "seed_count": 4,
+  "seed_degrees_of_freedom": 3,
+  "seed_t_critical": 3.182446305,
+  "all_seed_means_positive": true,
+  "scope": "Sixteen equally weighted local opponents, not external elite bots or a solved-game guarantee"
+}

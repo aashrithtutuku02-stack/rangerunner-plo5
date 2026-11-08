@@ -1,0 +1,20 @@
+release-52c5 iteration5-prior-discovery candidate -0.2817 change -0.2817
+POOLED {'opponent': 'release-52c5', 'candidate_score': -0.2816666666666667, 'improvement': -0.2816666666666667, 'ci': [-0.8694066422527023, 0.30607330891936885], 'deals': 600}
+independent-value iteration5-prior-discovery candidate 1.7817 change -0.7117
+POOLED {'opponent': 'independent-value', 'candidate_score': 1.7816666666666667, 'improvement': -0.7116666666666667, 'ci': [-1.4918749151061692, 0.06854158177283576], 'deals': 600}
+independent-polar iteration5-prior-discovery candidate 4.6083 change -0.1883
+POOLED {'opponent': 'independent-polar', 'candidate_score': 4.608333333333333, 'improvement': -0.18833333333333332, 'ci': [-2.0214910059640623, 1.6448243392973958], 'deals': 600}
+independent-adaptive iteration5-prior-discovery candidate 1.6383 change 0.0517
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.6383333333333334, 'improvement': 0.051666666666666666, 'ci': [-0.7207088288394021, 0.8240421621727354], 'deals': 600}
+bluffer iteration5-prior-discovery candidate 6.9058 change 1.6417
+POOLED {'opponent': 'bluffer', 'candidate_score': 6.905833333333334, 'improvement': 1.6416666666666666, 'ci': [-0.12985516568133582, 3.413188499014669], 'deals': 600}
+range-tight iteration5-prior-discovery candidate 0.55 change 0.505
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.55, 'improvement': 0.505, 'ci': [-0.314228981778245, 1.324228981778245], 'deals': 600}
+checkraise iteration5-prior-discovery candidate 3.0983 change -0.275
+POOLED {'opponent': 'checkraise', 'candidate_score': 3.098333333333333, 'improvement': -0.275, 'ci': [-0.9790636500068658, 0.42906365000686575], 'deals': 600}
+nit iteration5-prior-discovery candidate 1.8292 change 0.1633
+POOLED {'opponent': 'nit', 'candidate_score': 1.8291666666666666, 'improvement': 0.16333333333333333, 'ci': [-0.2356664065189023, 0.5623330731855689], 'deals': 600}
+search000 iteration5-prior-discovery candidate 1.8117 change 0.4025
+POOLED {'opponent': 'search000', 'candidate_score': 1.8116666666666668, 'improvement': 0.4025, 'ci': [-0.505708970989655, 1.3107089709896549], 'deals': 600}
+search024 iteration5-prior-discovery candidate 2.0833 change 0.395
+POOLED {'opponent': 'search024', 'candidate_score': 2.0833333333333335, 'improvement': 0.395, 'ci': [-0.2919450307564819, 1.081945030756482], 'deals': 600}

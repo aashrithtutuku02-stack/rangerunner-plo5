@@ -1,0 +1,207 @@
+{
+  "mean_change": 0.1205390625,
+  "ci": [
+    0.024915028029706618,
+    0.2161630969702934
+  ],
+  "opponents": 16,
+  "independent_deal_clusters": 4000,
+  "paired_policy_observations": 64000,
+  "played_hands": 256000,
+  "per_seed": [
+    {
+      "seed": "iteration5-final-holdout-20261108-e",
+      "mean_change": 0.1258125,
+      "deals": 1000
+    },
+    {
+      "seed": "iteration5-final-holdout-20261108-f",
+      "mean_change": 0.162,
+      "deals": 1000
+    },
+    {
+      "seed": "iteration5-final-holdout-20261108-g",
+      "mean_change": 0.05103125,
+      "deals": 1000
+    },
+    {
+      "seed": "iteration5-final-holdout-20261108-h",
+      "mean_change": 0.1433125,
+      "deals": 1000
+    }
+  ],
+  "per_opponent": [
+    {
+      "opponent": "balanced",
+      "change": 0.12975,
+      "ci": [
+        -0.25459229100521685,
+        0.5140922910052168
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "bluffer",
+      "change": 0.71525,
+      "ci": [
+        0.014360421102277532,
+        1.4161395788977225
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "call",
+      "change": 0.001,
+      "ci": [
+        -0.007082237947657854,
+        0.009082237947657855
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "checkraise",
+      "change": 0.07725,
+      "ci": [
+        -0.19427981965838664,
+        0.3487798196583866
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "independent-adaptive",
+      "change": -0.071,
+      "ci": [
+        -0.3248298954566954,
+        0.18282989545669537
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "independent-polar",
+      "change": -0.292625,
+      "ci": [
+        -0.9812697549410877,
+        0.39601975494108765
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "independent-value",
+      "change": -0.0665,
+      "ci": [
+        -0.3184373969542752,
+        0.1854373969542752
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "nit",
+      "change": -0.01025,
+      "ci": [
+        -0.13702400802314552,
+        0.11652400802314551
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "opportunist",
+      "change": -0.07525,
+      "ci": [
+        -0.4911754322787668,
+        0.34067543227876684
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "polarized",
+      "change": 0.33475,
+      "ci": [
+        -0.07698306127321297,
+        0.746483061273213
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "pot",
+      "change": 0.34025,
+      "ci": [
+        -0.01894448590095371,
+        0.6994444859009536
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "range-tight",
+      "change": 0.189,
+      "ci": [
+        -0.158602050839803,
+        0.5366020508398031
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "release-52c5",
+      "change": -0.12525,
+      "ci": [
+        -0.3712647800091912,
+        0.12076478000919122
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "search000",
+      "change": -0.101625,
+      "ci": [
+        -0.34907824919381825,
+        0.14582824919381823
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "search024",
+      "change": 0.197,
+      "ci": [
+        -0.0517625803688086,
+        0.4457625803688086
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "switcher",
+      "change": 0.686875,
+      "ci": [
+        0.23030986273891396,
+        1.143440137261086
+      ],
+      "deals": 4000
+    }
+  ],
+  "source_sha256": {
+    "bet_ev.py": "7984ff455e977e6f7e17d59c54e87eef658be51ef8a1e10b42e3ce0943a714ea",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "range_model.py": "8c407f53200cc8038b79a2d8e09fe79e9ce75040d0855d46e2c56f13b16a6b54",
+    "river_precision.py": "c1f9464ab2989aba5a07a3af1067624a4702ee0ee5d039f91a1281a6ded7fbfe",
+    "strategy.py": "f525c298d98f909bac37104104eb6e4e9e0700b20d8ce99b059812873c261c10"
+  },
+  "additional_source_sha256": {
+    "adversaries.py": "be9ffd46f6cf825dc8ccbf2cfd87d7fce36b9c1547e7530464d6696345bcafea",
+    "adversary_cases.json": "4766e77557aa3a0e2fbcb870cb675026f444bc4137766deb5ac0160b67b08231",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "independent_opponents.py": "4c65f91637e26e76552882b8bf152a345afdeb33d24ad626ed35517c9a7c9be8",
+    "native/plo5_fast.c": "c9c59de55a68cb652d567ab4aa2b2a7424606b2aefaf88c829daf1f8fe7aa856",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "opponents/bet_ev_52c5.py": "5f97a6d410123da45dfc077002b625bfbc2cea566d986cb8c8ba0694220a41ea",
+    "opponents/polar20_3a4a.py": "bf04c0cffc55b2627489b2b83853c476c11ae9b4242c3bb57c1d407286b366f4",
+    "opponents/release_52c5.py": "eb00a34c15e70f0930584e93b1d3b5fb03659b19d672222e9b71eae846a0cb19",
+    "opponents/release_b15a_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "polar_bet_ev.py": "0a8550a8fdaf7468786fd7412c59030144c80ef22cc41f131f98c2036d1525f1",
+    "polar_model.py": "eb38da74a302f89656e7921df68393b313f3ddf978bcb69e124fe84d3479a2f0",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "research_candidates.py": "b75dbb009cff718843467a081781066ef90145ac7739b45552c66d2dcf308a5e",
+    "research_gated.py": "f6ab244e60c086982ee434803e4e741dea1eec73842bcd005221cd0ed0ba86c7",
+    "research_joint.py": "344e8d2d6a93028b7c41dc4915d80ec0f04ce59d9397f1ee89c29684278b5b41",
+    "research_polar.py": "a4e90dfa1d53c3b23d3bee94f5bd73eb94282e5ed90498b2fdeb50b2564d13bf",
+    "stress_benchmark.py": "b7f35d75a0314cd409a137026cadb97d3c97196fa8f67d4c6f245bd872d6b7a8"
+  }
+}

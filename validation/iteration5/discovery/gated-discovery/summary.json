@@ -1,0 +1,162 @@
+[
+  {
+    "opponent": "release-52c5",
+    "candidate_score": -0.03833333333333333,
+    "improvement": -0.03833333333333333,
+    "ci": [
+      -0.7613948886447953,
+      0.6847282219781287
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-value",
+    "candidate_score": 1.5708333333333333,
+    "improvement": 0.19333333333333333,
+    "ci": [
+      -0.6009444701088844,
+      0.9876111367755511
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-polar",
+    "candidate_score": 3.3016666666666667,
+    "improvement": -1.2016666666666667,
+    "ci": [
+      -2.8863290269353654,
+      0.4829956936020321
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-adaptive",
+    "candidate_score": 1.3391666666666666,
+    "improvement": 0.155,
+    "ci": [
+      -0.6295491489388816,
+      0.9395491489388816
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "polarized",
+    "candidate_score": 3.325,
+    "improvement": 0.7916666666666666,
+    "ci": [
+      -0.22448317167974274,
+      1.8078165050130761
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "bluffer",
+    "candidate_score": 6.2325,
+    "improvement": 1.2708333333333333,
+    "ci": [
+      -0.5273554329339993,
+      3.069022099600666
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "balanced",
+    "candidate_score": 3.2866666666666666,
+    "improvement": 0.07,
+    "ci": [
+      -0.9459715336540317,
+      1.0859715336540319
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "range-tight",
+    "candidate_score": 0.3933333333333333,
+    "improvement": 0.46,
+    "ci": [
+      -0.3995520232986582,
+      1.3195520232986582
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "search000",
+    "candidate_score": 1.1241666666666668,
+    "improvement": -0.2808333333333333,
+    "ci": [
+      -0.9228959473783298,
+      0.3612292807116632
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "search024",
+    "candidate_score": 1.9425,
+    "improvement": 0.8441666666666666,
+    "ci": [
+      0.1256759258810286,
+      1.5626574074523045
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "nit",
+    "candidate_score": 1.47,
+    "improvement": 0.02666666666666667,
+    "ci": [
+      -0.1826146227249277,
+      0.23594795605826105
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "checkraise",
+    "candidate_score": 2.631666666666667,
+    "improvement": -0.06333333333333334,
+    "ci": [
+      -0.8081780605340144,
+      0.6815113938673477
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "opportunist",
+    "candidate_score": 2.4966666666666666,
+    "improvement": 0.2816666666666667,
+    "ci": [
+      -0.7111896848069355,
+      1.2745230181402687
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "switcher",
+    "candidate_score": 3.8808333333333334,
+    "improvement": 0.041666666666666664,
+    "ci": [
+      -1.1141269000545058,
+      1.1974602333878392
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 7.4475,
+    "improvement": -0.2683333333333333,
+    "ci": [
+      -1.294994346546887,
+      0.7583276798802203
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 12.183333333333334,
+    "improvement": 0.008333333333333333,
+    "ci": [
+      -0.03491151232417115,
+      0.05157817899083781
+    ],
+    "deals": 600
+  }
+]

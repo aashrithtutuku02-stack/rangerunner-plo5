@@ -1,0 +1,48 @@
+release-52c5 iteration5-holdout-20261108-a candidate 0.209 change 0.209
+release-52c5 iteration5-holdout-20261108-c candidate 0.044 change 0.044
+POOLED {'opponent': 'release-52c5', 'candidate_score': 0.1265, 'improvement': 0.1265, 'ci': [-0.23255214342634067, 0.4855521434263407], 'deals': 2000}
+independent-value iteration5-holdout-20261108-a candidate 1.885 change 0.08
+independent-value iteration5-holdout-20261108-c candidate 2.137 change 0.399
+POOLED {'opponent': 'independent-value', 'candidate_score': 2.011, 'improvement': 0.2395, 'ci': [-0.1205693608238585, 0.5995693608238585], 'deals': 2000}
+independent-polar iteration5-holdout-20261108-a candidate 4.069 change 0.5325
+independent-polar iteration5-holdout-20261108-c candidate 4.9155 change 0.0405
+POOLED {'opponent': 'independent-polar', 'candidate_score': 4.49225, 'improvement': 0.2865, 'ci': [-0.7044266243277555, 1.2774266243277554], 'deals': 2000}
+independent-adaptive iteration5-holdout-20261108-a candidate 1.805 change 0.012
+independent-adaptive iteration5-holdout-20261108-c candidate 1.112 change -0.861
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.4585, 'improvement': -0.4245, 'ci': [-0.7925433285710431, -0.05645667142895683], 'deals': 2000}
+polarized iteration5-holdout-20261108-a candidate 3.5025 change 0.1545
+polarized iteration5-holdout-20261108-c candidate 3.9995 change 0.579
+POOLED {'opponent': 'polarized', 'candidate_score': 3.751, 'improvement': 0.36675, 'ci': [-0.33064684240283637, 1.0641468424028364], 'deals': 2000}
+bluffer iteration5-holdout-20261108-a candidate 6.6505 change 0.7505
+bluffer iteration5-holdout-20261108-c candidate 7.1875 change 0.975
+POOLED {'opponent': 'bluffer', 'candidate_score': 6.919, 'improvement': 0.86275, 'ci': [-0.12048741569254706, 1.845987415692547], 'deals': 2000}
+balanced iteration5-holdout-20261108-a candidate 2.5945 change -0.272
+balanced iteration5-holdout-20261108-c candidate 4.0535 change 0.7685
+POOLED {'opponent': 'balanced', 'candidate_score': 3.324, 'improvement': 0.24825, 'ci': [-0.31456307304925635, 0.8110630730492563], 'deals': 2000}
+range-tight iteration5-holdout-20261108-a candidate 0.655 change 0.103
+range-tight iteration5-holdout-20261108-c candidate 0.235 change -0.007
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.445, 'improvement': 0.048, 'ci': [-0.45724516703894175, 0.5532451670389418], 'deals': 2000}
+search000 iteration5-holdout-20261108-a candidate 0.1295 change -0.5005
+search000 iteration5-holdout-20261108-c candidate 0.186 change -0.5445
+POOLED {'opponent': 'search000', 'candidate_score': 0.15775, 'improvement': -0.5225, 'ci': [-0.9742308111673132, -0.07076918883268662], 'deals': 2000}
+search024 iteration5-holdout-20261108-a candidate 1.9915 change 0.9615
+search024 iteration5-holdout-20261108-c candidate 1.8085 change 0.475
+POOLED {'opponent': 'search024', 'candidate_score': 1.9, 'improvement': 0.71825, 'ci': [0.31615114068816375, 1.1203488593118363], 'deals': 2000}
+nit iteration5-holdout-20261108-a candidate 1.437 change -0.073
+nit iteration5-holdout-20261108-c candidate 1.2625 change -0.208
+POOLED {'opponent': 'nit', 'candidate_score': 1.34975, 'improvement': -0.1405, 'ci': [-0.3849911255711371, 0.10399112557113707], 'deals': 2000}
+checkraise iteration5-holdout-20261108-a candidate 3.039 change -0.114
+checkraise iteration5-holdout-20261108-c candidate 2.1105 change -0.773
+POOLED {'opponent': 'checkraise', 'candidate_score': 2.57475, 'improvement': -0.4435, 'ci': [-0.9547987110409688, 0.0677987110409688], 'deals': 2000}
+opportunist iteration5-holdout-20261108-a candidate 2.0465 change 0.2515
+opportunist iteration5-holdout-20261108-c candidate 2.538 change -0.5225
+POOLED {'opponent': 'opportunist', 'candidate_score': 2.29225, 'improvement': -0.1355, 'ci': [-0.7415022141655812, 0.4705022141655811], 'deals': 2000}
+switcher iteration5-holdout-20261108-a candidate 4.0815 change 0.979
+switcher iteration5-holdout-20261108-c candidate 4.0615 change -0.1425
+POOLED {'opponent': 'switcher', 'candidate_score': 4.0715, 'improvement': 0.41825, 'ci': [-0.290790407891935, 1.127290407891935], 'deals': 2000}
+pot iteration5-holdout-20261108-a candidate 6.829 change 0.367
+pot iteration5-holdout-20261108-c candidate 8.148 change 0.309
+POOLED {'opponent': 'pot', 'candidate_score': 7.4885, 'improvement': 0.338, 'ci': [-0.18604118245158235, 0.8620411824515823], 'deals': 2000}
+call iteration5-holdout-20261108-a candidate 10.99 change -0.015
+call iteration5-holdout-20261108-c candidate 11.1255 change -0.008
+POOLED {'opponent': 'call', 'candidate_score': 11.05775, 'improvement': -0.0115, 'ci': [-0.07297266562065821, 0.049972665620658205], 'deals': 2000}

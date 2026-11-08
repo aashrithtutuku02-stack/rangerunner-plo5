@@ -14,6 +14,11 @@ matches, failed development variants, and a repaired time-bank failure.
 See [VALIDATION.md](VALIDATION.md) and [WEAKNESSES.md](WEAKNESSES.md).
 The exhaustive betting-history scope is defined in [SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md).
 
+The latest candidate improved the equal-opponent average by **0.121 bb per
+duplicate deal** against the previous release across sixteen local opponents
+and four fresh seeds. Individual matchups remain mixed; the report includes
+their intervals and the losing development variants.
+
 ## Run
 
 Use Python 3.12, matching the tournament.

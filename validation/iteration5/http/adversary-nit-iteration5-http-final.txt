@@ -1,0 +1,21 @@
+agent1 = winner / RangeRunner (http://127.0.0.1:5008)
+agent2 = winner / Adversary-nit (http://127.0.0.1:5014)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration5-http-final
+agent1: +1.321 bb/deal  (std 7.13, stderr 0.226)
+Confidence interval (z=1.96): [+0.879, +1.763] bb/deal
+Reason: interval [+0.879, +1.763] is entirely above 0
+half1: agent1 +1564 chips, agent2 -1564 chips
+half2: agent1 +1078 chips, agent2 -1078 chips
+Faults:
+  agent1 half1: thinking 2.05s of 8s (wall 4.63s), calls 2582, errors 0
+  agent1 half2: thinking 1.86s of 8s (wall 4.56s), calls 2702, errors 0
+  agent2 half1: thinking 0.09s of 8s (wall 2.31s), calls 3199, errors 0
+  agent2 half2: thinking 0.04s of 8s (wall 2.25s), calls 3357, errors 0
+Speed: 2000 hands in 14.34s (139 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (winner / RangeRunner (http://127.0.0.1:5008))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN

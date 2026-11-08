@@ -14,6 +14,7 @@ def test_shared_deals_are_clustered_instead_of_pretending_opponents_are_independ
     assert result['independent_deal_clusters']==2
     assert result['paired_policy_observations']==4
     assert result['ci']==[-1.96,1.96]
+    assert result['per_seed']==[dict(seed='s',mean_change=0.,deals=2)]
     rows[1]['source_sha256']={'strategy':'different'}
     with pytest.raises(AssertionError):summary.summarize(rows)
     rows[1]['source_sha256']=rows[0]['source_sha256']

@@ -1,0 +1,55 @@
+{
+  "hands": 1000,
+  "forced_actions": [
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "CHECK_CALL"
+  ],
+  "policy_calculation_seconds": [
+    4.357911305050948,
+    4.355680806955206
+  ],
+  "max_call_seconds": 0.010125359000085155,
+  "sample_counts": [
+    {
+      "768": 32,
+      "1280": 24,
+      "384": 3375,
+      "640": 732,
+      "192": 2837
+    },
+    {
+      "768": 32,
+      "1280": 24,
+      "384": 3388,
+      "640": 735,
+      "192": 2821
+    }
+  ],
+  "elapsed_seconds": 9.333985485000085,
+  "source_sha256": {
+    "agent.py": "dfecd70d94d10238ade16da9970a157574f9eb42c5e60e77c43c2aafd8da7a9c",
+    "strategy.py": "f525c298d98f909bac37104104eb6e4e9e0700b20d8ce99b059812873c261c10",
+    "range_model.py": "8c407f53200cc8038b79a2d8e09fe79e9ce75040d0855d46e2c56f13b16a6b54",
+    "bet_ev.py": "7984ff455e977e6f7e17d59c54e87eef658be51ef8a1e10b42e3ce0943a714ea",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "equity_engine.py": "69abfc7e1d5898db7effc54856cc8967e04b9caeb11edf5dc8e5b59c7ee5e399",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "tools/worst_line_load.py": "2ec8678a35238fcacb5d2ee7525b66b95074b994f4e57e45497d0420623f53c4"
+  },
+  "scope": "Counterfactual function load under container resources; excludes HTTP transport"
+}
