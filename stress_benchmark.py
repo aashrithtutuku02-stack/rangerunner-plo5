@@ -16,10 +16,11 @@ from adversaries import Opponent, names
 from game import AgentConfig, Game, make_deal
 
 
-def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0):
+def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=False):
     config = AgentConfig(num_hands=deals,time_bank_seconds=time_bank_seconds)
     paired = [0.0]*deals
     timings = []
+    sample_counts={};expanded=set();max_decision=0.
     for seat in (0,1):
         hm, vm = {}, {}
         hero.new_half(config,hm);opponent.new_half(config,vm)
@@ -30,7 +31,14 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0):
                 current=g.to_act;obs=g.observation(current)
                 begin=time.perf_counter()
                 action = hero.choose_action(obs,hm) if current==seat else opponent.choose_action(obs,vm)
-                cost[current]+=time.perf_counter()-begin
+                elapsed=time.perf_counter()-begin
+                cost[current]+=elapsed
+                if capture_samples and current==seat:
+                    max_decision=max(max_decision,elapsed)
+                    cache=hm.get('cache')
+                    if cache is not None:
+                        size=len(cache['outcomes']);sample_counts[size]=sample_counts.get(size,0)+1
+                        if size==4096:expanded.add((seat,cache['key']))
                 assert action in obs.legal_actions,(opponent.name,obs,action)
                 g.apply(action)
             paired[i]+=g.result().nets[seat]/2.0
@@ -41,7 +49,9 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0):
     mean=statistics.mean(paired)
     se=statistics.stdev(paired)/(deals**.5) if deals>1 else 0.0
     return dict(opponent=opponent.name,seed=seed,deals=deals,time_bank_seconds=time_bank_seconds,mean=mean,
-                ci=[mean-1.96*se,mean+1.96*se],timings=timings,paired=paired)
+                ci=[mean-1.96*se,mean+1.96*se],timings=timings,paired=paired,
+                sampling=dict(samples_per_decision=sample_counts,expanded_boards=len(expanded),
+                              max_decision_seconds=max_decision) if capture_samples else None)
 
 
 def main():

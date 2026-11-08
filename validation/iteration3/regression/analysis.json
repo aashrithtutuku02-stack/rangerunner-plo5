@@ -1,0 +1,128 @@
+{
+  "mean_change": 0.0,
+  "ci": [
+    0.0,
+    0.0
+  ],
+  "opponents": 12,
+  "independent_deal_clusters": 2000,
+  "paired_policy_observations": 24000,
+  "played_hands": 96000,
+  "per_opponent": [
+    {
+      "opponent": "balanced",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "call",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "checkraise",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "nit",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "opportunist",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "oscillating",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "polarized",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "pot",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "release-b15a",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "search000",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "search024",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    },
+    {
+      "opponent": "switcher",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 2000
+    }
+  ],
+  "source_sha256": {
+    "bet_ev.py": "89ae09de56456f5143a9969bd412dd62835c5afdcadd8c6d040cb3544d3b7b0d",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "range_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "river_precision.py": "c1f9464ab2989aba5a07a3af1067624a4702ee0ee5d039f91a1281a6ded7fbfe",
+    "strategy.py": "8f2b178285dfd72471dda424aef3676adc384c6b3408a5d0c43c7ef36867c7e6"
+  }
+}

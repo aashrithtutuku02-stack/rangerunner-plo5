@@ -16,3 +16,6 @@ def test_shared_deals_are_clustered_instead_of_pretending_opponents_are_independ
     assert result['ci']==[-1.96,1.96]
     rows[1]['source_sha256']={'strategy':'different'}
     with pytest.raises(AssertionError):summary.summarize(rows)
+    rows[1]['source_sha256']=rows[0]['source_sha256']
+    rows[0]['policy']='first';rows[1]['policy']='second'
+    with pytest.raises(AssertionError):summary.summarize(rows)

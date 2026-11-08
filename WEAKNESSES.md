@@ -46,6 +46,13 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
     streets merge raise likelihood into call likelihood; censored calls do not
     spuriously teach that an opponent dislikes raising. A final allowed raise
     is no longer penalized for an impossible immediate re-raise.
+11. **Bet evaluation repeated Python and array work.** Both raise sizes now
+    integrate the joint posterior in a warmed compiled loop. The numerical
+    formula is unchanged and checked against the independent vector formula.
+    More available CPU time does not by itself guarantee better poker results.
+12. **Clipped all-in sizes repeated the same calculation.** When half-pot and
+    pot raises reach the same all-in target, the kernel now reuses the value.
+    The existing action preference and legal sizes are preserved.
 
 ## Remaining strategic limits
 
@@ -59,11 +66,17 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
 * There are only a few opponent selectivity models. Highly unusual sizing,
   multi-street traps, or opponents that deliberately change their strategy can
   differ from every model. Street and facing-bet frequency buckets are coarse.
+  Finer river buckets, including probes and check-raises, were tested; the
+  additional sampling uncertainty and mixed playing results did not justify
+  replacing the current model. Both independent and pooled-prior variants are
+  retained as research tools.
 * Early-street made-hand percentiles are imperfect proxies for how an opponent
   values draws. Hero equity is simulated, but opponent action likelihoods do not
   solve its decision problem.
 * Future betting and reraises are accounted for with heuristic discounts and
   penalties. The bot does not search the full multi-street game tree.
+  A bounded river-search experiment was tested and retained for research, but
+  its inconsistent gains did not justify enabling it in the tournament bot.
 * Opponent learning depends on public actions and selectively revealed showdown
   cards. It cannot observe folded cards; limited showdowns and selection effects
   can produce inaccurate reads. The two tournament halves deliberately do not
@@ -71,6 +84,10 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
 * Live and preflop equity estimates have sampling error. The sampled opponent
   range can be sparse, particularly after several selective bets. Timing-based
   sample reduction increases that uncertainty.
+  Extra river sampling improved numerical accuracy against full enumeration,
+  but the match comparison did not establish a playing-strength gain. That
+  experiment remains disabled. More accurate estimates of an approximate
+  opponent model do not guarantee better actual decisions.
 * A few test opponents yield confidence intervals containing zero. Those are
   draws, not demonstrated wins. Passing local tests is not evidence of defeating
   independently developed elite bots or a guaranteed tournament result.
@@ -89,7 +106,7 @@ stress suites can over-subscribe that parent even when a bot container has a
 resource checks. A CPU quota is a maximum, not an exclusive CPU reservation.
 The current native target is Linux x86-64; other platforms use the slower Numba
 fallback. The compiled backend and fallback are both tested. The team identity
-must still be set correctly before tournament submission.
+defaults to `winner`; an environment override can still change it.
 
 Raw discovery losses and the failed CPU run are preserved so that the release
 report does not hide the cases that motivated changes.

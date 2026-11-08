@@ -7,3 +7,7 @@ cannot silently change the comparison opponent. Both policies use the same
 unchanged card engine and preflop asset. Learned state is separate per half.
 
 These files are local regression opponents, not independent elite poker bots.
+
+`release_b15a.py` and `release_b15a_model.py` similarly freeze release
+`b15a8402286cb93f901c84f3eabd2911be5784ea`, with only the helper import
+redirected. Use opponent/baseline name `release-b15a` to compare against it.

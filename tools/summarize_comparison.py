@@ -14,11 +14,13 @@ def interval(values):
 def summarize(rows):
     assert rows,'No paired comparison records'
     opponents={r['opponent'] for r in rows}
-    seen=set();groups={};by_opponent={};sources=set()
+    seen=set();groups={};by_opponent={};sources=set();modes=set();baselines=set();policies=set()
     for r in rows:
         key=(r['opponent'],r['seed']);assert key not in seen,'Duplicate opponent/seed'
         seen.add(key)
-        assert r['sample_mode']=='fixed-default-counts'
+        assert r['sample_mode'] in ('fixed-default-counts','fixed-policy-sampling')
+        modes.add(r['sample_mode']);baselines.add(r.get('baseline_policy','incumbent'))
+        policies.add(r.get('policy','unspecified'))
         sources.add(json.dumps(r['source_sha256'],sort_keys=True))
         assert len(r['delta'])==len(r['candidate']['paired'])==len(r['baseline']['paired'])
         for i,(delta,new,old) in enumerate(zip(r['delta'],r['candidate']['paired'],r['baseline']['paired'])):
@@ -26,6 +28,9 @@ def summarize(rows):
             groups.setdefault((r['seed'],i),{})[r['opponent']]=delta
         by_opponent.setdefault(r['opponent'],[]).extend(r['delta'])
     assert len(sources)==1,'Mixed source versions'
+    assert len(modes)==1,'Mixed sampling modes'
+    assert len(baselines)==1,'Mixed baseline policies'
+    assert len(policies)==1,'Mixed candidate policies'
     assert all(set(group)==opponents for group in groups.values()),'Incomplete shared-deal grid'
     clustered=[statistics.mean(group.values()) for group in groups.values()]
     mean,ci=interval(clustered)

@@ -1,0 +1,122 @@
+[
+  {
+    "opponent": "release-b15a",
+    "candidate_score": 0.018,
+    "improvement": 0.018,
+    "ci": [
+      -0.45035706898227296,
+      0.486357068982273
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "nit",
+    "candidate_score": 1.4075,
+    "improvement": 0.201,
+    "ci": [
+      -0.08565620820086928,
+      0.4876562082008693
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "balanced",
+    "candidate_score": 3.18,
+    "improvement": 0.048,
+    "ci": [
+      -0.6409483675913651,
+      0.7369483675913652
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "checkraise",
+    "candidate_score": 3.3645,
+    "improvement": -0.0075,
+    "ci": [
+      -0.6587410638413652,
+      0.6437410638413653
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "polarized",
+    "candidate_score": 3.1645,
+    "improvement": -0.398,
+    "ci": [
+      -1.2033153548855346,
+      0.4073153548855345
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "opportunist",
+    "candidate_score": 2.7675,
+    "improvement": 0.2855,
+    "ci": [
+      -0.5281575311527583,
+      1.0991575311527582
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "oscillating",
+    "candidate_score": 4.134,
+    "improvement": 0.4755,
+    "ci": [
+      -0.41112822337555105,
+      1.362128223375551
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "switcher",
+    "candidate_score": 3.898,
+    "improvement": -0.4485,
+    "ci": [
+      -1.3365311551116035,
+      0.43953115511160346
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "search000",
+    "candidate_score": 1.9635,
+    "improvement": -0.055,
+    "ci": [
+      -0.5950605563865636,
+      0.4850605563865636
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "search024",
+    "candidate_score": 1.138,
+    "improvement": -0.2275,
+    "ci": [
+      -0.7449109775697746,
+      0.2899109775697746
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 8.9895,
+    "improvement": -0.295,
+    "ci": [
+      -0.8462413291499131,
+      0.2562413291499132
+    ],
+    "deals": 1000
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 11.987,
+    "improvement": -0.021,
+    "ci": [
+      -0.10191413814749653,
+      0.05991413814749652
+    ],
+    "deals": 1000
+  }
+]

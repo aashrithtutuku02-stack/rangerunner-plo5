@@ -27,10 +27,9 @@ python agent.py
 
 On Windows, activate with `.venv\Scripts\activate`.
 
-**Set `PARTICIPANT` in `agent.py` to your registered team name before submitting.**
-The default `YOUR_TEAM_NAME` is a placeholder. `PORT`, `AGENT_TOKEN`, and the
-original server protocol are preserved. The environment variable `PARTICIPANT`
-can override the identity locally.
+**The registered team name defaults to `winner`.** `PORT`, `AGENT_TOKEN`, and
+the original server protocol are preserved. The environment variable
+`PARTICIPANT` can override the identity; check it if deploying with custom settings.
 
 ## Play and test
 
@@ -55,7 +54,7 @@ errors, forfeits, exhausted banks, skipped decisions, and baseline losses/draws.
 Advanced opponents may draw; their confidence intervals remain in the reports.
 
 For accelerated discovery on duplicate deals (direct calls, without HTTP time-bank
-enforcement), including 24 policy families and eight selected search opponents:
+enforcement), including 25 policy families and eight selected search opponents:
 
 ```sh
 python stress_benchmark.py --deals 1000 --seeds discovery-example
@@ -75,17 +74,20 @@ summing both seat-swapped hands, as defined by the supplied judge.
 
 ## Compare with the previous release
 
-The previous released strategy and its helper are frozen under `opponents/`.
+Both earlier released strategies and their helpers are frozen under `opponents/`.
 They cannot silently inherit the new action model. A negative-control self-play
 test verifies zero paired returns for identical frozen policies.
 
 ```sh
-python evaluate_candidate.py --candidate release --opponents incumbent nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
+python evaluate_candidate.py --candidate release --baseline release-b15a --opponents release-b15a nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
 python tools/summarize_comparison.py comparison-results
 ```
 
-These offline comparisons use a generous internal bank to hold simulation counts
-fixed and prevent host scheduling from changing the comparison. They do not
+`release-b15a` is the immediately previous release. `incumbent` selects the
+older `36ba2d9` release for historical comparisons.
+
+These offline comparisons use a generous internal bank to prevent host
+scheduling from reducing the policy's requested sample counts. They do not
 certify tournament timing; the separate HTTP and container checks use the real
 8-second bank. Common-deal comparisons use paired returns. The opponent-pool
 summary groups shared deals across opponents before calculating uncertainty.
@@ -106,6 +108,10 @@ summary groups shared deals across opponents before calculating uncertainty.
   a decision to continue, so they preserve the learned call/raise preference.
   Model likelihoods merge unavailable raises into calls and raise evaluation
   assigns zero probability to an illegal re-raise.
+* `bet_ev.py` compiles the joint model/hand expectation for both raise sizes.
+  It preserves the previous value formula while avoiding repeated response
+  arrays and Python dispatch. It evaluates identical clipped all-in sizes once.
+  Kernel equivalence is checked numerically and through common-deal regression.
 * `range_model.py` uses ordered probabilities whose uniform-rank averages match
   the estimated fold/call/raise frequencies, even for selective opponents.
   A closed-form intercept avoids repeatedly solving numerical calibration
@@ -138,6 +144,19 @@ range-aware challengers. These and the other adversaries are testing policies,
 not independent elite poker engines. The prior search and parameter-search tools
 use discovery deals; final evaluation deals are separate.
 
+`river_search.py`, `betting_context.py`, `river_precision.py` and their research
+adapters are **experimental testing tools**. River search, finer context reads,
+and extra sampling passed their numerical checks but did not establish a
+playing-strength improvement. Production retains the previous betting policy
+and uses the faster equivalent calculation. Experiment results are preserved.
+
+Reproduce the numerical benchmarks:
+
+```sh
+python tools/measure_bet_ev.py --output bet-timing.json
+python tools/measure_precision.py --output precision-accuracy.json
+```
+
 ## Docker and continuous integration
 
 The original organizer Dockerfiles and build checker are retained:
@@ -162,7 +181,7 @@ The project can run with a read-only repository, no outbound network, 1 CPU,
 
 ## Submit
 
-Set the registered team name, run the checks on the final commit, and push all
+Verify the team name is `winner`, run the checks on the final commit, and push all
 files. The challenge requires a public repository for submission. Register your team and submit the public
 URL and full commit SHA through the challenge forms. No registration or form
 submission is performed by this project.

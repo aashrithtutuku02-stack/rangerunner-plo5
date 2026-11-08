@@ -1,0 +1,17 @@
+{
+  "NetworkMode": "none",
+  "ReadonlyRootfs": true,
+  "Tmpfs": {
+    "/tmp": "rw,nosuid,nodev,size=512m"
+  },
+  "CapDrop": [
+    "ALL"
+  ],
+  "SecurityOpt": [
+    "no-new-privileges"
+  ],
+  "PidsLimit": 256,
+  "NanoCpus": 1000000000,
+  "Memory": 4294967296,
+  "User": "10001:10001"
+}

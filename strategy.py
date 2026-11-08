@@ -6,11 +6,13 @@ import numpy as np
 
 import fast_engine as engine
 import range_model
+import bet_ev
 from game import Action, Street
 
 # Prepare once, during startup. No runtime downloads or disk caches.
 engine.warm_engine()
 range_model.warmup()
+bet_ev.warmup()
 
 SLOPES = np.array([0.0, 8.0, 16.0])
 
@@ -202,22 +204,15 @@ def decide(obs, memory):
     if call and best_ev < 0:
         action = Action.FOLD
         best_ev = 0.0
-    for candidate in (Action.RAISE_HALF, Action.RAISE_POT):
+    targets=np.array([obs.raise_to.get(a,-1) for a in (Action.RAISE_HALF,Action.RAISE_POT)],dtype=np.int64)
+    context=2 if obs.to_call and obs.raises_this_street else 1
+    raise_evs=bet_ev.raise_values(cache['q'][:,street],models,memory['models'],outcomes,SLOPES,
+                    memory['counts'][street,context],obs.pot,obs.my_stack,obs.opp_stack,
+                    obs.my_bet,obs.opp_bet,obs.raises_this_street,memory['config'].raise_cap,targets,equity)
+    for index,candidate in enumerate((Action.RAISE_HALF, Action.RAISE_POT)):
         if candidate not in obs.legal_actions:
             continue
-        invest = obs.raise_to[candidate] - obs.my_bet
-        opp_call = min(obs.opp_stack, max(0, obs.raise_to[candidate] - obs.opp_bet))
-        price = opp_call / max(1, obs.pot + invest + opp_call)
-        fp, rp = response_prob(obs, memory, cache, invest, price, models)
-        final_pot = obs.pot + invest + opp_call
-        showdown_ev = outcomes * final_pot - invest
-        ev = float(weights @ (fp * obs.pot + (1 - fp) * showdown_ev))
-        # Reraises can force a marginal bettor off their equity. Account for
-        # this cost when chips remain, without penalizing a true all-in bet.
-        behind = min(obs.my_stack - invest, obs.opp_stack - opp_call)
-        if behind > 0:
-            reraise_risk = float(weights @ rp)
-            ev -= reraise_risk * min(behind, final_pot) * max(0.0, 0.68 - equity)
+        ev=float(raise_evs[index])
         # Favor robust edges over changes caused by Monte Carlo noise.
         margin = 0.025 * obs.pot + 0.08
         if street == 0:

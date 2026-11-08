@@ -71,6 +71,12 @@ def finish_complete(module,result,memory,bayes=False,decay=False):
 
 
 def make(name):
+    if name=='precision':
+        from research_precision import make as precision_candidate
+        return precision_candidate()
+    if name in ('release-b15a','tree','tree-learn','tree-context','context-only','context-shrink'):
+        from research_river import make as river_candidate
+        return river_candidate(name)
     if name=='release':
         import strategy as current
         return SimpleNamespace(new_half=current.initialize,choose_action=current.decide,on_hand_end=current.finish,name=name)

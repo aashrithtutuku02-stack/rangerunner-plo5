@@ -1,0 +1,47 @@
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = winner / RangeRunner (http://localhost:5030)  (seat 0)
+agent2 = winner / Adversary-release-b15a (http://localhost:5031)  (seat 1)
+
+Half 1: 1000 deals, seed iteration3-fresh-final
+Chips: agent1 +1030 (+0.515 bb/deal), agent2 -1030
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 1.34s of 8s (wall 4.38s), calls 3194, errors 0
+  agent2: thinking 1.50s of 8s (wall 4.59s), calls 3204, errors 0
+Speed: 1000 hands in 9.25s (108 hands/s)
+RESULT: HALF_DONE
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = winner / RangeRunner (http://localhost:5030)  (seat 1)
+agent2 = winner / Adversary-release-b15a (http://localhost:5031)  (seat 0)
+
+Half 2: 1000 deals, seed iteration3-fresh-final
+Chips: agent1 -1030 (-0.515 bb/deal), agent2 +1030
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 1.60s of 8s (wall 4.66s), calls 3204, errors 0
+  agent2: thinking 1.90s of 8s (wall 5.02s), calls 3194, errors 0
+Speed: 1000 hands in 9.99s (100 hands/s)
+RESULT: HALF_DONE
+agent1 = winner / RangeRunner (http://localhost:5030)
+agent2 = winner / Adversary-release-b15a (http://localhost:5031)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration3-fresh-final
+agent1: +0.000 bb/deal  (std 0.00, stderr 0.000)
+Confidence interval (z=1.96): [+0.000, +0.000] bb/deal
+Reason: interval [+0.000, +0.000] includes 0
+half1: agent1 +1030 chips, agent2 -1030 chips
+half2: agent1 -1030 chips, agent2 +1030 chips
+Faults:
+  agent1 half1: thinking 1.34s of 8s (wall 4.38s), calls 3194, errors 0
+  agent1 half2: thinking 1.60s of 8s (wall 4.66s), calls 3204, errors 0
+  agent2 half1: thinking 1.50s of 8s (wall 4.59s), calls 3204, errors 0
+  agent2 half2: thinking 1.90s of 8s (wall 5.02s), calls 3194, errors 0
+Speed: 2000 hands in 19.24s (104 hands/s)
+
+============================================================
+  VERDICT: CHOP  (too close to call - half a win each)
+  Points: agent1 0.5, agent2 0.5
+============================================================
+RESULT: CHOP
