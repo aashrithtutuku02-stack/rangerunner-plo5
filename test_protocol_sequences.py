@@ -86,7 +86,7 @@ def test_restarting_a_half_restores_values_and_team_identity(endpoint):
     for key,value in fresh.items():
         if isinstance(value,np.ndarray):np.testing.assert_array_equal(module.MEMORY[key],value)
         else:assert module.MEMORY[key]==value
-    assert client.get('/').json()['participant']=='winner'
+    assert client.get('/').json()=={'participant':'PokerKing','agent_name':'PokerKing'}
 
 
 def test_failed_finished_hand_reports_error_and_can_be_retried(endpoint):

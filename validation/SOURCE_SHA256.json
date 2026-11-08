@@ -114,7 +114,7 @@
   "test_polar_model.py": "ec133d9bf9ef619cd8188868e67f06839689b5d83a12b45b0ccb7ef082f0a402",
   "test_posterior.py": "953da91de3afe85ca19e417927513c3e0918a3382420d5fa7f60972e01584757",
   "test_probability_speed.py": "9611336452081d4b29861c7249b544250eb0d4ba0659265ee59f8737e707520b",
-  "test_protocol_sequences.py": "bb8afd8c5ce228213f6e168ee9886bd3c70bed5bcb75118acca8ac8a7d211f73",
+  "test_protocol_sequences.py": "167b26f0bed8463f5824ca69c7dc16af997bb459396faf17adecca5b24979acd",
   "test_raise_opportunities.py": "09ba9b65d83d2b445ea6455908a2acffd2b0c0404126ef95373bc4ef8d50abff",
   "test_raise_ranking.py": "f5ba91e2597a01ff5cc673a76a792dd1bad7b1910f3e5db6cf017f15e5d97c6b",
   "test_range_model.py": "477420d559ca4a1943b2be0956b842ad0e64268366b86ae51074e1b07575e4ad",
