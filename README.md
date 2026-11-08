@@ -14,12 +14,12 @@ matches, failed development variants, and a repaired time-bank failure.
 See [VALIDATION.md](VALIDATION.md) and [WEAKNESSES.md](WEAKNESSES.md).
 The exhaustive betting-history scope is defined in [SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md).
 
-The latest update speeds up probability calculations while preserving the
-released strategy. Warmed probability kernels measured **1.10–1.81× faster**;
-this is not a whole-bot speedup or a new win-rate claim. Nine further strategy
-variants did not establish a reliable gain and remain disabled. New independent
-public-bot benchmarks, exact regression checks and runtime results are in
-[VALIDATION.md](VALIDATION.md).
+The latest strategy learns when an opponent consistently calls bets, then
+allows thinner value bets after enough voluntary responses support that read.
+Free checks and forced calls cannot establish it, and recent folds and raises
+can invalidate it. The existing bluff guard remains in place. Fresh comparisons
+against the previous release and independent public-bot results are in
+[VALIDATION.md](VALIDATION.md); [CALLING_READ.md](CALLING_READ.md) explains the rule.
 
 ## Run
 
@@ -62,7 +62,7 @@ errors, forfeits, exhausted banks, skipped decisions, and baseline losses/draws.
 Advanced opponents may draw; their confidence intervals remain in the reports.
 
 For accelerated discovery on duplicate deals (direct calls, without HTTP time-bank
-enforcement), including 31 named local policies and eight selected search opponents:
+enforcement), including 36 named local policies and eight selected search opponents:
 
 ```sh
 python stress_benchmark.py --deals 1000 --seeds discovery-example
@@ -82,17 +82,18 @@ summing both seat-swapped hands, as defined by the supplied judge.
 
 ## Compare with the previous release
 
-Both earlier released strategies and their helpers are frozen under `opponents/`.
+Earlier released strategies and their helpers are frozen under `opponents/`.
 They cannot silently inherit the new action model. A negative-control self-play
 test verifies zero paired returns for identical frozen policies.
 
 ```sh
-python evaluate_candidate.py --candidate release --baseline release-451b --opponents release-451b independent-adaptive nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
+python evaluate_candidate.py --candidate release --baseline release-9efa --opponents release-9efa independent-adaptive nit call passive-value caller-switcher --seeds my-new-seed-a my-new-seed-b --output comparison-results
 python tools/summarize_comparison.py comparison-results
 ```
 
-`release-451b` is the immediately previous release; this exact math optimization
-should preserve its fixed-sample match returns. `release-52c5`, `release-f452`,
+`release-9efa` is the immediately previous release. The caller read targets
+frequent-caller matchups; it is not a claim of improving every opponent matchup.
+`release-451b`, `release-52c5`, `release-f452`,
 `release-b15a` and `incumbent` select earlier releases for historical comparisons.
 
 These offline comparisons use a generous internal bank to prevent host
@@ -143,6 +144,9 @@ summary groups shared deals across opponents before calculating uncertainty.
 * Completed results are idempotent. Stale or conflicting history prefixes do not
   rewind learning or replace a current hand. Failed calculations restore the
   prior learning and RNG state while accounting for the time spent.
+* `calling_read.py` retains a rolling window of voluntary responses. A minimum
+  sample and a conservative call-frequency bound gate thin value betting.
+  Its immutable per-half state participates in replay and rollback checks.
 * Cache keys normalize hole-card order and the order of the three flop cards;
   the arrival order of turn and river remains significant.
 
@@ -178,6 +182,8 @@ tests passed, but match results did not justify deployment. See
 [RERAISE_MODEL.md](RERAISE_MODEL.md) and the iteration 6 evidence. The external
 benchmark harness runs pinned public bots from separate checkouts; their source
 is not included. See [EXTERNAL_BENCHMARKS.md](EXTERNAL_BENCHMARKS.md).
+Unconditional raise-margin removal and separate pre/postflop range models were
+also tested and remain disabled; the production caller rule has a narrower scope.
 
 Reproduce the numerical benchmarks:
 

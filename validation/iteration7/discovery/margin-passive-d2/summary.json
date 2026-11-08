@@ -1,0 +1,242 @@
+[
+  {
+    "opponent": "release-9efa",
+    "candidate_score": 0.0,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "release-52c5",
+    "candidate_score": -0.21166666666666667,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-value",
+    "candidate_score": 1.3566666666666667,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-polar",
+    "candidate_score": 5.7,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-adaptive",
+    "candidate_score": 1.3683333333333334,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "range-tight",
+    "candidate_score": 0.7883333333333333,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "bluffer",
+    "candidate_score": 7.3225,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "nit",
+    "candidate_score": 1.0275,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "checkraise",
+    "candidate_score": 1.6741666666666666,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "search000",
+    "candidate_score": 0.15666666666666668,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "search024",
+    "candidate_score": 1.0475,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "balanced",
+    "candidate_score": 2.2291666666666665,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "polarized",
+    "candidate_score": 2.9183333333333334,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "opportunist",
+    "candidate_score": 1.7891666666666666,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "switcher",
+    "candidate_score": 1.945,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 12.744166666666667,
+    "improvement": 1.3933333333333333,
+    "ci": [
+      0.849029360952236,
+      1.9376373057144307
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 8.956666666666667,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "half",
+    "candidate_score": 13.23,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "maniac",
+    "candidate_score": 7.4225,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "oscillating",
+    "candidate_score": 2.0525,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "passive-value",
+    "candidate_score": 9.774166666666666,
+    "improvement": 1.595,
+    "ci": [
+      0.9030573536301356,
+      2.286942646369864
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "passive-trap",
+    "candidate_score": 7.225833333333333,
+    "improvement": 0.8783333333333333,
+    "ci": [
+      0.3628867219292625,
+      1.3937799447374042
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "caller-switcher",
+    "candidate_score": 9.689166666666667,
+    "improvement": 0.035,
+    "ci": [
+      -0.7558028429419811,
+      0.8258028429419811
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "caller-oscillating",
+    "candidate_score": 8.980833333333333,
+    "improvement": 0.55,
+    "ci": [
+      -0.14645346429998318,
+      1.2464534642999832
+    ],
+    "deals": 600
+  }
+]

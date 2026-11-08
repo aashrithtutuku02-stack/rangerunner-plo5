@@ -7,6 +7,7 @@ import numpy as np
 import fast_engine as engine
 import range_model
 import bet_ev
+import calling_read
 from game import Action, Street
 
 # Prepare once, during startup. No runtime downloads or disk caches.
@@ -30,6 +31,7 @@ def initialize(config, memory):
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]],
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]]]),
         models=np.array([0.08, 0.24, 0.48, 0.10, 0.10]),
+        response_window=(),
     )
 
 
@@ -125,6 +127,7 @@ def observe_event(memory,event):
         nonfold=counts[1]+counts[2]
         share=counts[2]/nonfold if nonfold else 0.
         counts[1]+=1-share;counts[2]+=share
+    memory['response_window']=calling_read.add_response(memory.get('response_window',()),event)
 
 
 def action_prob(q, frequencies, slope, facing, price=0.25,can_raise=True):
@@ -282,6 +285,10 @@ def _decide(obs, memory):
         margin = 0.025 * obs.pot + 0.08
         if street == 0:
             margin += 0.25
+        # A supported caller read permits thinner value bets. Bluff raises
+        # retain the released guard; counts and read reset with every half.
+        if equity>.5 and calling_read.confident_caller(memory['response_window']):
+            margin=0.
         if ev > best_ev + margin:
             action, best_ev = candidate, ev
     if action not in obs.legal_actions:

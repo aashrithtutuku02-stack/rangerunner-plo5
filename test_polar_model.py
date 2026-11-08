@@ -84,7 +84,9 @@ def test_positive_research_kernel_matches_frozen_released_kernel():
 
 def test_promoted_strategy_matches_the_frozen_research_candidate():
     import agent
+    from adversaries import Opponent
     from research_candidates import make
     from stress_benchmark import run
-    result=run(make('polar-gated'),'polar-promotion-mirror',60,agent,time_bank_seconds=80.)
-    assert result['paired']==[0.]*60
+    old=run(Opponent('call'),'caller-promotion-mirror',100,make('margin-passive'),time_bank_seconds=80.)
+    current=run(Opponent('call'),'caller-promotion-mirror',100,agent,time_bank_seconds=80.)
+    assert old['paired']==current['paired']

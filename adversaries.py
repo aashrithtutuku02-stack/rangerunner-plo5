@@ -30,6 +30,8 @@ PROFILES = {
     'overfolder': dict(value=.72, raise_value=.87, call_extra=.25, bluff=.01),
     'bluffer': dict(value=.72, raise_value=.81, call_extra=.10, bluff=.65),
     'sticky': dict(value=.59, raise_value=.79, call_extra=-.08, bluff=.07),
+    'passive-value': dict(value=.86, raise_value=.96, call_extra=-.18, bluff=.0),
+    'passive-trap': dict(value=.80, raise_value=.88, call_extra=-.12, bluff=.0, trap=True, checkraise=True),
 }
 
 
@@ -42,6 +44,9 @@ class Opponent:
             from independent_opponents import IndependentOpponent
             self.range_policy=None
             self.independent=IndependentOpponent(name)
+        elif name=='release-9efa':
+            from opponents import release_9efa
+            self.range_policy=release_9efa
         elif name=='release-451b':
             from opponents import release_451b
             self.range_policy=release_451b
@@ -91,6 +96,10 @@ class Opponent:
             return Action.RAISE_HALF if Action.RAISE_HALF in legal else Action.CHECK_CALL
         if self.name == 'random':
             return memory['rng'].choice(legal)
+        if self.name in ('caller-switcher','caller-oscillating'):
+            period=100 if self.name=='caller-switcher' else 25
+            if (obs.hand_index//period)%2==0:return Action.CHECK_CALL
+            return Action.RAISE_POT if Action.RAISE_POT in legal else Action.CHECK_CALL
         profile = self.params or PROFILES.get(self.name, PROFILES['balanced'])
         if self.name == 'switcher':
             profile = PROFILES[('nit','maniac','trapper','bluffer')[(obs.hand_index//100)%4]]
@@ -148,4 +157,5 @@ class Opponent:
 def names():
     return ['fold','call','pot','half','random',*PROFILES,'switcher','incumbent','release-b15a','release-f452',
             'range-aware','range-tight','range-flat','opportunist','oscillating','release-52c5',
-            'independent-value','independent-polar','independent-adaptive','release-451b']
+            'independent-value','independent-polar','independent-adaptive','release-451b','release-9efa',
+            'caller-switcher','caller-oscillating']

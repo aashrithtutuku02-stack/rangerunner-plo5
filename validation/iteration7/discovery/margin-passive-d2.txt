@@ -1,0 +1,48 @@
+release-9efa iteration7-calling-discovery-d2 candidate 0.0 change 0.0
+POOLED {'opponent': 'release-9efa', 'candidate_score': 0.0, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+release-52c5 iteration7-calling-discovery-d2 candidate -0.2117 change 0.0
+POOLED {'opponent': 'release-52c5', 'candidate_score': -0.21166666666666667, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+independent-value iteration7-calling-discovery-d2 candidate 1.3567 change 0.0
+POOLED {'opponent': 'independent-value', 'candidate_score': 1.3566666666666667, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+independent-polar iteration7-calling-discovery-d2 candidate 5.7 change 0.0
+POOLED {'opponent': 'independent-polar', 'candidate_score': 5.7, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+independent-adaptive iteration7-calling-discovery-d2 candidate 1.3683 change 0.0
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.3683333333333334, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+range-tight iteration7-calling-discovery-d2 candidate 0.7883 change 0.0
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.7883333333333333, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+bluffer iteration7-calling-discovery-d2 candidate 7.3225 change 0.0
+POOLED {'opponent': 'bluffer', 'candidate_score': 7.3225, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+nit iteration7-calling-discovery-d2 candidate 1.0275 change 0.0
+POOLED {'opponent': 'nit', 'candidate_score': 1.0275, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+checkraise iteration7-calling-discovery-d2 candidate 1.6742 change 0.0
+POOLED {'opponent': 'checkraise', 'candidate_score': 1.6741666666666666, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+search000 iteration7-calling-discovery-d2 candidate 0.1567 change 0.0
+POOLED {'opponent': 'search000', 'candidate_score': 0.15666666666666668, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+search024 iteration7-calling-discovery-d2 candidate 1.0475 change 0.0
+POOLED {'opponent': 'search024', 'candidate_score': 1.0475, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+balanced iteration7-calling-discovery-d2 candidate 2.2292 change 0.0
+POOLED {'opponent': 'balanced', 'candidate_score': 2.2291666666666665, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+polarized iteration7-calling-discovery-d2 candidate 2.9183 change 0.0
+POOLED {'opponent': 'polarized', 'candidate_score': 2.9183333333333334, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+opportunist iteration7-calling-discovery-d2 candidate 1.7892 change 0.0
+POOLED {'opponent': 'opportunist', 'candidate_score': 1.7891666666666666, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+switcher iteration7-calling-discovery-d2 candidate 1.945 change 0.0
+POOLED {'opponent': 'switcher', 'candidate_score': 1.945, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+call iteration7-calling-discovery-d2 candidate 12.7442 change 1.3933
+POOLED {'opponent': 'call', 'candidate_score': 12.744166666666667, 'improvement': 1.3933333333333333, 'ci': [0.849029360952236, 1.9376373057144307], 'deals': 600}
+pot iteration7-calling-discovery-d2 candidate 8.9567 change 0.0
+POOLED {'opponent': 'pot', 'candidate_score': 8.956666666666667, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+half iteration7-calling-discovery-d2 candidate 13.23 change 0.0
+POOLED {'opponent': 'half', 'candidate_score': 13.23, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+maniac iteration7-calling-discovery-d2 candidate 7.4225 change 0.0
+POOLED {'opponent': 'maniac', 'candidate_score': 7.4225, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+oscillating iteration7-calling-discovery-d2 candidate 2.0525 change 0.0
+POOLED {'opponent': 'oscillating', 'candidate_score': 2.0525, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 600}
+passive-value iteration7-calling-discovery-d2 candidate 9.7742 change 1.595
+POOLED {'opponent': 'passive-value', 'candidate_score': 9.774166666666666, 'improvement': 1.595, 'ci': [0.9030573536301356, 2.286942646369864], 'deals': 600}
+passive-trap iteration7-calling-discovery-d2 candidate 7.2258 change 0.8783
+POOLED {'opponent': 'passive-trap', 'candidate_score': 7.225833333333333, 'improvement': 0.8783333333333333, 'ci': [0.3628867219292625, 1.3937799447374042], 'deals': 600}
+caller-switcher iteration7-calling-discovery-d2 candidate 9.6892 change 0.035
+POOLED {'opponent': 'caller-switcher', 'candidate_score': 9.689166666666667, 'improvement': 0.035, 'ci': [-0.7558028429419811, 0.8258028429419811], 'deals': 600}
+caller-oscillating iteration7-calling-discovery-d2 candidate 8.9808 change 0.55
+POOLED {'opponent': 'caller-oscillating', 'candidate_score': 8.980833333333333, 'improvement': 0.55, 'ci': [-0.14645346429998318, 1.2464534642999832], 'deals': 600}

@@ -1,0 +1,102 @@
+[
+  {
+    "opponent": "release-9efa",
+    "candidate_score": 0.08666666666666667,
+    "improvement": 0.08666666666666667,
+    "ci": [
+      -0.5526102533714456,
+      0.725943586704779
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "nit",
+    "candidate_score": 1.2758333333333334,
+    "improvement": 0.145,
+    "ci": [
+      -0.19036993675594774,
+      0.48036993675594775
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "bluffer",
+    "candidate_score": 6.9158333333333335,
+    "improvement": 0.6141666666666666,
+    "ci": [
+      -1.064528363947241,
+      2.2928616972805744
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "checkraise",
+    "candidate_score": 2.1766666666666667,
+    "improvement": 0.023333333333333334,
+    "ci": [
+      -0.8796446068635937,
+      0.9263112735302603
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "range-tight",
+    "candidate_score": 0.5,
+    "improvement": -0.37666666666666665,
+    "ci": [
+      -1.1845365682943063,
+      0.43120323496097307
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-value",
+    "candidate_score": 1.0516666666666667,
+    "improvement": -0.6316666666666667,
+    "ci": [
+      -1.4566140870537265,
+      0.19328075372039322
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-polar",
+    "candidate_score": 4.9383333333333335,
+    "improvement": 1.135,
+    "ci": [
+      -0.6298967722993221,
+      2.8998967722993223
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-adaptive",
+    "candidate_score": 1.11,
+    "improvement": -0.26666666666666666,
+    "ci": [
+      -0.9900032419551452,
+      0.45666990862181195
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 7.775,
+    "improvement": 0.11333333333333333,
+    "ci": [
+      -0.8593330918067016,
+      1.0859997584733683
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 11.595,
+    "improvement": -0.08666666666666667,
+    "ci": [
+      -0.20379550703393062,
+      0.030462173700597298
+    ],
+    "deals": 600
+  }
+]

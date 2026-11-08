@@ -28,6 +28,7 @@ def completed_hand(memory,index=0):
 
 
 def assert_learning_unchanged(memory,before):
+    assert memory.get('response_window')==before.get('response_window')
     np.testing.assert_array_equal(memory['counts'],before['counts'])
     np.testing.assert_array_equal(memory['models'],before['models'])
     assert memory['rng']==before['rng']

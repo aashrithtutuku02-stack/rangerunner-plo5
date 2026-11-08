@@ -1,0 +1,43 @@
+{
+  "baseline": "9efa86c1b7a6557be6b4cb508cced6d57a38432b",
+  "phase_c": {
+    "candidates": [
+      "margin-none",
+      "street-mix"
+    ],
+    "seed": "iteration7-broad-discovery-c",
+    "deals": 800,
+    "opponents": [
+      "release-9efa",
+      "release-52c5",
+      "independent-value",
+      "independent-polar",
+      "independent-adaptive",
+      "range-tight",
+      "bluffer",
+      "nit",
+      "checkraise",
+      "search000",
+      "search024",
+      "balanced",
+      "polarized",
+      "opportunist",
+      "switcher",
+      "call",
+      "pot",
+      "half",
+      "maniac",
+      "oscillating"
+    ]
+  },
+  "source_sha256": {
+    "strategy.py": "f525c298d98f909bac37104104eb6e4e9e0700b20d8ce99b059812873c261c10",
+    "range_model.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "bet_ev.py": "0a43ca35720462b1525d45aa7e7893205678279133ab49ec3712a2c033ad73e6",
+    "research_street.py": "284db01617144b9fabb52ad5b33b7953f235c0f7616db3569285f3f2e96d49d5",
+    "street_learning.py": "aff635defcb7c2eb67f9ed1a327631fd2d3c433ac3bc3795fa96809f185624d7",
+    "research_candidates.py": "dc710b7347228f02415555a65405457f128db905030dc31b89fe8d3dbf7662b6",
+    "evaluate_candidate.py": "bbb58cc248d839d546df4b7f7d0737f687345462643abc4d16f61fef8a2001de",
+    "adversaries.py": "86ab98c7312e2fbcd7ee3c6129b8c006ba18701d4d363679a7942cf4b5a46486"
+  }
+}

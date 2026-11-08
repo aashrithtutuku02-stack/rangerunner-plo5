@@ -18,11 +18,18 @@ eight fixed deals and both button positions.
 | Terminal-response inference checks, both players | 817,216 |
 | Duplicate result callbacks checked | 817,216 |
 | Learning-state comparisons to referee-derived events | 1,072,448 |
+| Rolling caller-read comparisons to referee-derived events | 1,072,448 |
 
 The bot chooses an action at every prefix. The test then forces every legal
 continuation, recording that actual forced action in its pending observation.
 This covers histories the current policy would not choose naturally. These are
 counterfactual correctness checks, not 408,608 independent matches or a win rate.
+The rolling read is checked against eligible voluntary calls, raises and folds,
+including the exclusion of censored calls and preservation of folds when a
+raise was unavailable. Replayed decisions and duplicate results must preserve
+it. One hand cannot reach its 24-response activation threshold; dedicated
+multi-hand tests and ordinary matches check activation, resets and behavior
+changes across hands.
 
 The deals cover a random board, an unbeatable flush, the A6789 wheel, actual
 quads, a split pot, four equal board ranks, four equal hole ranks, and a flush
@@ -54,9 +61,11 @@ unchanged. Scores are also compared to the native engine.
 * A separate one-CPU, read-only load run repeats a longest fourteen-action line
   for 1,000 hands, evaluating both players and their result callbacks. Those
   actions are forced for load testing, and calculation timings exclude HTTP.
-* Ordinary-play regression covers all 26 named local policies and eight selected
-  parameter-search cases. These share project code and are not independent
-  elite poker engines. The guards preserve regular-play returns on this suite.
+* Ordinary-play comparisons include earlier releases, local range-aware
+  challengers and selected parameter-search cases. The current comparison
+  cohort and its individual gains and declines are listed in `VALIDATION.md`.
+  Local challengers share project card code. Two pinned external public bots
+  are tested separately; their tournament rank and elite strength are unknown.
 
 ## Reproduce
 

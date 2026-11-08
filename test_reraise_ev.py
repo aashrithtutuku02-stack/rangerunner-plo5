@@ -104,12 +104,11 @@ def test_experimental_router_preserves_openings_and_limits_early_high_aggression
 
 
 def test_calling_opponent_negative_control_has_no_policy_change():
-    import agent
     from adversaries import Opponent
     from research_candidates import make
     from stress_benchmark import run
     old_result=run(Opponent('call'),'reraise-caller-control',60,make('release-451b'),time_bank_seconds=80.)
-    new_result=run(Opponent('call'),'reraise-caller-control',60,agent,time_bank_seconds=80.)
+    new_result=run(Opponent('call'),'reraise-caller-control',60,make('reraise-facing'),time_bank_seconds=80.)
     assert old_result['paired']==new_result['paired']
 
 

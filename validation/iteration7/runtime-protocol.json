@@ -1,0 +1,21 @@
+{
+  "cpu_policies": [
+    "release-9efa",
+    "release"
+  ],
+  "cpu_seed": "iteration7-cpu-caller-final",
+  "public_seeds": [
+    "iteration7-public-final-a",
+    "iteration7-public-final-b"
+  ],
+  "source_sha256": {
+    "tools/cpu_match.py": "4e76a749a981acb752b67a8412eff20c5631a85a1abee18297c8dee6b3ed357e",
+    "tools/fresh_match.py": "ec05f734ba544a53aecf969993e08fcc8fff2aae5cdbd25b7567e8a66739c27d",
+    "tools/external_agent.py": "7fdc9462d1a041e3d96dc1f1ec557e8e6362a4386ab45a6ba08f40585b76b1e9",
+    "tools/worst_line_load.py": "0575f94ad3351126b95d670fe61b9991d1b061bf4440a48499c9ecee8048c73b",
+    "benchmark.py": "26062ed99d20b142956da087e25c166f369a0384992616080dcbf43889e93ae3",
+    "scenario_sweep.py": "f39e8293fec5129f12c243e8dd96291a341cb989e16e26261a50e35a3d24bea6",
+    "tools/check_scenarios.py": "d7941ffd0532001b602ffc7ea46a195c72c8169da2b2f8448ce1199c1a8ca60d"
+  },
+  "cpu_harness_retry": "Frozen baseline app now binds 0.0.0.0 inside Docker. No policy/source in final-holdout-protocol changed."
+}

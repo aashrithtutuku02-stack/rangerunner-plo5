@@ -1,0 +1,102 @@
+[
+  {
+    "opponent": "release-9efa",
+    "candidate_score": 0.7716666666666666,
+    "improvement": 0.7716666666666666,
+    "ci": [
+      0.010763680512247187,
+      1.5325696528210861
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "nit",
+    "candidate_score": 0.9466666666666667,
+    "improvement": -0.41,
+    "ci": [
+      -0.9141349915057924,
+      0.09413499150579235
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "bluffer",
+    "candidate_score": 6.533333333333333,
+    "improvement": -0.07916666666666666,
+    "ci": [
+      -1.7774515102902613,
+      1.619118176956928
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "checkraise",
+    "candidate_score": 2.3216666666666668,
+    "improvement": -0.7383333333333333,
+    "ci": [
+      -1.6829439889354465,
+      0.20627732226877993
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "range-tight",
+    "candidate_score": 0.27,
+    "improvement": 0.19,
+    "ci": [
+      -0.7713700165348745,
+      1.1513700165348746
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-value",
+    "candidate_score": 0.925,
+    "improvement": -0.285,
+    "ci": [
+      -1.1355590639507531,
+      0.5655590639507531
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-polar",
+    "candidate_score": 3.75,
+    "improvement": 0.13666666666666666,
+    "ci": [
+      -1.5839744412109598,
+      1.8573077745442932
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "independent-adaptive",
+    "candidate_score": 0.5416666666666666,
+    "improvement": -0.975,
+    "ci": [
+      -1.8523591035950455,
+      -0.09764089640495444
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 6.400833333333333,
+    "improvement": -0.19833333333333333,
+    "ci": [
+      -1.1662910107203104,
+      0.7696243440536437
+    ],
+    "deals": 600
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 11.248333333333333,
+    "improvement": 0.23,
+    "ci": [
+      0.004192657155796892,
+      0.4558073428442031
+    ],
+    "deals": 600
+  }
+]

@@ -46,7 +46,7 @@ def main():
     if a.policy!='release':
         from research_candidates import make
         policy=make(a.policy)
-    sources=['agent.py','strategy.py','range_model.py','bet_ev.py','game.py','evaluator.py',
+    sources=['agent.py','strategy.py','range_model.py','bet_ev.py','calling_read.py','game.py','evaluator.py',
              'fast_engine.py','equity_engine.py','preflop.npz',
              'native/plo5_fast_linux_x86_64.so','tools/worst_line_load.py']
     if a.policy!='release':
@@ -70,6 +70,7 @@ def main():
             begin=time.perf_counter();policy.on_hand_end(game.hand_result(seat),memory)
             elapsed=time.perf_counter()-begin;costs[seat]+=elapsed;max_call=max(max_call,elapsed)
             assert np.all(np.isfinite(memory['models'])) and abs(memory['models'].sum()-1)<1e-12
+            assert len(memory.get('response_window',()))<=64
     assert all(m['hands_played']==a.hands and len(m['completed_hands'])==a.hands for m in memories)
     assert max_call<1.,'One call exceeded the tournament request deadline'
     assert max(costs)<8.,'One policy exceeded its calculation bank'

@@ -1,0 +1,40 @@
+waiting for agent1 at http://localhost:5040 ...
+WARNING: agent1 did not answer; it will forfeit.
+waiting for agent2 at http://localhost:5041 ...
+agent1 = http://localhost:5040
+agent2 = Challenges Team / CallingStation (http://localhost:5041)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration7-cpu-caller-final
+agent1: -0.529 bb/deal  (std 0.97, stderr 0.031)
+Confidence interval (z=1.96): [-0.589, -0.469] bb/deal
+Reason: agent1 forfeited half 1 and half 2, so agent1 loses
+half1: agent1 -508 chips, agent2 +508 chips
+half2: agent1 -550 chips, agent2 +550 chips
+Faults:
+  agent1 half1: thinking 0.00s of 8s (wall 0.00s), calls 1, errors 1  FORFEITED
+  agent1 half2: thinking 0.00s of 8s (wall 0.00s), calls 1, errors 1  FORFEITED
+  agent2 half1: thinking 0.00s of 8s (wall 0.77s), calls 2002, errors 0
+  agent2 half2: thinking 0.02s of 8s (wall 0.82s), calls 2002, errors 0
+First error from agent1:
+  new_half connection error: RemoteDisconnected: Remote end closed connection without response
+Speed: 2000 hands in 1.96s (1,019 hands/s)
+
+============================================================
+  VERDICT: AGENT2 WINS  (Challenges Team / CallingStation (http://localhost:5041))
+  Points: agent1 0, agent2 1
+============================================================
+RESULT: AGENT2_WIN
+Traceback (most recent call last):
+  File "/workspace/work/rangerunner/tools/check_results.py", line 19, in <module>
+    assert not half['errors'],(path,player,half)
+           ^^^^^^^^^^^^^^^^^^
+AssertionError: (PosixPath('/workspace/work/rangerunner/validation/iteration7/cpu/release-9efa/match.json'), 'agent1', {'calls': 1, 'skipped_calls': 0, 'timed_out': False, 'errors': 1, 'forfeited': True, 'error_messages': ['new_half connection error: RemoteDisconnected: Remote end closed connection without response'], 'time_seconds': 0.000779, 'wall_seconds': 0.001779})
+Traceback (most recent call last):
+  File "/workspace/work/rangerunner/tools/cpu_match.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/work/rangerunner/tools/cpu_match.py", line 51, in main
+    subprocess.run([sys.executable,'tools/check_results.py',str(out)],cwd=ROOT,env=env,check=True)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/workspace/work/venv/bin/python', 'tools/check_results.py', '/workspace/work/rangerunner/validation/iteration7/cpu/release-9efa']' returned non-zero exit status 1.

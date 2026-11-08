@@ -1,0 +1,1 @@
+Initial discovery was stopped to preserve voluntary folds as negative evidence when raising was unavailable. This is an incomplete development cohort, not held-out evaluation. The original helper is retained and its hash matches the partial records. The complete replacement cohort uses the d2 seed.

@@ -80,8 +80,17 @@ recent-frequency learning and selective sample expansion. None established a
 reliable broad gain. The strongest development re-raise candidate returned only
 +0.0151 bb/deal on four fresh seeds (95% interval [-0.0895, +0.1196]) and
 declined against the frozen release itself. All nine remain disabled. The
-production change is exact probability-math acceleration, not a demonstrated
-new playing-strength gain.
+iteration's production change was exact probability-math acceleration, without
+a demonstrated new playing-strength gain.
+
+Iteration 7 adds a narrower caller read after broader margin removal and
+separate-street learning had mixed development results. It permits thinner
+value bets only after enough voluntary calls support the read. A changing
+opponent, conditional sizing, selective calling or traps can still fool it.
+The rolling window limits the age of evidence but does not eliminate adaptation
+lag. The Wilson bound is a conservative policy heuristic under dependent
+observations, not a guarantee of future calling frequency. Gains against
+frequent callers do not demonstrate a new edge against elite opponents.
 
 * The game has not been solved to a Nash equilibrium. Betting policy and
   opponent likelihoods are approximate, and action selection is mostly

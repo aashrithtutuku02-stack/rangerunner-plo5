@@ -1,0 +1,47 @@
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = winner / RangeRunner (http://localhost:5030)  (seat 0)
+agent2 = Starfish / ReveillePLO (http://localhost:5031)  (seat 1)
+
+Half 1: 1000 deals, seed iteration7-public-final-b
+Chips: agent1 +3500 (+1.750 bb/deal), agent2 -3500
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 1.85s of 8s (wall 4.97s), calls 3139, errors 0
+  agent2: thinking 2.60s of 8s (wall 5.92s), calls 3584, errors 0
+Speed: 1000 hands in 11.23s (89 hands/s)
+RESULT: HALF_DONE
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = winner / RangeRunner (http://localhost:5030)  (seat 1)
+agent2 = Starfish / ReveillePLO (http://localhost:5031)  (seat 0)
+
+Half 2: 1000 deals, seed iteration7-public-final-b
+Chips: agent1 +2380 (+1.190 bb/deal), agent2 -2380
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 1.80s of 8s (wall 4.99s), calls 3221, errors 0
+  agent2: thinking 2.68s of 8s (wall 6.03s), calls 3615, errors 0
+Speed: 1000 hands in 11.39s (88 hands/s)
+RESULT: HALF_DONE
+agent1 = winner / RangeRunner (http://localhost:5030)
+agent2 = Starfish / ReveillePLO (http://localhost:5031)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration7-public-final-b
+agent1: +2.940 bb/deal  (std 12.11, stderr 0.383)
+Confidence interval (z=1.96): [+2.189, +3.691] bb/deal
+Reason: interval [+2.189, +3.691] is entirely above 0
+half1: agent1 +3500 chips, agent2 -3500 chips
+half2: agent1 +2380 chips, agent2 -2380 chips
+Faults:
+  agent1 half1: thinking 1.85s of 8s (wall 4.97s), calls 3139, errors 0
+  agent1 half2: thinking 1.80s of 8s (wall 4.99s), calls 3221, errors 0
+  agent2 half1: thinking 2.60s of 8s (wall 5.92s), calls 3584, errors 0
+  agent2 half2: thinking 2.68s of 8s (wall 6.03s), calls 3615, errors 0
+Speed: 2000 hands in 22.62s (88 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (winner / RangeRunner (http://localhost:5030))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN

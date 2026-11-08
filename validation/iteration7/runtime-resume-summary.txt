@@ -1,0 +1,16 @@
+Fixed-source evaluation workers finished; starting serial runtime checks
+Running cpu-release-9efa.txt
+Running cpu-release.txt
+Running http-summary.txt
+Running http-fault-check.txt
+Running fresh-summary.txt
+Running fresh-fault-check.txt
+Running external-a-fargield.txt
+Running external-a-fargield-fault-check.txt
+Running external-a-starfish.txt
+Running external-a-starfish-fault-check.txt
+Running external-b-fargield.txt
+Running external-b-fargield-fault-check.txt
+Running external-b-starfish.txt
+Running external-b-starfish-fault-check.txt
+ALL SERIAL CHECKS PASSED

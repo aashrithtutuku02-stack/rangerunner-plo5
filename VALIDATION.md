@@ -1,157 +1,198 @@
-# Release validation — iteration 6
+# Release validation — iteration 7
 
 Team **winner**, agent **RangeRunner**. The baseline is frozen release
-`451b1cb9ae931c5b42a9137e388614606bfaac53`. This update accelerates the existing
-strategy and adds independent public-bot validation. **No new win-rate gain is
-claimed.** The earlier +0.12054 bb/deal improvement over 52c5 belongs to iteration
-5; its complete report is preserved in [iteration 5](validation/iteration5/RELEASE_REPORT.md).
+`9efa86c1b7a6557be6b4cb508cced6d57a38432b`.
 
-## Exact probability acceleration
+## Measured strategic improvement
 
-The flat model's action probability is independent of hand rank. The likelihood
-and raise-value kernels now compute that constant once per model/event instead
-of once per sampled hand. Polarized checks skip a fold integral that would have
-been discarded. The accumulation order, model parameters, priors, samples,
-strategy, native engine and referee are unchanged.
+The new caller read improved the equal-opponent average by **+0.18735
+big blinds per duplicate deal** across 24 local opponents and four fresh seeds.
+The descriptive shared-deal 95% interval is **[+0.16038, +0.21432]**;
+the separate four-seed t interval is **[+0.12697, +0.24773]**.
+The gains are concentrated in frequent-caller and changing-caller matchups.
+This is a targeted exploit, not a demonstrated gain against elite bots or every
+opponent. A duplicate deal sums the two seat-swapped hands, following the
+supplied referee's convention.
 
-Nine alternating warmed timing repeats, each with 200 calls, measured
-**1.10–1.81× faster math kernels** at the normal 768/1,280 sample sizes. These
-are kernel measurements, excluding card simulation, startup and HTTP; they are
-not a whole-bot speedup. Every timed output was bit-identical to the frozen
-release. Tests cover six sample sizes, endpoint ranks, unavailable raises,
-all-ins and 90 randomized raise-value cases. See [kernel timings](validation/iteration6/kernel-speed.json).
+The bot records only voluntary responses to bets. Free checks and forced calls
+cannot establish that an opponent prefers calling. Folds remain negative
+evidence even when raising was unavailable. At least 24 eligible responses are
+required, using the latest 64. A Wilson lower call-share bound of 0.80 activates
+the read. Only estimated value bets with equity above one half can then omit
+the fixed raise safety margin. Other decisions preserve the previous guard;
+range mathematics, equity samples, equity realization and re-raise penalties
+are unchanged. [CALLING_READ.md](CALLING_READ.md) explains the rule and limits.
 
-A preregistered fresh-seed regression played candidate and frozen control in
-both seats against **39 local opponents**, 1,000 duplicate deals each. All
-**39,000 paired differences were exactly zero**, with original 768/1,280 samples
-and no experimental expansion. That is **156,000 physical hands including
-controls**, sharing 1,000 card-deal clusters; this is policy preservation,
-not additional evidence of a strength gain. [Protocol](validation/iteration6/regression-protocol.json),
-[summary](validation/iteration6/regression-summary.json) and all raw records are retained.
+## Frozen fresh evaluation
 
-## Independent public opponents
+The candidate, source identities, acceptance conditions, 24 opponents and four
+new 1,000-deal seeds were recorded before evaluation. No parameter changed after
+that point. [Protocol](validation/iteration7/final-holdout-protocol.json),
+[all 96 records](validation/iteration7/final-holdout/) and
+[summary](validation/iteration7/final-holdout-summary.json) are retained.
 
-Two public challenge bots ran from pinned, separate checkouts with their own
-published default strategies. Their evaluator and rules match the supplied
-bundle byte for byte. The original HTTP referee enforced the real 8-second
-banks and request deadlines; both processes restarted before every half.
+Each candidate and frozen control plays both seats on common deals:
+**384,000 physical hands including controls**, 96,000 paired policy observations,
+sharing **4,000 card-deal clusters**. The pooled interval groups opponents that
+share a deal; it does not count the 24 opponents as independent new cards.
+A second interval uses four seed means and Student t with three degrees of
+freedom. Learning creates dependence between successive hands, so intervals
+are descriptive rather than guarantees.
 
-Four fresh seeds per bot, each 1,000 duplicate deals, produced **16,000 physical
-hands**. Scores are big blinds per duplicate deal, summing both seat-swapped
-hands. Pooled intervals below use the 4,000 deal returns per bot; learning
-creates dependence, so these are descriptive normal intervals.
+| Fresh seed | Equal-opponent gain, bb/deal |
+|---|---:|
+| a | +0.21054 |
+| b | +0.19065 |
+| c | +0.21546 |
+| d | +0.13275 |
 
-| Public bot | Mean bb/deal | Descriptive 95% interval | Wins / draws / losses, four seeds |
-|---|---:|---|---|
-| fargield | +1.0345 | [+0.7145, +1.3545] | 3 / 1 / 0 |
-| starfish | +2.9229 | [+2.5478, +3.2980] | 4 / 0 / 0 |
+| Calling style | Candidate bb/deal | Change from 9efa | Paired-change 95% interval |
+|---|---:|---:|---|
+| call | +13.161 | +1.601 | [+1.378, +1.825] |
+| passive-value | +10.157 | +1.710 | [+1.450, +1.971] |
+| passive-trap | +6.661 | +0.246 | [+0.046, +0.446] |
+| caller-switcher | +9.788 | +0.817 | [+0.514, +1.120] |
+| caller-oscillating | +8.953 | +0.121 | [-0.091, +0.333] |
 
-Both players had zero reported errors, forfeits, exhausted banks and skipped
-calls. External active-core, model exception, asset and native-fault checks
-passed; budget fallback counts are in the [summary](validation/iteration6/external-summary.json).
-Every half retains source hashes checked against its pinned Git commit.
-The public repositories' tournament rank and elite strength are unknown; this
-does not establish superiority over every bot. Their code is not redistributed.
-See [repositories and reproduction](EXTERNAL_BENCHMARKS.md) and
-[raw final reports](validation/iteration6/external-final).
+**19 opponent matchups had exactly unchanged paired returns** across
+all four seeds. Frozen-release head-to-head change was +0.00000
+with interval [+0.00000, +0.00000]. All per-opponent scores,
+intervals, read-activation counts and any negative estimates remain in the
+summary and raw records. There is no claim of a new head-to-head win over the previous release.
 
-## Rejected strategic experiments
+Offline comparisons use an 80-second accounting bank to retain the original
+768/1,280 sample counts independently of host scheduling. No experimental sample
+expansion occurred. Comparisons with no active read preserve
+every paired return. Real 8-second behavior is checked separately.
 
-Six conditioned re-raise variants, family-based model forgetting, recent-action
-frequency learning and low-effective-sample expansion were tested. None
-established a reliable broad gain. All remain disabled in production.
+## Other ideas tested
 
-The best re-raise discovery candidate was evaluated on four fresh seeds against
-20 opponents: **320,000 physical hands including controls**. Its equal-opponent
-change was **+0.01507 bb/deal**, with shared-deal interval
-**[-0.08948, +0.11961]**. Against frozen 451b itself,
-the change was **-0.39975**, interval
-**[-0.69398, -0.10552]**. That failure prevented deployment.
-The broader variants also had large always-raising regressions in discovery.
+An unconditional removal of the raise margin initially gained +0.5283 bb/deal
+on ten discovery opponents, then declined -0.0997 on a new twenty-opponent
+cohort. Applying the margin once between passive play and all raises declined
+-0.1358 on the first cohort. Separate pre/postflop selectivity models were also
+mixed: independent group mixtures gained +0.0756 initially, then declined
+-0.0582 on the broader cohort. These alternatives remain disabled.
 
-All development and fresh-evaluation returns, exact source snapshots and the
-pre-evaluation protocol are preserved in [iteration 6](validation/iteration6/README.md).
-Numerical correctness of an approximate betting model is not evidence that it
-plays better. [RERAISE_MODEL.md](RERAISE_MODEL.md) explains the rejected model.
+Value-only margin removal and the guarded caller rule were compared on a third
+24-opponent discovery cohort. The guarded version preserved all nineteen
+non-passive returns, had positive point estimates for all five caller styles,
+and was selected for the fresh evaluation. This selection was based on its
+narrower behavioral scope, rather than the largest discovery mean. No fresh
+seed was reused for selection. Raw results and changed-source snapshots are in
+[iteration 7 evidence](validation/iteration7/README.md).
 
-## Correctness and bounded exhaustive coverage
+## Correctness and history coverage
 
-**281 tests passed** on the final local source; two warnings are third-party
-deprecations. New tests cover the exact speed optimization and research-model
-accounting, legal re-raise branches, shared information-set decisions, atomic
-sample refinement and replay-safe frequency learning. Original supplied tests
-and production strategy tests remain unchanged.
+**306 tests passed** on the final candidate, with two third-party deprecation
+warnings. New tests cover the eligibility of calls and folds, confidence and
+recent behavior changes, value/bluff separation, atomic rollback, half resets,
+raise-size ranking, independent group learning and the frozen prototype mirror.
+The original supplied referee, evaluator, server and starter tests are unchanged.
+One older experimental test now compares its frozen re-raise prototype against
+its frozen control, so the new caller policy does not silently redefine that
+experiment's negative control.
 
-The GitHub workflow repeats both exhaustive-history jobs on the pushed source:
-eight fixed deals and both buttons, every legal betting history without merging
-histories. The established scope is **408,608 terminal histories**, **255,232
-decision prefixes**, and a longest line of fourteen actions. Counts and source
-identities are checked. This is exhaustive for those fixed deals and supplied
-rules, not every card deal, every opponent or every network sequence.
-[SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md) defines the boundary.
+GitHub repeats every legal betting history on eight fixed deals and both button
+positions: **408,608 terminal histories**, **255,232 decision prefixes**, with
+replayed decisions, terminal inference and duplicate results. The sweep now also
+checks the caller-read tuple against independently recorded referee events at
+all **1,072,448 learning-state comparisons**. Its artifact checker rejects missing
+read coverage and checks exact source identities, including `calling_read.py`.
 
-## One-CPU runtime and HTTP checks
+A single hand has fewer than 24 eligible responses, so those one-hand sweeps
+verify construction and replay safety of the read. Dedicated multi-hand tests,
+ordinary matches and the fresh cohort exercise its activation and invalidation.
+This is exhaustive history coverage for the selected fixed deals, not all card
+deals, opponents or possible API traffic. [SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md)
+defines the boundary.
 
-Four serial longest-line runs used the same one-CPU, 4-GB, read-only, network-
-disabled container with current source. Each forces fourteen legal actions on
-1,000 deals while evaluating all 14,000 decisions and 2,000 result callbacks.
-This is a counterfactual resource test, not a strength benchmark.
+## Real bank and one-CPU validation
 
-| Run | Policy | Seat 0 calculation seconds | Seat 1 calculation seconds | Largest call, seconds |
-|---|---|---:|---:|---:|
-| 1 | release-451b | 4.355 | 4.355 | 0.0038 |
-| 2 | release | 4.356 | 4.357 | 0.0041 |
-| 3 | release | 4.356 | 4.355 | 0.0155 |
-| 4 | release-451b | 4.358 | 4.357 | 0.0269 |
+Both frozen 9efa and the candidate played CallingStation on the same new
+1,000-deal seed with hero limited to one CPU, 4 GB RAM and read-only source,
+using the real HTTP referee and 8-second banks. Both won, with zero faults,
+forfeits, exhausted banks and skipped calls on either side.
 
-The mean combined calculation cost was 8.712 seconds before and 8.712
-after: essentially unchanged because adaptive sampling targets the internal
-calculation budget. Mean retained samples per decision rose from
-353.9 to 399.9
-(13.0% more) on this
-forced workload. Two runs per policy are a small runtime sample, and retaining
-more samples does not by itself establish a win-rate gain. The raw reports
-include every sample-size count. Every player remained below its 8-second bank
-and every call below the 1-second deadline.
+| Policy | bb/deal | Charged seconds, half 1 | Half 2 |
+|---|---:|---:|---:|
+| Frozen 9efa | +11.874 | 3.174 | 2.714 |
+| Caller read | +13.259 | 2.714 | 3.581 |
 
-A separate isolated one-CPU HTTP match beat CallingStation by
-+11.9120 bb/deal. The bot's charged half times were
-3.379 and
-2.989 seconds of eight. Both
-players had zero faults, exhausted banks or skipped decisions. Judge and
-opponent ran on the host with no concurrent CPU stress suite.
+The one-seed paired change was +1.385 bb/deal, interval
+[+0.882, +1.888]. This is a small real-budget check; scheduling
+can change adaptive sample allocation. The four-seed fixed-sample evaluation
+above provides the main comparison. Raw reports, command lines and source
+identities are retained under `validation/iteration7/cpu/`.
+The initial baseline attempt failed before play because its research server
+bound the container loopback interface. The harness now binds that unchanged
+app to the container interface; the same policy/cards were rerun successfully.
+Those transport-forfeit reports are retained in `development-cpu-startup/`
+and excluded from strength comparisons. No frozen policy or evaluation
+parameter changed for this repair.
 
-Six ordinary full HTTP matches also passed fault checks:
+A network-disabled longest-line load evaluated all **14,000 decisions and 2,000
+result callbacks** over 1,000 forced fourteen-action hands. Per-player calculation
+totals were 4.356 and
+4.356 seconds; the largest call was
+0.0105 seconds. The response window remained bounded.
+This excludes HTTP and overrides chosen actions, so it is a resource test rather
+than playing-strength evidence.
+
+Eight ordinary full HTTP matches passed fault checks, including all four
+supplied baselines, which were beaten:
 
 | Opponent | bb/deal | Verdict |
 |---|---:|---|
-| adversary-independent-adaptive-iteration6-http-final | +1.7030 | AGENT1_WIN |
-| adversary-range-tight-iteration6-http-final | +0.3400 | CHOP |
-| always_half-iteration6-http-final | +13.8075 | AGENT1_WIN |
-| always_pot-iteration6-http-final | +8.2725 | AGENT1_WIN |
-| calling_station-iteration6-http-final | +12.3130 | AGENT1_WIN |
-| random-iteration6-http-final | +11.2155 | AGENT1_WIN |
+| adversary-caller-switcher | +9.826 | AGENT1_WIN |
+| adversary-independent-adaptive | +1.818 | AGENT1_WIN |
+| adversary-passive-trap | +7.050 | AGENT1_WIN |
+| adversary-range-tight | +0.440 | CHOP |
+| always_half | +13.405 | AGENT1_WIN |
+| always_pot | +7.971 | AGENT1_WIN |
+| calling_station | +12.745 | AGENT1_WIN |
+| random | +13.102 | AGENT1_WIN |
 
-Restarting both servers between halves against frozen 451b returned
--0.2650 bb/deal (CHOP). Timing-based sample
-allocation can change decisions across machines even with identical deals.
+Restarting both servers before each half against 9efa returned
+-0.143 bb/deal (CHOP). Restricted smoke also
+passed with user 10001, one CPU, 4 GB RAM, network disabled, read-only source,
+dropped capabilities, no-new-privileges, 256 PIDs and writable 512-MB `/tmp`.
+Runtime inspection verified winner / RangeRunner, portable C, lifecycle guards,
+original five-model weights, the initialized caller read, no research imports
+and exact source/native/asset fingerprints. Local checks use the cached small
+sandbox with current source mounted read-only and unchanged dependencies.
 
-Restricted smoke passed with user 10001, one CPU, 4 GB RAM, read-only source,
-network disabled, dropped capabilities, no-new-privileges, 256 PIDs and a writable
-512-MB `/tmp`. Runtime inspection verified **winner / RangeRunner**, portable C,
-lifecycle guards, original five-model weights, no research imports and exact
-source/native/asset fingerprints. Local checks use the cached small sandbox
-image with current source mounted read-only and unchanged dependencies.
+## Independent public opponents
 
-GitHub separately runs the exact organizer build, added-image-size check,
-restricted smoke and one-CPU longest-line test, plus 16 full HTTP matchups and a
-fresh-process match. Check the workflow on this exact commit for its final
-status. Local evidence is under [iteration 6](validation/iteration6/).
-The supplied referee, evaluator, original server, requirements, original
-Dockerfiles/build checker, native engine and preflop asset are unchanged;
-[protected fingerprints](validation/iteration6/protected-files.json) verify this.
+Two pinned, independently developed public challenge bots ran with their own
+published default strategies in separate interpreters. Both restarted before
+every half, with active-core, asset, caught-exception and native-fault diagnostics.
+Two new seeds per bot produced **8,000 physical hands** under the original judge.
 
-The game remains unsolved here. Opponent ranges and future betting are
-approximate, and finite equity samples can miss rare cases. See
-[WEAKNESSES.md](WEAKNESSES.md). Passing these tests is not an unbeatable-bot
-guarantee.
+| Public bot | bb/deal | Descriptive 95% interval | Wins / draws / losses, two seeds |
+|---|---:|---|---|
+| fargield | +1.073 | [+0.612, +1.534] | 1 / 1 / 0 |
+| starfish | +2.992 | [+2.454, +3.530] | 2 / 0 / 0 |
+
+Both players' referee fault counters were zero. Per-half metadata retains source
+hashes verified against the pinned Git commits and all fallback counters.
+These matches assess the release, not a controlled gain over 9efa. The public
+bots' tournament rank and elite strength are unknown. Their code is not
+redistributed. [EXTERNAL_BENCHMARKS.md](EXTERNAL_BENCHMARKS.md) records the versions
+and reproduction steps.
+
+## Release integrity and limits
+
+GitHub checks the exact organizer build, image-size cap, restricted smoke and
+one-CPU longest-line test, plus 306 tests, twenty full HTTP matchups, a
+fresh-process match and both complete history jobs. Check the workflow on this
+exact commit for its final status. Local results and protected-file fingerprints
+are under [iteration 7](validation/iteration7/).
+
+This release adds a targeted opponent read; it does not solve poker. The read can
+lag an opponent changing behavior, and calling preferences may depend on price,
+street and range. The Wilson threshold is a conservative heuristic under
+dependent observations. Equity and future betting remain approximate. See
+[WEAKNESSES.md](WEAKNESSES.md). No result here establishes an unbeatable bot.
+Earlier full reports remain in [iteration 6](validation/iteration6/RELEASE_REPORT.md)
+and [iteration 5](validation/iteration5/RELEASE_REPORT.md).

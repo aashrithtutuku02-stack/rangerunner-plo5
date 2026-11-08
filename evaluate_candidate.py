@@ -21,7 +21,9 @@ def main():
     a=p.parse_args();out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
     sources={name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
              for name in ['strategy.py','range_model.py','fast_engine.py','bet_ev.py','river_precision.py']}
-    extra_names=['evaluate_candidate.py','research_candidates.py','research_reraise.py','reraise_ev.py','research_learning.py','model_learning.py',
+    extra_names=['evaluate_candidate.py','research_candidates.py','research_street.py','street_learning.py','calling_read.py',
+                 'opponents/release_9efa.py','opponents/model_9efa.py','opponents/bet_ev_9efa.py',
+                 'research_reraise.py','reraise_ev.py','research_learning.py','model_learning.py',
                  'range_precision.py','research_range_precision.py','research_recency.py',
                  'opponents/release_451b.py','opponents/model_451b.py','opponents/bet_ev_451b.py',
                  'research_polar.py','research_joint.py','research_gated.py','polar_model.py','polar_bet_ev.py',

@@ -60,7 +60,7 @@ def expected_counts(prior,events):
 
 def sweep(name,deal,button,full_policy=True):
     started=time.perf_counter();config=AgentConfig(num_hands=1,time_bank_seconds=80.)
-    sources=['agent.py','strategy.py','range_model.py','bet_ev.py','fast_engine.py','equity_engine.py',
+    sources=['agent.py','strategy.py','range_model.py','bet_ev.py','calling_read.py','fast_engine.py','equity_engine.py',
              'game.py','evaluator.py','preflop.npz','native/plo5_fast_linux_x86_64.so','scenario_sweep.py']
     root=Path(__file__).parent
     fingerprints={n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in sources}
@@ -68,10 +68,14 @@ def sweep(name,deal,button,full_policy=True):
     for memory in memories:agent.new_half(config,memory)
     prior=memories[0]['counts'].copy()
     totals=Counter();streets=Counter();endings=Counter();samples=Counter()
-    numeric=set();trace=hashlib.sha256();max_decision=0.
+    numeric=set();trace=hashlib.sha256();max_decision=0.;response_read_checks=0
 
     def checked_counts(memory,events):
+        nonlocal response_read_checks
         np.testing.assert_allclose(memory['counts'],expected_counts(prior,events),atol=1e-10,rtol=0)
+        expected_window=tuple(min(int(e[3]),2) for e in events if e[2] and (e[5] or int(e[3])==0))[-64:]
+        assert memory['response_window']==expected_window
+        response_read_checks+=1
         assert np.all(np.isfinite(memory['models'])) and abs(memory['models'].sum()-1)<1e-12
         assert memory['rng']!=0
         totals['learning_checks']+=1
@@ -92,9 +96,10 @@ def sweep(name,deal,button,full_policy=True):
             assert size==(1280 if len(obs.board)==5 else 768)
             assert np.all(np.isfinite(cache['q'])) and np.all((cache['q']>=0)&(cache['q']<=1))
             # Repeating the same request must preserve learning and sampling.
-            before_counts=current['counts'].copy();before_rng=current['rng']
+            before_counts=current['counts'].copy();before_rng=current['rng'];before_read=current['response_window']
             repeated=agent.choose_action(obs,current)
             assert repeated==chosen and current['rng']==before_rng and current['cache'] is cache
+            assert current['response_window']==before_read
             np.testing.assert_array_equal(current['counts'],before_counts)
             totals['replayed_decisions']+=1
         else:
@@ -131,10 +136,11 @@ def sweep(name,deal,button,full_policy=True):
                         assert memory['hands_played']==1 and memory['last'] is None and memory['cache'] is None
                         assert memory['completed_hands']=={0}
                         checked_counts(memory,known)
-                        before=memory['counts'].copy();models=memory['models'].copy()
+                        before=memory['counts'].copy();models=memory['models'].copy();before_read=memory['response_window']
                         agent.on_hand_end(child.hand_result(seat),memory)
                         np.testing.assert_array_equal(memory['counts'],before)
                         np.testing.assert_array_equal(memory['models'],models)
+                        assert memory['response_window']==before_read
                         assert memory['hands_played']==1
                         totals['duplicate_results']+=1
                 continue
@@ -149,7 +155,7 @@ def sweep(name,deal,button,full_policy=True):
     assert totals['edges']==41489 and totals['max_actions']==14 and len(numeric)==678
     assert fingerprints=={n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in sources},'Source changed during sweep'
     return dict(case=name,button=button,mode='full_policy' if full_policy else 'accounting_only',
-                totals=dict(totals),unique_numeric_states=len(numeric),prefixes_by_street=dict(streets),
+                totals=dict(totals),response_read_checks=response_read_checks,unique_numeric_states=len(numeric),prefixes_by_street=dict(streets),
                 endings=dict(endings),sample_counts=dict(samples),sequence_sha256=trace.hexdigest(),
                 max_decision_seconds=max_decision,elapsed_seconds=time.perf_counter()-started,
                 cards=dict(hole_cards=deal.hole_cards,board=deal.board),

@@ -19,6 +19,7 @@ def summarize(reports,buttons=(0,1)):
         seen.add(key)
         assert r['mode']=='full_policy','Accounting-only reports do not test the full policy'
         assert r['totals']==EXPECTED,'Incomplete betting tree or replay checks'
+        assert r['response_read_checks']==EXPECTED['learning_checks'],'Incomplete calling-read checks'
         assert r['unique_numeric_states']==678 and r['sequence_sha256']==DIGEST
         assert set(r['sample_counts'])=={'768','1280'}
         assert sum(r['sample_counts'].values())==15952
@@ -27,7 +28,7 @@ def summarize(reports,buttons=(0,1)):
     assert seen=={(c,b) for c in CASES for b in buttons},'Missing or unexpected case/button'
     assert len(versions)==1,'Mixed source versions'
     return dict(cases=sorted(CASES),buttons=list(buttons),reports=len(reports),totals=totals,
-                max_actions=14,sequence_sha256=DIGEST,
+                max_actions=14,response_read_checks=sum(r['response_read_checks'] for r in reports),sequence_sha256=DIGEST,
                 max_observed_decision_seconds=max(r['max_decision_seconds'] for r in reports),
                 source_sha256=json.loads(next(iter(versions))))
 

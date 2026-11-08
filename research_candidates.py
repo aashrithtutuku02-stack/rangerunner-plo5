@@ -71,6 +71,12 @@ def finish_complete(module,result,memory,bayes=False,decay=False):
 
 
 def make(name):
+    if name=='release-9efa':
+        from opponents import release_9efa as previous
+        return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)
+    if name.startswith(('margin-','street-')):
+        from research_street import make as street_candidate
+        return street_candidate(name)
     if name in ('ess-postflop','ess-river'):
         from research_range_precision import make as ess_candidate
         return ess_candidate(name)

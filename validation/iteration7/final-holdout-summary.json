@@ -1,0 +1,662 @@
+{
+  "mean_change": 0.18734895833333334,
+  "ci": [
+    0.16037961643842955,
+    0.21431830022823714
+  ],
+  "opponents": 24,
+  "independent_deal_clusters": 4000,
+  "paired_policy_observations": 96000,
+  "played_hands": 384000,
+  "per_seed": [
+    {
+      "seed": "iteration7-calling-final-a",
+      "mean_change": 0.21054166666666665,
+      "deals": 1000
+    },
+    {
+      "seed": "iteration7-calling-final-b",
+      "mean_change": 0.19064583333333332,
+      "deals": 1000
+    },
+    {
+      "seed": "iteration7-calling-final-c",
+      "mean_change": 0.21545833333333334,
+      "deals": 1000
+    },
+    {
+      "seed": "iteration7-calling-final-d",
+      "mean_change": 0.13275,
+      "deals": 1000
+    }
+  ],
+  "per_opponent": [
+    {
+      "opponent": "balanced",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "bluffer",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "call",
+      "change": 1.6015,
+      "ci": [
+        1.3780477607073243,
+        1.8249522392926756
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "caller-oscillating",
+      "change": 0.12125,
+      "ci": [
+        -0.09063346743037215,
+        0.33313346743037214
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "caller-switcher",
+      "change": 0.817125,
+      "ci": [
+        0.5143712459826688,
+        1.1198787540173312
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "checkraise",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "half",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "independent-adaptive",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "independent-polar",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "independent-value",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "maniac",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "nit",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "opportunist",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "oscillating",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "passive-trap",
+      "change": 0.246,
+      "ci": [
+        0.04575258755692363,
+        0.44624741244307636
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "passive-value",
+      "change": 1.7105,
+      "ci": [
+        1.4496461588983125,
+        1.9713538411016873
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "polarized",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "pot",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "range-tight",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "release-52c5",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "release-9efa",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "search000",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "search024",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    },
+    {
+      "opponent": "switcher",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 4000
+    }
+  ],
+  "source_sha256": {
+    "bet_ev.py": "0a43ca35720462b1525d45aa7e7893205678279133ab49ec3712a2c033ad73e6",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "range_model.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "river_precision.py": "c1f9464ab2989aba5a07a3af1067624a4702ee0ee5d039f91a1281a6ded7fbfe",
+    "strategy.py": "ebfa013236f3bb691099465912767ee86a3d10f3ed361a344afcb1fa6183a73f"
+  },
+  "additional_source_sha256": {
+    "adversaries.py": "5031037f53f48e6004035d21e6adac9ad20a09d1f82825ca28ff391edf9fa9e5",
+    "adversary_cases.json": "4766e77557aa3a0e2fbcb870cb675026f444bc4137766deb5ac0160b67b08231",
+    "calling_read.py": "c4db70b55289d20813190167ececd11b666b8a2540d822ebd86d0da63817ef5e",
+    "evaluate_candidate.py": "be77d6c22617f1f6f3de9e991ed6886fcc0945f7921ede15dd4fffa7bc6e0829",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "independent_opponents.py": "4c65f91637e26e76552882b8bf152a345afdeb33d24ad626ed35517c9a7c9be8",
+    "model_learning.py": "2f8723a8042db872aba8aa8e1e12e2281d61678a171cc8d92d535ebbe300548f",
+    "native/plo5_fast.c": "c9c59de55a68cb652d567ab4aa2b2a7424606b2aefaf88c829daf1f8fe7aa856",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "opponents/bet_ev_451b.py": "24d29da4950ac8c645df756df968979b85982e15e0aea1e87f78230dd44a642d",
+    "opponents/bet_ev_52c5.py": "5f97a6d410123da45dfc077002b625bfbc2cea566d986cb8c8ba0694220a41ea",
+    "opponents/bet_ev_9efa.py": "343ae585b21ea7467a9f796753cd46ff996aed123453639be0e7f857f86917d8",
+    "opponents/model_451b.py": "8c407f53200cc8038b79a2d8e09fe79e9ce75040d0855d46e2c56f13b16a6b54",
+    "opponents/model_9efa.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "opponents/polar20_3a4a.py": "bf04c0cffc55b2627489b2b83853c476c11ae9b4242c3bb57c1d407286b366f4",
+    "opponents/release_451b.py": "83870e95eb9c42a013cab0645c1f58962361be44eb16c048f4c2ae7cc1aead83",
+    "opponents/release_52c5.py": "eb00a34c15e70f0930584e93b1d3b5fb03659b19d672222e9b71eae846a0cb19",
+    "opponents/release_9efa.py": "63acb4305b8ccc1b56dd89fda9984acad9994864106cfd1c6d4b7938b3bea779",
+    "opponents/release_b15a_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "polar_bet_ev.py": "0a8550a8fdaf7468786fd7412c59030144c80ef22cc41f131f98c2036d1525f1",
+    "polar_model.py": "eb38da74a302f89656e7921df68393b313f3ddf978bcb69e124fe84d3479a2f0",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "range_precision.py": "c19ad219ee38664ff2c7fdc263d883a64320525e304a5f1619a3c7e818df99e5",
+    "reraise_ev.py": "f8e91f665098e83a052b5f41bc1f1b55ca6f0e06114859beb290f9611879ace3",
+    "research_candidates.py": "dc710b7347228f02415555a65405457f128db905030dc31b89fe8d3dbf7662b6",
+    "research_gated.py": "f6ab244e60c086982ee434803e4e741dea1eec73842bcd005221cd0ed0ba86c7",
+    "research_joint.py": "344e8d2d6a93028b7c41dc4915d80ec0f04ce59d9397f1ee89c29684278b5b41",
+    "research_learning.py": "8ef23cd8eaef86f16b303b1b536298fe261d660c5de2c17be937a49bd93c2b5a",
+    "research_polar.py": "a4e90dfa1d53c3b23d3bee94f5bd73eb94282e5ed90498b2fdeb50b2564d13bf",
+    "research_range_precision.py": "a529606e4d671b813003e5cb36ea074edfe6dd64336c26f84a36c61db1118b9a",
+    "research_recency.py": "817b2ccf1daa64a883898fcf0415a4936d95d2303b26b66e4f27b60636072552",
+    "research_reraise.py": "a353b5ac3947cb9324e8ea9f0547c73a0d8d809be2d4f1b9bfbfd3ab2c397b59",
+    "research_street.py": "2dddb67b9646ae0d0aed2072f5fa8c457a83a9cde3c3a835b1a9632225f495eb",
+    "street_learning.py": "aff635defcb7c2eb67f9ed1a327631fd2d3c433ac3bc3795fa96809f185624d7",
+    "stress_benchmark.py": "fd2e97d3e8352ff1bb300f2af46347682bce7f94a203e24683749120ba330874"
+  },
+  "seed_t_ci": [
+    0.12696660445424088,
+    0.24773131221242575
+  ],
+  "scores": [
+    {
+      "opponent": "release-9efa",
+      "score": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "release-52c5",
+      "score": 0.08725,
+      "ci": [
+        -0.1817755781248251,
+        0.3562755781248251
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "independent-value",
+      "score": 2.026875,
+      "ci": [
+        1.7733700652372206,
+        2.280379934762779
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "independent-polar",
+      "score": 4.196125,
+      "ci": [
+        3.649214570515918,
+        4.743035429484083
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "independent-adaptive",
+      "score": 1.761875,
+      "ci": [
+        1.4916527870350245,
+        2.0320972129649757
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "range-tight",
+      "score": 0.25575,
+      "ci": [
+        -0.03479201290362555,
+        0.5462920129036255
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "bluffer",
+      "score": 7.22725,
+      "ci": [
+        6.638801519046349,
+        7.8156984809536505
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "nit",
+      "score": 1.3305,
+      "ci": [
+        1.13032597339282,
+        1.53067402660718
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "checkraise",
+      "score": 2.372875,
+      "ci": [
+        2.009412348479302,
+        2.736337651520698
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "search000",
+      "score": 0.284375,
+      "ci": [
+        -0.10392233492186193,
+        0.672672334921862
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "search024",
+      "score": 1.224625,
+      "ci": [
+        0.9595924915881592,
+        1.4896575084118409
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "balanced",
+      "score": 2.632375,
+      "ci": [
+        2.230335611359722,
+        3.034414388640278
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "polarized",
+      "score": 3.250375,
+      "ci": [
+        2.8578902317754666,
+        3.6428597682245334
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "opportunist",
+      "score": 2.258625,
+      "ci": [
+        1.823727257114462,
+        2.6935227428855377
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "switcher",
+      "score": 3.71875,
+      "ci": [
+        3.210580669779827,
+        4.226919330220173
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "call",
+      "score": 13.160875,
+      "ci": [
+        12.624386216621106,
+        13.697363783378895
+      ],
+      "change": 1.6015,
+      "change_ci": [
+        1.3780477607073243,
+        1.8249522392926756
+      ],
+      "read_decisions": 31709,
+      "read_hands": 7935
+    },
+    {
+      "opponent": "pot",
+      "score": 8.366625,
+      "ci": [
+        7.590709734974838,
+        9.142540265025163
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "half",
+      "score": 14.047625,
+      "ci": [
+        13.437492691798639,
+        14.657757308201361
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "maniac",
+      "score": 8.724875,
+      "ci": [
+        7.997677426186437,
+        9.452072573813565
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "oscillating",
+      "score": 3.297,
+      "ci": [
+        2.773300999010587,
+        3.8206990009894133
+      ],
+      "change": 0.0,
+      "change_ci": [
+        0.0,
+        0.0
+      ],
+      "read_decisions": 0,
+      "read_hands": 0
+    },
+    {
+      "opponent": "passive-value",
+      "score": 10.157375,
+      "ci": [
+        9.66921514471249,
+        10.64553485528751
+      ],
+      "change": 1.7105,
+      "change_ci": [
+        1.4496461588983125,
+        1.9713538411016873
+      ],
+      "read_decisions": 27797,
+      "read_hands": 7146
+    },
+    {
+      "opponent": "passive-trap",
+      "score": 6.661375,
+      "ci": [
+        6.246183315742098,
+        7.076566684257902
+      ],
+      "change": 0.246,
+      "change_ci": [
+        0.04575258755692363,
+        0.44624741244307636
+      ],
+      "read_decisions": 9743,
+      "read_hands": 2540
+    },
+    {
+      "opponent": "caller-switcher",
+      "score": 9.787875,
+      "ci": [
+        9.134245008580837,
+        10.441504991419162
+      ],
+      "change": 0.817125,
+      "change_ci": [
+        0.5143712459826688,
+        1.1198787540173312
+      ],
+      "read_decisions": 12409,
+      "read_hands": 3147
+    },
+    {
+      "opponent": "caller-oscillating",
+      "score": 8.95325,
+      "ci": [
+        8.325132962347762,
+        9.581367037652239
+      ],
+      "change": 0.12125,
+      "change_ci": [
+        -0.09063346743037215,
+        0.33313346743037214
+      ],
+      "read_decisions": 716,
+      "read_hands": 197
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "candidates": [
+    "margin-value",
+    "margin-passive"
+  ],
+  "seed": "iteration7-calling-discovery-d2",
+  "deals": 600,
+  "opponents": [
+    "release-9efa",
+    "release-52c5",
+    "independent-value",
+    "independent-polar",
+    "independent-adaptive",
+    "range-tight",
+    "bluffer",
+    "nit",
+    "checkraise",
+    "search000",
+    "search024",
+    "balanced",
+    "polarized",
+    "opportunist",
+    "switcher",
+    "call",
+    "pot",
+    "half",
+    "maniac",
+    "oscillating",
+    "passive-value",
+    "passive-trap",
+    "caller-switcher",
+    "caller-oscillating"
+  ],
+  "rule": "24 eligible voluntary facing-bet responses, rolling last 64; Wilson 95% lower call share >= .80; thin value equity > .5; no change to bluff guard; folds remain negative evidence even when raising was unavailable",
+  "source_sha256": {
+    "research_street.py": "2dddb67b9646ae0d0aed2072f5fa8c457a83a9cde3c3a835b1a9632225f495eb",
+    "calling_read.py": "c4db70b55289d20813190167ececd11b666b8a2540d822ebd86d0da63817ef5e",
+    "evaluate_candidate.py": "be77d6c22617f1f6f3de9e991ed6886fcc0945f7921ede15dd4fffa7bc6e0829",
+    "adversaries.py": "5031037f53f48e6004035d21e6adac9ad20a09d1f82825ca28ff391edf9fa9e5"
+  },
+  "draft_note": "Initial discovery d stopped during its first opponents to retain capped/all-in folds as negative evidence. Only d2 is the completed calling-discovery cohort."
+}

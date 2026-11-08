@@ -12,6 +12,7 @@ import sys
 import time
 
 import agent
+import calling_read
 from adversaries import Opponent, names
 from game import AgentConfig, Game, make_deal
 
@@ -21,6 +22,7 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=
     paired = [0.0]*deals
     timings = []
     sample_counts={};expanded=set();max_decision=0.
+    read_decisions=0;read_hands=set();max_response_window=0
     for seat in (0,1):
         hm, vm = {}, {}
         hero.new_half(config,hm);opponent.new_half(config,vm)
@@ -35,6 +37,10 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=
                 cost[current]+=elapsed
                 if capture_samples and current==seat:
                     max_decision=max(max_decision,elapsed)
+                    window=hm.get('response_window',())
+                    max_response_window=max(max_response_window,len(window))
+                    if calling_read.confident_caller(window):
+                        read_decisions+=1;read_hands.add((seat,i))
                     cache=hm.get('cache')
                     if cache is not None:
                         size=len(cache['outcomes']);sample_counts[size]=sample_counts.get(size,0)+1
@@ -51,6 +57,8 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=
     return dict(opponent=opponent.name,seed=seed,deals=deals,time_bank_seconds=time_bank_seconds,mean=mean,
                 ci=[mean-1.96*se,mean+1.96*se],timings=timings,paired=paired,
                 sampling=dict(samples_per_decision=sample_counts,expanded_boards=len(expanded),
+                              calling_read_decisions=read_decisions,calling_read_hands=len(read_hands),
+                              max_response_window=max_response_window,
                               max_decision_seconds=max_decision) if capture_samples else None)
 
 

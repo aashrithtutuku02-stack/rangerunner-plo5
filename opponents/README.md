@@ -46,3 +46,8 @@ Its opponent/baseline name is `release-451b`.
 
 `reraise_candidate_6.py` preserves the rejected experimental re-raise router
 for its numerical tests. Production imports none of these research routers.
+
+`release_9efa.py`, `model_9efa.py` and `bet_ev_9efa.py` freeze release
+`9efa86c1b7a6557be6b4cb508cced6d57a38432b`, with only helper imports redirected.
+This baseline preserves the exact probability speedups and the earlier raise
+margin. Its opponent/baseline name is `release-9efa`. It learns no caller read.

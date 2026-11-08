@@ -1,7 +1,7 @@
 # Iteration 6 evidence
 
 The released change is exact probability-kernel acceleration, with no claimed
-new playing-strength gain. See the root [validation report](../../VALIDATION.md).
+new playing-strength gain. See the archived [validation report](RELEASE_REPORT.md).
 
 * `regression-protocol.json`, `regression/` and `regression-summary.json`: frozen
   451b versus optimized release, 39 opponents × 1,000 duplicate deals, all paired
