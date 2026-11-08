@@ -1,0 +1,20 @@
+{
+  "unchanged_from": "f452b09e8ebd6fd6eb9d17035f41e5b626712fcb",
+  "files": [
+    "agent.py",
+    "game.py",
+    "evaluator.py",
+    "judge_engine.py",
+    "test_agent.py",
+    "docker/Dockerfile.agent",
+    "docker/Dockerfile.base",
+    "tools/check_build.sh",
+    "bet_ev.py",
+    "fast_engine.py",
+    "equity_engine.py",
+    "native/plo5_fast.c",
+    "native/plo5_fast_linux_x86_64.so",
+    "preflop.npz"
+  ],
+  "frozen_policy_verified": true
+}

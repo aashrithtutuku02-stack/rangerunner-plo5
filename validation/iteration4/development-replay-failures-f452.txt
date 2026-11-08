@@ -1,0 +1,186 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+____________________ test_duplicate_results_are_idempotent _____________________
+
+    def test_duplicate_results_are_idempotent():
+        memory=fresh();_,result=completed_hand(memory)
+        before=snapshot(memory)
+        agent.on_hand_end(result,memory)
+>       assert_learning_unchanged(memory,before)
+
+test_replayed_events.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+memory = {'hands_played': 2, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.004891070999292424, 'decisions': 4, ...}
+before = {'hands_played': 1, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.004891070999292424, 'decisions': 4, ...}
+
+    def assert_learning_unchanged(memory,before):
+        np.testing.assert_array_equal(memory['counts'],before['counts'])
+        np.testing.assert_array_equal(memory['models'],before['models'])
+        assert memory['rng']==before['rng']
+        assert memory['last'] is before['last']
+        assert memory['cache'] is before['cache']
+>       assert memory['hands_played']==before['hands_played']
+E       assert 2 == 1
+
+test_replayed_events.py:35: AssertionError
+_______ test_old_act_and_duplicate_result_cannot_reopen_a_completed_hand _______
+
+    def test_old_act_and_duplicate_result_cannot_reopen_a_completed_hand():
+        memory=fresh();last,result=completed_hand(memory)
+        before=snapshot(memory)
+        assert agent.choose_action(last,memory) in last.legal_actions
+        agent.on_hand_end(result,memory)
+>       assert_learning_unchanged(memory,before)
+
+test_replayed_events.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+memory = {'hands_played': 2, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.006680949001747649, 'decisions': 5, ...}
+before = {'hands_played': 1, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.004767046000779374, 'decisions': 4, ...}
+
+    def assert_learning_unchanged(memory,before):
+        np.testing.assert_array_equal(memory['counts'],before['counts'])
+>       np.testing.assert_array_equal(memory['models'],before['models'])
+E       AssertionError: 
+E       Arrays are not equal
+E       
+E       Mismatched elements: 3 / 3 (100%)
+E       Max absolute difference among violations: 0.10302149
+E       Max relative difference among violations: 0.60301379
+E        ACTUAL: array([0.273866, 0.245151, 0.480983])
+E        DESIRED: array([0.170844, 0.278052, 0.551104])
+
+test_replayed_events.py:31: AssertionError
+_______ test_replaying_a_shorter_history_does_not_rewind_or_double_count _______
+
+    def test_replaying_a_shorter_history_does_not_rewind_or_double_count():
+        memory=fresh();game=Game(make_deal('replay-prefix',0),0)
+        old=game.observation(0)
+        forced_call(game,memory,0);forced_call(game,memory,0);forced_call(game,memory,0)
+        current=game.observation(0);agent.choose_action(current,memory)
+        before=snapshot(memory)
+        assert agent.choose_action(old,memory) in old.legal_actions
+>       assert_learning_unchanged(memory,before)
+
+test_replayed_events.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+memory = {'hands_played': 0, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.0023060319981595967, 'decisions': 3, ...}
+before = {'hands_played': 0, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.0016104679998534266, 'decisions': 2, ...}
+
+    def assert_learning_unchanged(memory,before):
+        np.testing.assert_array_equal(memory['counts'],before['counts'])
+        np.testing.assert_array_equal(memory['models'],before['models'])
+>       assert memory['rng']==before['rng']
+E       assert np.uint64(3049769450669163902) == np.uint64(5487556895353230940)
+
+test_replayed_events.py:32: AssertionError
+_________ test_previous_hand_request_does_not_overwrite_a_current_hand _________
+
+    def test_previous_hand_request_does_not_overwrite_a_current_hand():
+        memory=fresh();old,result=completed_hand(memory,0)
+        game=Game(make_deal('replay-events',1),0,1)
+        obs=game.observation(0);agent.choose_action(obs,memory)
+        before=snapshot(memory)
+        assert agent.choose_action(old,memory) in old.legal_actions
+        agent.on_hand_end(result,memory)
+>       assert_learning_unchanged(memory,before)
+
+test_replayed_events.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+memory = {'hands_played': 2, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.0066422099953342695, 'decisions': 6, ...}
+before = {'hands_played': 1, 'config': AgentConfig(starting_stack=80, big_blind=2, small_blind=1, num_hands=1000, time_bank_seconds=80.0, raise_cap=4), 'cpu': 0.005006663999665761, 'decisions': 5, ...}
+
+    def assert_learning_unchanged(memory,before):
+>       np.testing.assert_array_equal(memory['counts'],before['counts'])
+E       AssertionError: 
+E       Arrays are not equal
+E       
+E       Mismatched elements: 4 / 36 (11.1%)
+E       Max absolute difference among violations: 1.
+E       Max relative difference among violations: 0.125
+E        ACTUAL: array([[[ 0.,  9.,  5.],
+E               [ 4.,  6.,  2.],
+E               [ 5.,  5.,  2.]],...
+E        DESIRED: array([[[0., 8., 5.],
+E               [4., 6., 2.],
+E               [5., 5., 2.]],...
+
+test_replayed_events.py:30: AssertionError
+_______ test_new_half_clears_all_values_even_if_the_dictionary_is_reused _______
+
+    def test_new_half_clears_all_values_even_if_the_dictionary_is_reused():
+        memory=fresh();completed_hand(memory)
+        memory['unrelated_old_cache']='must not survive'
+        agent.new_half(AgentConfig(time_bank_seconds=80.),memory)
+        expected=fresh()
+>       assert memory.keys()==expected.keys()
+E       AssertionError: assert dict_keys(['h...d_old_cache']) == dict_keys(['h...s', 'models'])
+E         
+E         Extra items in the left set:
+E         'unrelated_old_cache'
+E         Use -v to get more diff
+
+test_replayed_events.py:86: AssertionError
+____ test_callback_without_a_live_observation_does_not_break_direct_startup ____
+
+    def test_callback_without_a_live_observation_does_not_break_direct_startup():
+        game=Game(make_deal('startup-callback',0),0)
+        game.apply(Action.FOLD)
+        memory={};agent.on_hand_end(game.hand_result(0),memory)
+        obs=Game(make_deal('startup-callback',1),0,1).observation(0)
+>       assert agent.choose_action(obs,memory) in obs.legal_actions
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_replayed_events.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+agent.py:55: in choose_action
+    return decide(obs, memory)
+           ^^^^^^^^^^^^^^^^^^^
+strategy.py:175: in decide
+    learn_actions(obs, memory)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+obs = Observation(hand_index=1, street=<Street.PREFLOP: 0>, hole_cards=(14, 22, 26, 28, 35), board=(), pot=3, to_call=1, my_...ion.RAISE_HALF: 2>: 4, <Action.RAISE_POT: 3>: 6}, min_raise_to=4, raises_this_street=0, action_history=(), big_blind=2)
+memory = {'hands_played': 1}
+
+    def learn_actions(obs, memory):
+>       if memory['seen_hand'] != obs.hand_index:
+           ^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'seen_hand'
+
+strategy.py:71: KeyError
+____________ test_equivalent_card_ordering_reuses_the_same_samples _____________
+
+    def test_equivalent_card_ordering_reuses_the_same_samples():
+        memory=fresh();game=Game(make_deal('order-retry',0),0)
+        for _ in range(7):forced_call(game,memory,0)
+        obs=game.observation(0);agent.choose_action(obs,memory)
+        before=memory['rng'];cache=memory['cache']
+        reordered=replace(obs,hole_cards=tuple(reversed(obs.hole_cards)),
+                          board=tuple(reversed(obs.board[:3]))+obs.board[3:])
+        assert agent.choose_action(reordered,memory) in obs.legal_actions
+>       assert memory['rng']==before and memory['cache'] is cache
+E       assert (np.uint64(1847686740843102107) == np.uint64(14194058729439721083))
+
+test_replayed_events.py:108: AssertionError
+=============================== warnings summary ===============================
+../../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test_replayed_events.py::test_duplicate_results_are_idempotent - asser...
+FAILED test_replayed_events.py::test_old_act_and_duplicate_result_cannot_reopen_a_completed_hand
+FAILED test_replayed_events.py::test_replaying_a_shorter_history_does_not_rewind_or_double_count
+FAILED test_replayed_events.py::test_previous_hand_request_does_not_overwrite_a_current_hand
+FAILED test_replayed_events.py::test_new_half_clears_all_values_even_if_the_dictionary_is_reused
+FAILED test_replayed_events.py::test_callback_without_a_live_observation_does_not_break_direct_startup
+FAILED test_replayed_events.py::test_equivalent_card_ordering_reuses_the_same_samples
+7 failed, 1 warning in 1.76s

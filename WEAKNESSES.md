@@ -53,6 +53,18 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
 12. **Clipped all-in sizes repeated the same calculation.** When half-pot and
     pot raises reach the same all-in target, the kernel now reuses the value.
     The existing action preference and legal sizes are preserved.
+13. **Replayed events could corrupt lifecycle state.** Old observations could
+    rewind the history cursor or reopen a completed hand, and duplicate results
+    changed completion counters. Completed-hand tracking and prefix checks now
+    discard stale requests without changing the live hand's learning or RNG.
+14. **Failures could leave partial learning behind.** Decision and result
+    processing now restore learning state after an exception, so a corrected
+    retry does not double-count an action. The original server still reports
+    the error to its caller.
+15. **Equivalent card ordering caused extra sampling.** Cache keys now normalize
+    hole order and flop order while preserving turn/river arrival order.
+16. **Direct half initialization retained unknown keys.** Initialization now
+    clears a reused dictionary as well as resetting all known learning fields.
 
 ## Remaining strategic limits
 
@@ -96,7 +108,10 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
 
 The 678-state graph test covers every reachable numeric betting state for one
 fixed legal deal; it is not an exhaustive enumeration of all card deals and
-history combinations. Five-card ranking comparison is exhaustive, while full
+history combinations. The new full-history suite separately covers every legal
+betting history on eight fixed deals and both buttons; see
+[SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md) for the precise boundary. It does not
+cover every card deal or every possible network/API sequence. Five-card ranking comparison is exhaustive, while full
 Omaha combinations and sampler equivalence use large deterministic samples.
 
 CPU scheduling, transport latency, and future library versions can alter timing.

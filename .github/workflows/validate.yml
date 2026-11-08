@@ -26,11 +26,11 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: python -m pytest -q
       - name: Full HTTP matches
-        run: python benchmark.py --deals 1000 --seeds ci-iteration3-74109 --opponents random calling_station always_half always_pot reference_agent.py adversary:nit adversary:range-tight adversary:bluffer adversary:switcher adversary:release-b15a adversary:opportunist adversary:checkraise
+        run: python benchmark.py --deals 1000 --seeds ci-iteration4-84513 --opponents random calling_station always_half always_pot reference_agent.py adversary:nit adversary:range-tight adversary:bluffer adversary:switcher adversary:release-f452 adversary:opportunist adversary:checkraise
       - name: Verify judge fault counters
         run: python tools/check_results.py benchmark-results
       - name: Fresh servers between duplicate halves
-        run: python tools/fresh_match.py --opponent adversary:release-b15a --seed ci-fresh-iteration3
+        run: python tools/fresh_match.py --opponent adversary:release-f452 --seed ci-fresh-iteration4
       - name: Verify fresh-process fault counters
         run: python tools/check_results.py fresh-results
       - uses: actions/upload-artifact@v4
@@ -40,6 +40,33 @@ jobs:
           path: |
             benchmark-results/
             fresh-results/
+  scenarios:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        button: [0, 1]
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - name: Every betting history on eight fixed deals
+        run: python scenario_sweep.py --cases all --buttons ${{ matrix.button }} --output scenario-results
+      - name: Verify complete histories and source identities
+        run: python tools/check_scenarios.py scenario-results --button ${{ matrix.button }} --check-source
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scenario-histories-button-${{ matrix.button }}
+          path: scenario-results/
   organizer-container:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -49,3 +76,15 @@ jobs:
           persist-credentials: false
       - name: Exact organizer build, image size and restricted smoke test
         run: bash tools/check_build.sh
+      - name: Longest legal line under one CPU in the organizer image
+        run: >-
+          docker run --rm --network none --read-only
+          --tmpfs /tmp:rw,nosuid,nodev,size=512m --cap-drop ALL
+          --security-opt no-new-privileges --pids-limit 256 --cpus 1 --memory 4g
+          poker-agent-check:latest python tools/worst_line_load.py --hands 1000
+          > worst-line-load.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: organizer-worst-line-load
+          path: worst-line-load.json

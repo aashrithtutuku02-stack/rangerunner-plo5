@@ -1,0 +1,52 @@
+{
+  "hands": 1000,
+  "forced_actions": [
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "CHECK_CALL",
+    "CHECK_CALL",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "RAISE_HALF",
+    "CHECK_CALL"
+  ],
+  "policy_calculation_seconds": [
+    3.2549430519284215,
+    3.272844118098874
+  ],
+  "max_call_seconds": 0.05163479200200527,
+  "sample_counts": [
+    {
+      "768": 68,
+      "1280": 51,
+      "384": 3918,
+      "640": 2937,
+      "192": 26
+    },
+    {
+      "768": 69,
+      "1280": 51,
+      "384": 3908,
+      "640": 2931,
+      "192": 41
+    }
+  ],
+  "elapsed_seconds": 7.094390755999484,
+  "source_sha256": {
+    "strategy.py": "14ab30d98978de4681521e8401e7de4e405c1859c251b77a52de0ad557550faf",
+    "bet_ev.py": "89ae09de56456f5143a9969bd412dd62835c5afdcadd8c6d040cb3544d3b7b0d",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "tools/worst_line_load.py": "e1545e45462da22677c85bfc6f1ded0a8cd08f9b6dd33925515da08f08d2c3e7"
+  },
+  "scope": "Counterfactual function load under container resources; excludes HTTP transport"
+}

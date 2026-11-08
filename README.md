@@ -12,6 +12,7 @@ This is a tested approximate strategy. It is not a solved poker strategy and
 there is no guarantee it beats every opponent. The validation includes close
 matches, failed development variants, and a repaired time-bank failure.
 See [VALIDATION.md](VALIDATION.md) and [WEAKNESSES.md](WEAKNESSES.md).
+The exhaustive betting-history scope is defined in [SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md).
 
 ## Run
 
@@ -54,7 +55,7 @@ errors, forfeits, exhausted banks, skipped decisions, and baseline losses/draws.
 Advanced opponents may draw; their confidence intervals remain in the reports.
 
 For accelerated discovery on duplicate deals (direct calls, without HTTP time-bank
-enforcement), including 25 policy families and eight selected search opponents:
+enforcement), including 26 policy families and eight selected search opponents:
 
 ```sh
 python stress_benchmark.py --deals 1000 --seeds discovery-example
@@ -79,12 +80,12 @@ They cannot silently inherit the new action model. A negative-control self-play
 test verifies zero paired returns for identical frozen policies.
 
 ```sh
-python evaluate_candidate.py --candidate release --baseline release-b15a --opponents release-b15a nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
+python evaluate_candidate.py --candidate release --baseline release-f452 --opponents release-f452 nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
 python tools/summarize_comparison.py comparison-results
 ```
 
-`release-b15a` is the immediately previous release. `incumbent` selects the
-older `36ba2d9` release for historical comparisons.
+`release-f452` is the immediately previous release. `release-b15a` and
+`incumbent` select earlier releases for historical comparisons.
 
 These offline comparisons use a generous internal bank to prevent host
 scheduling from reducing the policy's requested sample counts. They do not
@@ -126,6 +127,11 @@ summary groups shared deals across opponents before calculating uncertainty.
   and result-processing time gets ahead of the half's internal budget.
 * All learned state, random state, and sample caches live in `memory` and reset
   every half. Global assets and compiled functions contain no learned match state.
+* Completed results are idempotent. Stale or conflicting history prefixes do not
+  rewind learning or replace a current hand. Failed calculations restore the
+  prior learning and RNG state while accounting for the time spent.
+* Cache keys normalize hole-card order and the order of the three flop cards;
+  the arrival order of turn and river remains significant.
 
 Optional native rebuild:
 

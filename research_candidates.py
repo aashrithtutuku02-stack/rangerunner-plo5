@@ -71,6 +71,9 @@ def finish_complete(module,result,memory,bayes=False,decay=False):
 
 
 def make(name):
+    if name=='release-f452':
+        from opponents import release_f452 as previous
+        return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)
     if name=='precision':
         from research_precision import make as precision_candidate
         return precision_candidate()

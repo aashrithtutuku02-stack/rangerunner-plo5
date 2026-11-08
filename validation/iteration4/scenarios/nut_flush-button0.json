@@ -1,0 +1,77 @@
+{
+  "case": "nut_flush",
+  "button": 0,
+  "mode": "full_policy",
+  "totals": {
+    "history_prefixes": 15952,
+    "replayed_decisions": 15952,
+    "learning_checks": 67028,
+    "edges": 41489,
+    "terminal_histories": 25538,
+    "max_actions": 14,
+    "terminal_inference_checks": 51076,
+    "duplicate_results": 51076
+  },
+  "unique_numeric_states": 678,
+  "prefixes_by_street": {
+    "0": 62,
+    "1": 810,
+    "2": 3678,
+    "3": 11402
+  },
+  "endings": {
+    "fold_0": 61,
+    "showdown_3": 10191,
+    "fold_3": 8980,
+    "fold_2": 3020,
+    "showdown_2": 2138,
+    "fold_1": 708,
+    "showdown_1": 430,
+    "showdown_0": 10
+  },
+  "sample_counts": {
+    "768": 4550,
+    "1280": 11402
+  },
+  "sequence_sha256": "ee4bc615ab40a89dc1f4e58c41d42f2c2470e0915c6164b3f04da67a3823da83",
+  "max_decision_seconds": 0.005071267998573603,
+  "elapsed_seconds": 37.39983026600021,
+  "cards": {
+    "hole_cards": [
+      [
+        34,
+        30,
+        16,
+        17,
+        23
+      ],
+      [
+        32,
+        33,
+        28,
+        29,
+        24
+      ]
+    ],
+    "board": [
+      2,
+      14,
+      26,
+      4,
+      9
+    ]
+  },
+  "source_sha256": {
+    "agent.py": "dfecd70d94d10238ade16da9970a157574f9eb42c5e60e77c43c2aafd8da7a9c",
+    "strategy.py": "14ab30d98978de4681521e8401e7de4e405c1859c251b77a52de0ad557550faf",
+    "range_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "bet_ev.py": "89ae09de56456f5143a9969bd412dd62835c5afdcadd8c6d040cb3544d3b7b0d",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "equity_engine.py": "69abfc7e1d5898db7effc54856cc8967e04b9caeb11edf5dc8e5b59c7ee5e399",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "scenario_sweep.py": "294fc51e4ad12b4e4d892927facc03f8e96a7c933dc954ee11c216e3122ef08d"
+  }
+}

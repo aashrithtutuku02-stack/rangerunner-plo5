@@ -18,10 +18,12 @@ SLOPES = np.array([0.0, 8.0, 16.0])
 
 
 def initialize(config, memory):
+    memory.clear()
     memory.update(
         hands_played=0, config=config, cpu=0.0, decisions=0,
         rng=np.uint64(0x9E3779B97F4A7C15), cache=None, last=None,
-        seen_hand=-1, seen_count=0,
+        seen_hand=-1, seen_count=0, seen_history=(),
+        completed_hands=set(), last_completed=-1,
         # Per street, separate unraised pots from facing a bet.
         counts=np.array([[[0.0, 7.0, 5.0], [4.0, 6.0, 2.0], [5.0, 5.0, 2.0]],
                          [[0.0, 7.0, 5.0], [4.0, 6.0, 2.0], [5.0, 5.0, 2.0]],
@@ -29,6 +31,33 @@ def initialize(config, memory):
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]]]),
         models=np.array([0.10, 0.30, 0.60]),
     )
+
+
+def board_key(board):
+    """Flop order is interchangeable; turn and river arrival order is not."""
+    return tuple(sorted(board[:3]))+tuple(board[3:])
+
+
+def stale_observation(obs,memory):
+    if obs.hand_index<=memory['last_completed'] or obs.hand_index<memory['seen_hand']:
+        return True
+    if obs.hand_index==memory['seen_hand']:
+        n=memory['seen_count']
+        if tuple(obs.action_history[:n])!=memory['seen_history']:return True
+        previous=memory.get('last')
+        if previous is not None and previous[0].hand_index==obs.hand_index:
+            before=previous[0]
+            if set(obs.hole_cards)!=set(before.hole_cards):return True
+            if board_key(obs.board)[:len(before.board)]!=board_key(before.board):return True
+    return False
+
+
+def state_snapshot(memory):
+    """Arrays read by scoring are immutable; only learning counts mutate in place."""
+    result=dict(memory)
+    result['counts']=memory['counts'].copy()
+    result['completed_hands']=memory['completed_hands'].copy()
+    return result
 
 
 def history_events(obs,raise_cap=4):
@@ -76,6 +105,7 @@ def learn_actions(obs, memory):
         if idx >= memory['seen_count']:
             observe_event(memory,event)
     memory['seen_count'] = len(obs.action_history)
+    memory['seen_history']=tuple(obs.action_history)
 
 
 def observe_event(memory,event):
@@ -103,7 +133,7 @@ def action_prob(q, frequencies, slope, facing, price=0.25,can_raise=True):
 
 
 def cache_samples(obs, memory):
-    key = (obs.hand_index, obs.hole_cards, obs.board)
+    key = (obs.hand_index, tuple(sorted(obs.hole_cards)), board_key(obs.board))
     cache = memory['cache']
     if cache is not None and cache['key'] == key:
         return cache
@@ -168,6 +198,26 @@ def response_prob(obs, memory, cache, additional, price, model_weights=None):
 
 
 def decide(obs, memory):
+    begin=time.perf_counter()
+    if 'config' not in memory:
+        from game import AgentConfig
+        initialize(AgentConfig(),memory)
+    if stale_observation(obs,memory):
+        memory['cpu']+=time.perf_counter()-begin
+        # A delayed request must not change the live hand's learning or RNG.
+        return Action.FOLD if Action.FOLD in obs.legal_actions else Action.CHECK_CALL
+    before=state_snapshot(memory)
+    try:
+        action=_decide(obs,memory)
+    except Exception:
+        memory.clear();memory.update(before)
+        memory['cpu']+=time.perf_counter()-begin
+        raise
+    memory['cpu']=before['cpu']+time.perf_counter()-begin
+    return action
+
+
+def _decide(obs, memory):
     begin = time.perf_counter()
     if not memory:
         from game import AgentConfig
@@ -239,13 +289,13 @@ def terminal_event(obs,action,result,raise_cap=4):
         context=2 if obs.to_call and obs.raises_this_street else 1
         if not result.went_to_showdown:
             if (result.winner!='me' or result.pot!=obs.pot+invest
-                    or tuple(result.board)!=tuple(obs.board)):
+                    or board_key(result.board)!=board_key(obs.board)):
                 return None
             response=0
         else:
             immediate=(obs.street==Street.RIVER or invest==obs.my_stack or call==obs.opp_stack)
             if (not immediate or result.pot!=obs.pot+invest+call
-                    or tuple(result.board[:len(obs.board)])!=tuple(obs.board)):
+                    or board_key(result.board)[:len(obs.board)]!=board_key(obs.board)):
                 return None
             response=1
         price=call/max(1,obs.pot+invest+call)
@@ -253,12 +303,27 @@ def terminal_event(obs,action,result,raise_cap=4):
         return (len(obs.action_history)+1,int(obs.street),context,response,price,int(available))
     if (action==Action.CHECK_CALL and obs.to_call==0 and obs.street==Street.RIVER
             and not obs.is_button and result.went_to_showdown
-            and result.pot==obs.pot and tuple(result.board)==tuple(obs.board)):
+            and result.pot==obs.pot and board_key(result.board)==board_key(obs.board)):
         return (len(obs.action_history)+1,int(obs.street),0,1,0.,1)
     return None
 
 
 def finish(result, memory):
+    if 'config' not in memory or result.hand_index in memory['completed_hands']:return
+    before=state_snapshot(memory)
+    begin=time.perf_counter()
+    try:
+        _finish(result,memory)
+    except Exception:
+        memory.clear();memory.update(before)
+        memory['cpu']+=time.perf_counter()-begin
+        raise
+    memory['completed_hands'].add(result.hand_index)
+    memory['last_completed']=max(memory['last_completed'],result.hand_index)
+    memory['cpu']=before['cpu']+time.perf_counter()-begin
+
+
+def _finish(result, memory):
     begin=time.perf_counter()
     memory['hands_played']=memory.get('hands_played',0)+1
     last=memory.get('last')

@@ -38,7 +38,10 @@ class Opponent:
         self.name = name
         self.params = params if params is not None else CASES.get(name)
         self.range_policy = None
-        if name=='release-b15a':
+        if name=='release-f452':
+            from opponents import release_f452
+            self.range_policy=release_f452
+        elif name=='release-b15a':
             from opponents import release_b15a
             self.range_policy=release_b15a
         elif name=='incumbent':
@@ -127,5 +130,5 @@ class Opponent:
 
 
 def names():
-    return ['fold','call','pot','half','random',*PROFILES,'switcher','incumbent','release-b15a',
+    return ['fold','call','pot','half','random',*PROFILES,'switcher','incumbent','release-b15a','release-f452',
             'range-aware','range-tight','range-flat','opportunist','oscillating']

@@ -1,0 +1,42 @@
+{
+  "cases": [
+    "flush_fullhouse",
+    "four_board",
+    "four_hole",
+    "nut_flush",
+    "quads",
+    "random",
+    "split",
+    "wheel"
+  ],
+  "buttons": [
+    0,
+    1
+  ],
+  "reports": 16,
+  "totals": {
+    "history_prefixes": 255232,
+    "replayed_decisions": 255232,
+    "learning_checks": 1072448,
+    "edges": 663824,
+    "terminal_histories": 408608,
+    "terminal_inference_checks": 817216,
+    "duplicate_results": 817216
+  },
+  "max_actions": 14,
+  "sequence_sha256": "ee4bc615ab40a89dc1f4e58c41d42f2c2470e0915c6164b3f04da67a3823da83",
+  "max_observed_decision_seconds": 0.05877391399917542,
+  "source_sha256": {
+    "agent.py": "dfecd70d94d10238ade16da9970a157574f9eb42c5e60e77c43c2aafd8da7a9c",
+    "bet_ev.py": "89ae09de56456f5143a9969bd412dd62835c5afdcadd8c6d040cb3544d3b7b0d",
+    "equity_engine.py": "69abfc7e1d5898db7effc54856cc8967e04b9caeb11edf5dc8e5b59c7ee5e399",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "range_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "scenario_sweep.py": "294fc51e4ad12b4e4d892927facc03f8e96a7c933dc954ee11c216e3122ef08d",
+    "strategy.py": "14ab30d98978de4681521e8401e7de4e405c1859c251b77a52de0ad557550faf"
+  }
+}
