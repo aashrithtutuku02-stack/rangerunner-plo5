@@ -1,0 +1,58 @@
+{
+  "game.py": {
+    "sha256": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "evaluator.py": {
+    "sha256": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "judge_engine.py": {
+    "sha256": "fa7a7e3fb49c09588cfcf0930a8e3f6c189e419dbc54263ae7d53b953223d422",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "test_agent.py": {
+    "sha256": "8bf6041ae67b482fef8b098cbfdf9af8976e68ab9874140cb235e661d0dbf2da",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "agent.py": {
+    "sha256": "dfecd70d94d10238ade16da9970a157574f9eb42c5e60e77c43c2aafd8da7a9c",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "requirements.txt": {
+    "sha256": "2e2229e0c146d1b7b392686a8d534dcf0c726a7d9d7ab117ffd56dfc5a338b3a",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "requirements-dev.txt": {
+    "sha256": "dc7495ec238d9c5f00fe088528302186ccc5e4af2ff55cf4b29f3be0b816ce30",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "docker/Dockerfile.base": {
+    "sha256": "d54f26ad44236c8a90308286e7de703d9e8c3916e6baa77d3a6fc3c56ab04d15",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "docker/Dockerfile.agent": {
+    "sha256": "6baea809885f97fd50187d437009bb9ac38d5d0855e29e71dcf1194b4c2ce186",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "tools/check_build.sh": {
+    "sha256": "bddedcd556ca4145378738ff4ee64add44ee9b7d6fb2f1609d5104dfdc893c6c",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "tools/smoke_test.py": {
+    "sha256": "6bfd9f0e78c3343acceebbf7214aee7cb049821b950998de53f440140c5a652e",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "native/plo5_fast.c": {
+    "sha256": "c9c59de55a68cb652d567ab4aa2b2a7424606b2aefaf88c829daf1f8fe7aa856",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "native/plo5_fast_linux_x86_64.so": {
+    "sha256": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  },
+  "preflop.npz": {
+    "sha256": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "unchanged_from": "451b1cb9ae931c5b42a9137e388614606bfaac53"
+  }
+}

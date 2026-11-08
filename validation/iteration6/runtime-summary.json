@@ -1,0 +1,10 @@
+{
+  "mean_samples_per_decision": {
+    "release-451b": 353.89714285714285,
+    "release": 399.8742857142857
+  },
+  "long_line_before_seconds_both_seats": 8.712141572518703,
+  "long_line_after_seconds_both_seats": 8.712107171465505,
+  "speedup": 1.0000039486489918,
+  "scope": "Two serial runs per policy, ordered old/new/new/old; one CPU, excludes HTTP and startup"
+}

@@ -1,0 +1,39 @@
+{
+  "recorded_at_utc": "2026-11-08T07:00:32.839015+00:00",
+  "policy": "optimized production agent.py; unchanged fixed-sample policy",
+  "seeds": [
+    "iteration6-external-final-a",
+    "iteration6-external-final-b",
+    "iteration6-external-final-c",
+    "iteration6-external-final-d"
+  ],
+  "deals": 1000,
+  "fresh_servers_each_half": true,
+  "bank_seconds": 8,
+  "opponents": {
+    "fargield": {
+      "origin": "https://github.com/Fargield/td26-poker-bot-v2.git",
+      "commit": "4ce02282e8e764766d183130d3c44b8af5d2760a"
+    },
+    "starfish": {
+      "origin": "https://github.com/shriharish1310/tamu-datathon-poker-bot.git",
+      "commit": "6e5b590bc922f047de670efdd5fd599f7459a75d"
+    }
+  },
+  "source_sha256": {
+    "agent.py": "dfecd70d94d10238ade16da9970a157574f9eb42c5e60e77c43c2aafd8da7a9c",
+    "strategy.py": "f525c298d98f909bac37104104eb6e4e9e0700b20d8ce99b059812873c261c10",
+    "range_model.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "bet_ev.py": "0a43ca35720462b1525d45aa7e7893205678279133ab49ec3712a2c033ad73e6",
+    "tools/fresh_match.py": "ec05f734ba544a53aecf969993e08fcc8fff2aae5cdbd25b7567e8a66739c27d",
+    "tools/external_agent.py": "7fdc9462d1a041e3d96dc1f1ec557e8e6362a4386ab45a6ba08f40585b76b1e9",
+    "judge_engine.py": "fa7a7e3fb49c09588cfcf0930a8e3f6c189e419dbc54263ae7d53b953223d422",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "equity_engine.py": "69abfc7e1d5898db7effc54856cc8967e04b9caeb11edf5dc8e5b59c7ee5e399",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b"
+  },
+  "scope": "Independent validation, not a controlled new playing-strength-gain test"
+}

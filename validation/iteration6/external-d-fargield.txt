@@ -1,0 +1,47 @@
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = winner / RangeRunner (http://localhost:5030)  (seat 0)
+agent2 = TAMU-Datathon-CYH / ShortDeckPLO-v1 (http://localhost:5031)  (seat 1)
+
+Half 1: 1000 deals, seed iteration6-external-final-d
+Chips: agent1 +1639 (+0.820 bb/deal), agent2 -1639
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 1.99s of 8s (wall 4.84s), calls 2859, errors 0
+  agent2: thinking 2.82s of 8s (wall 5.89s), calls 3143, errors 0
+Speed: 1000 hands in 11.02s (91 hands/s)
+RESULT: HALF_DONE
+waiting for agent1 at http://localhost:5030 ...
+waiting for agent2 at http://localhost:5031 ...
+agent1 = winner / RangeRunner (http://localhost:5030)  (seat 1)
+agent2 = TAMU-Datathon-CYH / ShortDeckPLO-v1 (http://localhost:5031)  (seat 0)
+
+Half 2: 1000 deals, seed iteration6-external-final-d
+Chips: agent1 +1429 (+0.715 bb/deal), agent2 -1429
+(One half is mostly card luck; combine both halves for the verdict.)
+Faults:
+  agent1: thinking 2.17s of 8s (wall 4.91s), calls 2747, errors 0
+  agent2: thinking 2.91s of 8s (wall 5.85s), calls 3024, errors 0
+Speed: 1000 hands in 11.07s (90 hands/s)
+RESULT: HALF_DONE
+agent1 = winner / RangeRunner (http://localhost:5030)
+agent2 = TAMU-Datathon-CYH / ShortDeckPLO-v1 (http://localhost:5031)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration6-external-final-d
+agent1: +1.534 bb/deal  (std 9.84, stderr 0.311)
+Confidence interval (z=1.96): [+0.924, +2.144] bb/deal
+Reason: interval [+0.924, +2.144] is entirely above 0
+half1: agent1 +1639 chips, agent2 -1639 chips
+half2: agent1 +1429 chips, agent2 -1429 chips
+Faults:
+  agent1 half1: thinking 1.99s of 8s (wall 4.84s), calls 2859, errors 0
+  agent1 half2: thinking 2.17s of 8s (wall 4.91s), calls 2747, errors 0
+  agent2 half1: thinking 2.82s of 8s (wall 5.89s), calls 3143, errors 0
+  agent2 half2: thinking 2.91s of 8s (wall 5.85s), calls 3024, errors 0
+Speed: 2000 hands in 22.09s (91 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (winner / RangeRunner (http://localhost:5030))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN

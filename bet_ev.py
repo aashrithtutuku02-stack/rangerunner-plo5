@@ -21,6 +21,13 @@ def raise_values(q,model_weights,models,outcomes,slopes,frequencies,
         ev=0.;reraise=0.
         for m in range(len(models)):
             params=parameters(f,r,slopes[m],flatten)
+            if slopes[m]==0.:
+                pf,pr=probabilities(.5,f,r,params)
+                if not can_raise:pr=0.
+                for i in range(len(q)):
+                    joint=models[m]*model_weights[m,i]
+                    ev+=joint*(pf*pot+(1-pf)*(outcomes[i]*final-invest));reraise+=joint*pr
+                continue
             for i in range(len(q)):
                 pf,pr=probabilities(q[i],f,r,params)
                 if not can_raise:pr=0.

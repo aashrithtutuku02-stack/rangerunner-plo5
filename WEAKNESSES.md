@@ -75,6 +75,14 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
 
 ## Remaining strategic limits
 
+Iteration 6 tested six conditioned re-raise variants, family-based forgetting,
+recent-frequency learning and selective sample expansion. None established a
+reliable broad gain. The strongest development re-raise candidate returned only
++0.0151 bb/deal on four fresh seeds (95% interval [-0.0895, +0.1196]) and
+declined against the frozen release itself. All nine remain disabled. The
+production change is exact probability-math acceleration, not a demonstrated
+new playing-strength gain.
+
 * The game has not been solved to a Nash equilibrium. Betting policy and
   opponent likelihoods are approximate, and action selection is mostly
   deterministic given the samples and learned state.
@@ -120,6 +128,10 @@ short-deck PLO5 rules, not ordinary Hold'em or arbitrary poker variants.
   four fresh seeds, but did not demonstrate a head-to-head win over 52c5.
   Its largest negative paired point estimate was against the independently
   written polarized challenger; that interval includes both loss and gain.
+* Two pinned independently developed public challenge bots are now tested with
+  their real published defaults and active-core diagnostics. Their results
+  improve the benchmark's independence; their tournament rank and elite strength
+  are unknown. These tests do not cover every bot or adversarial strategy.
 
 ## Runtime and test scope
 

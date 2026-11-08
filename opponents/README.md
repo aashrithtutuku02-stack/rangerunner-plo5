@@ -37,3 +37,12 @@ research `polar_model.py` and `polar_bet_ev.py`. The polar, joint-conditioning a
 gated research adapters clone this base so later production changes cannot
 silently alter earlier experiments. It is an experimental reference, not the
 previous tournament release.
+
+`release_451b.py`, `model_451b.py` and `bet_ev_451b.py` freeze release
+`451b1cb9ae931c5b42a9137e388614606bfaac53`. Only the helper imports are
+redirected. This is the baseline for the iteration 6 probability-kernel speed
+optimization; fixed-sample duplicate returns must remain exactly unchanged.
+Its opponent/baseline name is `release-451b`.
+
+`reraise_candidate_6.py` preserves the rejected experimental re-raise router
+for its numerical tests. Production imports none of these research routers.

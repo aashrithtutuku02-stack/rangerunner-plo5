@@ -42,6 +42,9 @@ class Opponent:
             from independent_opponents import IndependentOpponent
             self.range_policy=None
             self.independent=IndependentOpponent(name)
+        elif name=='release-451b':
+            from opponents import release_451b
+            self.range_policy=release_451b
         elif name=='release-52c5':
             from opponents import release_52c5
             self.range_policy=release_52c5
@@ -145,4 +148,4 @@ class Opponent:
 def names():
     return ['fold','call','pot','half','random',*PROFILES,'switcher','incumbent','release-b15a','release-f452',
             'range-aware','range-tight','range-flat','opportunist','oscillating','release-52c5',
-            'independent-value','independent-polar','independent-adaptive']
+            'independent-value','independent-polar','independent-adaptive','release-451b']

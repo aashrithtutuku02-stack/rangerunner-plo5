@@ -14,10 +14,12 @@ matches, failed development variants, and a repaired time-bank failure.
 See [VALIDATION.md](VALIDATION.md) and [WEAKNESSES.md](WEAKNESSES.md).
 The exhaustive betting-history scope is defined in [SCENARIO_COVERAGE.md](SCENARIO_COVERAGE.md).
 
-The latest candidate improved the equal-opponent average by **0.121 bb per
-duplicate deal** against the previous release across sixteen local opponents
-and four fresh seeds. Individual matchups remain mixed; the report includes
-their intervals and the losing development variants.
+The latest update speeds up probability calculations while preserving the
+released strategy. Warmed probability kernels measured **1.10–1.81× faster**;
+this is not a whole-bot speedup or a new win-rate claim. Nine further strategy
+variants did not establish a reliable gain and remain disabled. New independent
+public-bot benchmarks, exact regression checks and runtime results are in
+[VALIDATION.md](VALIDATION.md).
 
 ## Run
 
@@ -60,7 +62,7 @@ errors, forfeits, exhausted banks, skipped decisions, and baseline losses/draws.
 Advanced opponents may draw; their confidence intervals remain in the reports.
 
 For accelerated discovery on duplicate deals (direct calls, without HTTP time-bank
-enforcement), including 30 named local policies and eight selected search opponents:
+enforcement), including 31 named local policies and eight selected search opponents:
 
 ```sh
 python stress_benchmark.py --deals 1000 --seeds discovery-example
@@ -85,11 +87,12 @@ They cannot silently inherit the new action model. A negative-control self-play
 test verifies zero paired returns for identical frozen policies.
 
 ```sh
-python evaluate_candidate.py --candidate release --baseline release-52c5 --opponents release-52c5 independent-adaptive nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
+python evaluate_candidate.py --candidate release --baseline release-451b --opponents release-451b independent-adaptive nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
 python tools/summarize_comparison.py comparison-results
 ```
 
-`release-52c5` is the immediately previous release. `release-f452`,
+`release-451b` is the immediately previous release; this exact math optimization
+should preserve its fixed-sample match returns. `release-52c5`, `release-f452`,
 `release-b15a` and `incumbent` select earlier releases for historical comparisons.
 
 These offline comparisons use a generous internal bank to prevent host
@@ -129,6 +132,10 @@ summary groups shared deals across opponents before calculating uncertainty.
   checked so stale callbacks do not invent a missing action.
 * The repeated likelihood loops compile at startup. This
   keeps the model calculations out of slow repeated Python/NumPy dispatch.
+  The flat model now calculates each constant action probability once, and
+  polarized checks skip a fold integral whose result would be discarded.
+  Floating-point accumulation order is preserved; equivalence tests require
+  bit-identical results against the frozen release.
 * Live samples are reused within a street and decrease if measured decision
   and result-processing time gets ahead of the half's internal budget.
 * All learned state, random state, and sample caches live in `memory` and reset
@@ -165,11 +172,19 @@ playing-strength improvement. Production uses the polarized/value likelihood
 family while retaining the previous action-value formula. Experiment results
 are preserved.
 
+Conditioned re-raise values, family-based forgetting, recent-frequency learning
+and low-effective-sample expansion also remain experimental. Their numerical
+tests passed, but match results did not justify deployment. See
+[RERAISE_MODEL.md](RERAISE_MODEL.md) and the iteration 6 evidence. The external
+benchmark harness runs pinned public bots from separate checkouts; their source
+is not included. See [EXTERNAL_BENCHMARKS.md](EXTERNAL_BENCHMARKS.md).
+
 Reproduce the numerical benchmarks:
 
 ```sh
 python tools/measure_bet_ev.py --output bet-timing.json
 python tools/measure_precision.py --output precision-accuracy.json
+python tools/measure_probability_speed.py --output probability-timing.json
 ```
 
 ## Docker and continuous integration

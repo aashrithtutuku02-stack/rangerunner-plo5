@@ -30,8 +30,8 @@ The experiment sequence is retained, including regressions:
    +0.12054 bb/duplicate deal, descriptive deal-cluster normal interval
    [+0.02492, +0.21616]. All four seed means were positive, and their
    descriptive t interval was [+0.04315, +0.19793]. Individual paired declines
-   remain visible. Final playing and runtime results are described in the root
-   `VALIDATION.md`.
+   remain visible. Final playing and runtime results are preserved in
+   [RELEASE_REPORT.md](RELEASE_REPORT.md).
 
 Each comparison record contains both policies' seat-swapped returns, paired
 differences, sample counts and source identities. Four physical hands are

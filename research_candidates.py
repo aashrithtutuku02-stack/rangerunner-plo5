@@ -71,6 +71,21 @@ def finish_complete(module,result,memory,bayes=False,decay=False):
 
 
 def make(name):
+    if name in ('ess-postflop','ess-river'):
+        from research_range_precision import make as ess_candidate
+        return ess_candidate(name)
+    if name in ('recent-frequency','recent-none'):
+        from research_recency import make as recency_candidate
+        return recency_candidate(name)
+    if name=='family-forgetting':
+        from research_learning import make as learning_candidate
+        return learning_candidate(name)
+    if name=='release-451b':
+        from opponents import release_451b as previous
+        return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)
+    if name.startswith('reraise-'):
+        from research_reraise import make as reraise_candidate
+        return reraise_candidate(name)
     if name in ('polar-gated','polar-gated-joint'):
         from research_gated import make as gated_candidate
         return gated_candidate(name)

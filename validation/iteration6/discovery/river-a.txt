@@ -1,0 +1,20 @@
+release-451b iteration6-reraise-discovery-a candidate -0.6083 change -0.6083
+POOLED {'opponent': 'release-451b', 'candidate_score': -0.6083333333333333, 'improvement': -0.6083333333333333, 'ci': [-1.275905760741515, 0.05923909407484851], 'deals': 600}
+independent-value iteration6-reraise-discovery-a candidate 2.2908 change 0.32
+POOLED {'opponent': 'independent-value', 'candidate_score': 2.2908333333333335, 'improvement': 0.32, 'ci': [-0.4271871185580763, 1.0671871185580764], 'deals': 600}
+independent-polar iteration6-reraise-discovery-a candidate 4.1633 change -0.29
+POOLED {'opponent': 'independent-polar', 'candidate_score': 4.163333333333333, 'improvement': -0.29, 'ci': [-2.168973653989675, 1.5889736539896753], 'deals': 600}
+independent-adaptive iteration6-reraise-discovery-a candidate 2.2442 change 0.215
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 2.2441666666666666, 'improvement': 0.215, 'ci': [-0.35697796310056973, 0.7869779631005697], 'deals': 600}
+range-tight iteration6-reraise-discovery-a candidate 1.1667 change 0.6483
+POOLED {'opponent': 'range-tight', 'candidate_score': 1.1666666666666667, 'improvement': 0.6483333333333333, 'ci': [-0.13987367601531964, 1.4365403426819863], 'deals': 600}
+bluffer iteration6-reraise-discovery-a candidate 6.8258 change -0.7067
+POOLED {'opponent': 'bluffer', 'candidate_score': 6.825833333333334, 'improvement': -0.7066666666666667, 'ci': [-2.3184948856654373, 0.905161552332104], 'deals': 600}
+nit iteration6-reraise-discovery-a candidate 1.7258 change 0.19
+POOLED {'opponent': 'nit', 'candidate_score': 1.7258333333333333, 'improvement': 0.19, 'ci': [-0.11376050329356102, 0.493760503293561], 'deals': 600}
+checkraise iteration6-reraise-discovery-a candidate 2.7558 change 0.06
+POOLED {'opponent': 'checkraise', 'candidate_score': 2.7558333333333334, 'improvement': 0.06, 'ci': [-0.805122469616073, 0.9251224696160731], 'deals': 600}
+search000 iteration6-reraise-discovery-a candidate 0.13 change -0.0458
+POOLED {'opponent': 'search000', 'candidate_score': 0.13, 'improvement': -0.04583333333333333, 'ci': [-0.7936491281300901, 0.7019824614634236], 'deals': 600}
+search024 iteration6-reraise-discovery-a candidate 1.0642 change -0.1467
+POOLED {'opponent': 'search024', 'candidate_score': 1.0641666666666667, 'improvement': -0.14666666666666667, 'ci': [-0.6996734610244075, 0.40634012769107414], 'deals': 600}

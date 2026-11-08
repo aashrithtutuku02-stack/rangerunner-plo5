@@ -1,0 +1,33 @@
+{
+  "fallback_calls": 0,
+  "caught_model_errors": 0,
+  "core_import_error": null,
+  "core_available": true,
+  "opponent_model_available": null,
+  "range_module_available": null,
+  "preflop_table_loaded": null,
+  "callback_errors": 0,
+  "native_diagnostics": {
+    "fault_events": 0,
+    "fallback_decisions": 0,
+    "disabled": false,
+    "last_fault_stage": null,
+    "last_fault_type": null
+  },
+  "source_sha256": {
+    "advanced_policy.py": "54d5e50519b28b45b357155afc7492b1fa84528f3b7d62619e3fbda5d2974378",
+    "agent.py": "2db07977774e47236cdd570ecee87c17cdbefa2fa7f5e3328a186c50ddc281e3",
+    "baseline_strategy.py": "beb2a1943962ccfc695f92383d4f34c7b20a10540c2bc612d625282b52c5a27a",
+    "equity.py": "0dc148497609e11a4a1c7675db1c568713f9f3c90e41b7b982ded6d929e585e7",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "policy_config.py": "84534909c10f821737d224994681f76af56d2993e98d70f0910f6eb4081633a1",
+    "range_equity.py": "92dd7bd41c1f51323ba927aa7cfe68e970b565b924ac89fc851eddd5ac4b1756",
+    "reliability.py": "2394c9e62d170a9aeba9b47ec42003d0aa2a9573c0a821034766ca3eab9d1781",
+    "strategy.py": "d6469ae73d903359cba53a652f6f2f8fcaaca957d6751483f984ca1ce0f89036"
+  },
+  "harness_sha256": "7fdc9462d1a041e3d96dc1f1ec557e8e6362a4386ab45a6ba08f40585b76b1e9",
+  "commit": "6e5b590bc922f047de670efdd5fd599f7459a75d",
+  "origin": "https://github.com/shriharish1310/tamu-datathon-poker-bot.git",
+  "runner_sha256": "ec05f734ba544a53aecf969993e08fcc8fff2aae5cdbd25b7567e8a66739c27d"
+}

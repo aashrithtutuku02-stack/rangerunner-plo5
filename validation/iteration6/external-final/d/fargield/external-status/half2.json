@@ -1,0 +1,25 @@
+{
+  "fallback_calls": 0,
+  "caught_model_errors": 0,
+  "core_import_error": null,
+  "core_available": true,
+  "opponent_model_available": true,
+  "range_module_available": true,
+  "preflop_table_loaded": true,
+  "callback_errors": 0,
+  "native_diagnostics": null,
+  "source_sha256": {
+    "agent.py": "71bd7e7dd8ac2e5782df67b5b593017fd1469818549229a69ebb1b13fb0bfcec",
+    "data/preflop.npy": "8a946835ee590dd1229010ba74a7c95beb9722dea51971211522a3a0316ebc49",
+    "equity.py": "9f867e0681cd626493301bb2a1429dcb02c06071ccb6c9922acf5a49fed6d084",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "opponent.py": "a5bd349603f8f773882ca235c857a35950442d1ac78d5df92ff437a1392eeecc",
+    "range_equity.py": "1dbb5c27971ea05f255705cddff69f0396db2449d65f17eeec62e474ee6d85b4",
+    "strategy.py": "255f19f8830f81d857db03af98d84f23fcbca024372eca9d1035ac15a53ef06e"
+  },
+  "harness_sha256": "7fdc9462d1a041e3d96dc1f1ec557e8e6362a4386ab45a6ba08f40585b76b1e9",
+  "commit": "4ce02282e8e764766d183130d3c44b8af5d2760a",
+  "origin": "https://github.com/Fargield/td26-poker-bot-v2.git",
+  "runner_sha256": "ec05f734ba544a53aecf969993e08fcc8fff2aae5cdbd25b7567e8a66739c27d"
+}

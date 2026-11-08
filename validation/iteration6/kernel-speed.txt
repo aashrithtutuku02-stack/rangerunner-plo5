@@ -1,0 +1,8 @@
+free_checks-768 1.654 x
+facing_bets-768 1.098 x
+mixed-768 1.293 x
+raise_values-768 1.118 x
+free_checks-1280 1.813 x
+facing_bets-1280 1.115 x
+mixed-1280 1.283 x
+raise_values-1280 1.127 x

@@ -40,19 +40,26 @@ def longest_line():
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--hands',type=int,default=1000);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--hands',type=int,default=1000)
+    p.add_argument('--policy',choices=['release','release-451b'],default='release');a=p.parse_args()
+    policy=agent
+    if a.policy!='release':
+        from research_candidates import make
+        policy=make(a.policy)
     sources=['agent.py','strategy.py','range_model.py','bet_ev.py','game.py','evaluator.py',
              'fast_engine.py','equity_engine.py','preflop.npz',
              'native/plo5_fast_linux_x86_64.so','tools/worst_line_load.py']
+    if a.policy!='release':
+        sources+=['opponents/release_451b.py','opponents/model_451b.py','opponents/bet_ev_451b.py']
     fingerprints={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in sources}
     actions=longest_line();memories=[{},{}];config=AgentConfig(num_hands=a.hands)
-    for memory in memories:agent.new_half(config,memory)
+    for memory in memories:policy.new_half(config,memory)
     costs=[0.,0.];max_call=0.;sizes=[Counter(),Counter()];started=time.perf_counter()
     for i in range(a.hands):
         game=Game(make_deal('iteration4-longest-load',i),i%2,i)
         for forced in actions:
             seat=game.to_act;obs=game.observation(seat);memory=memories[seat]
-            begin=time.perf_counter();chosen=agent.choose_action(obs,memory)
+            begin=time.perf_counter();chosen=policy.choose_action(obs,memory)
             elapsed=time.perf_counter()-begin;costs[seat]+=elapsed;max_call=max(max_call,elapsed)
             assert chosen in obs.legal_actions and forced in obs.legal_actions
             sizes[seat][len(memory['cache']['outcomes'])]+=1
@@ -60,14 +67,14 @@ def main():
             game.apply(forced)
         assert game.is_terminal and game.result().went_to_showdown
         for seat,memory in enumerate(memories):
-            begin=time.perf_counter();agent.on_hand_end(game.hand_result(seat),memory)
+            begin=time.perf_counter();policy.on_hand_end(game.hand_result(seat),memory)
             elapsed=time.perf_counter()-begin;costs[seat]+=elapsed;max_call=max(max_call,elapsed)
             assert np.all(np.isfinite(memory['models'])) and abs(memory['models'].sum()-1)<1e-12
     assert all(m['hands_played']==a.hands and len(m['completed_hands'])==a.hands for m in memories)
     assert max_call<1.,'One call exceeded the tournament request deadline'
     assert max(costs)<8.,'One policy exceeded its calculation bank'
     assert fingerprints=={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in sources}
-    print(json.dumps(dict(hands=a.hands,forced_actions=[Action(v).name for v in actions],
+    print(json.dumps(dict(hands=a.hands,policy=a.policy,forced_actions=[Action(v).name for v in actions],
         policy_calculation_seconds=costs,max_call_seconds=max_call,sample_counts=sizes,
         elapsed_seconds=time.perf_counter()-started,source_sha256=fingerprints,
         scope='Counterfactual function load under container resources; excludes HTTP transport'),indent=2))

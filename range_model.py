@@ -49,8 +49,9 @@ def probabilities(rank,f,r,params):
     if not polarized:
         pr=sigmoid(ar+sharp*x) if r>0 else 0.
     else:
-        integral=f*q if sharp<1e-7 else (upper-softplus(af+sharp/2-sharp*q))/sharp
-        if f==0:integral=0.
+        integral=0.
+        if f>0:
+            integral=f*q if sharp<1e-7 else (upper-softplus(af+sharp/2-sharp*q))/sharp
         conditional=min(1.,max(0.,(q-integral)/max(1e-12,1-f)))
         tail=2*abs(conditional-.5)
         pr=(1-pf)*sigmoid(ar+sharp*(tail-.5)) if r>0 else 0.
@@ -69,6 +70,15 @@ def likelihoods(q,counts,events,slopes):
         flatten=min(1.,4*(1-max(f,c,r)))
         for m in range(len(slopes)):
             params=parameters(f,r,slopes[m],flatten)
+            if slopes[m]==0.:
+                # This model is independent of rank. Evaluate its constant
+                # event probability once, preserving the multiplication order.
+                pf,pr=probabilities(.5,f,r,params)
+                pc=max(0.,1-pf-pr)
+                if len(ev)>5 and ev[5]==0:pc+=pr;pr=0.
+                factor=pf if action==0 else pc if action==1 else pr
+                for j in range(len(q)):out[m,j]*=factor
+                continue
             for j in range(len(q)):
                 pf,pr=probabilities(q[j,s],f,r,params)
                 pc=max(0.,1-pf-pr)
