@@ -1,4 +1,4 @@
-# RangeRunner — Short Deck PLO5
+# PokerKing — Short Deck PLO5
 
 Based on the [TAMU Datathon starter bundle](https://github.com/tamu-datathon-org/heads-up-bundle).
 
@@ -35,7 +35,7 @@ python agent.py
 
 On Windows, activate with `.venv\Scripts\activate`.
 
-**The registered team name defaults to `winner`.** `PORT`, `AGENT_TOKEN`, and
+**The registered team name defaults to `PokerKing`.** `PORT`, `AGENT_TOKEN`, and
 the original server protocol are preserved. The environment variable
 `PARTICIPANT` can override the identity; check it if deploying with custom settings.
 
@@ -225,7 +225,7 @@ The project can run with a read-only repository, no outbound network, 1 CPU,
 
 ## Submit
 
-Verify the team name is `winner`, run the checks on the final commit, and push all
+Verify the team name is `PokerKing`, run the checks on the final commit, and push all
 files. The challenge requires a public repository for submission. Register your team and submit the public
 URL and full commit SHA through the challenge forms. No registration or form
 submission is performed by this project.

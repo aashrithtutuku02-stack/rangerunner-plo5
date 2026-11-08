@@ -39,8 +39,8 @@ from game import Action, AgentConfig, HandResult, Observation, Street
 warmup()
 
 # Set this to the team name used on the tournament registration form.
-PARTICIPANT = os.environ.get("PARTICIPANT", "winner")
-AGENT_NAME = "RangeRunner"
+PARTICIPANT = os.environ.get("PARTICIPANT", "PokerKing")
+AGENT_NAME = "PokerKing"
 
 
 # ===== YOUR CODE HERE =====

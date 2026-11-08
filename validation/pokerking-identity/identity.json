@@ -1,0 +1,8 @@
+{
+  "participant": "PokerKing",
+  "agent_name": "PokerKing",
+  "checks": "12 starter tests passed and live ASGI identity verified",
+  "strategy_unchanged_from": "3aa177f6e9e98ea64cd3482a6b6c5bc35c50a8eb",
+  "strategy_sha256": "ebfa013236f3bb691099465912767ee86a3d10f3ed361a344afcb1fa6183a73f",
+  "agent_changes": "Only PARTICIPANT default and AGENT_NAME constants changed; server plumbing and callbacks unchanged"
+}

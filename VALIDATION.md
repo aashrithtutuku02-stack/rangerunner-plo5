@@ -1,5 +1,9 @@
 # Release validation — iteration 7
 
+Submission identity is now **PokerKing**. Earlier reports retain the historical
+winner / RangeRunner identity. The rename changes display defaults only;
+the validated tournament strategy is unchanged.
+
 The tournament policy is unchanged by the subsequent timed bluff experiment.
 New opt-in modes, fresh comparison results and their inconclusive intervals
 are documented in [BLUFF_EXPERIMENTS.md](BLUFF_EXPERIMENTS.md). They are not
