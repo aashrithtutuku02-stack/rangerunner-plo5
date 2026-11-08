@@ -15,7 +15,7 @@ PRIORS={
 
 
 def make(name):
-    spec=importlib.util.spec_from_file_location('research_'+name,Path(__file__).with_name('strategy.py'))
+    spec=importlib.util.spec_from_file_location('research_'+name,Path(__file__).with_name('opponents')/'polar20_3a4a.py')
     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
     m.range_model=polar_model;m.bet_ev=polar_bet_ev
     polar_model.warmup();polar_bet_ev.warmup()

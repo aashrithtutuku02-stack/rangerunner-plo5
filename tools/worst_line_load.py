@@ -41,7 +41,8 @@ def longest_line():
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--hands',type=int,default=1000);a=p.parse_args()
-    sources=['strategy.py','bet_ev.py','game.py','evaluator.py','fast_engine.py','preflop.npz',
+    sources=['agent.py','strategy.py','range_model.py','bet_ev.py','game.py','evaluator.py',
+             'fast_engine.py','equity_engine.py','preflop.npz',
              'native/plo5_fast_linux_x86_64.so','tools/worst_line_load.py']
     fingerprints={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in sources}
     actions=longest_line();memories=[{},{}];config=AgentConfig(num_hands=a.hands)

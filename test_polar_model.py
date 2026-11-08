@@ -86,5 +86,5 @@ def test_promoted_strategy_matches_the_frozen_research_candidate():
     import agent
     from research_candidates import make
     from stress_benchmark import run
-    result=run(make('polar20'),'polar-promotion-mirror',60,agent,time_bank_seconds=80.)
+    result=run(make('polar-gated'),'polar-promotion-mirror',60,agent,time_bank_seconds=80.)
     assert result['paired']==[0.]*60

@@ -4,8 +4,9 @@ The previous three likelihood models made raises progressively more likely as
 an opponent's estimated strength increased. That can overvalue a raise made
 with a weak bluff. The new family retains all three models and adds two models
 whose raises can come from either end of the continuing range. Their initial
-combined weight is 20%; showdown evidence updates the mixture within each half.
-It does not hard-code that every opponent bluffs.
+nominal combined weight is 20%; showdown evidence updates the mixture within
+each half. Public betting aggression gates the effective polarized share, so it
+does not hard-code that every opponent bluffs.
 
 Let `q` be a uniform strength percentile, `f` and `r` the estimated fold and
 raise frequencies, and `s` the sharpness. As before, the fold curve is
@@ -30,10 +31,24 @@ numerical integration during play. Numerical tests independently integrate
 100,000 ranks and compare the compiled kernels with the vector formula.
 
 Signed slopes distinguish the two families: `[0, 8, 16, -8, -16]`, with initial
-weights `[.1, .2, .5, .1, .1]`. Negative slopes select the polarized family;
+nominal weights `[.08, .24, .48, .1, .1]`. Negative slopes select the polarized family;
 their absolute values set sharpness. The positive models retain the previous
 formula. Response evaluation integrates the joint model/hand distribution,
 including the same legality constraints and heuristic future-betting costs.
+
+The gate uses observed postflop free checks and unraised bets. It removes the
+initialization pseudo-counts, then estimates `rate = (bets + 4)/(checks + bets + 16)`.
+The gate is `clip((rate - .20)/.20, 0, 1)`. Removed polarized mass returns to the
+three value models in their current proportions. Initially the effective
+polarized share is 5%; with little betting it approaches zero, and with frequent
+betting it approaches the learned nominal share. The conservative initial
+value-model ratios are the original `[.1, .3, .6]`. All inputs are public actions.
+
+Model rows are scaled so the existing joint expectation uses this effective
+mixture. Tests check probability mass, conservative/aggressive limits, and
+equivalence with the frozen research candidate. An alternative that also
+updated the within-hand model mixture using marginal history evidence had
+mixed playing results and remains a research tool.
 
 This remains an approximation. Rank ties, draw strength, selective showdowns,
 unusual bluff/value ratios and changing strategies can violate its assumptions.

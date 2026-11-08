@@ -29,7 +29,7 @@ def initialize(config, memory):
                          [[0.0, 7.0, 5.0], [4.0, 6.0, 2.0], [5.0, 5.0, 2.0]],
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]],
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]]]),
-        models=np.array([0.10, 0.20, 0.50, 0.10, 0.10]),
+        models=np.array([0.08, 0.24, 0.48, 0.10, 0.10]),
     )
 
 
@@ -168,6 +168,21 @@ def range_weights(obs, memory, cache):
     weights = range_model.likelihoods(q,memory['counts'],range_model.event_array(events),SLOPES)
     sums = weights.sum(axis=1)
     weights /= np.maximum(sums[:, None], 1e-100)
+    # Rare postflop betting is weak evidence for a bluff-heavy range. Pool
+    # uncapped free checks and bets, removing the initialization pseudo-counts.
+    observed=memory['counts'][1:,0,1:].sum(axis=0)-np.array([23.,13.])
+    rate=(max(0.,observed[1])+4.)/(max(0.,observed.sum())+16.)
+    gate=min(1.,max(0.,(rate-.20)/.20))
+    prior=memory['models'];effective=prior.copy()
+    polarized=SLOPES<0
+    removed=float(effective[polarized].sum())*(1-gate)
+    effective[polarized]*=gate
+    positive=~polarized
+    effective[positive]+=removed*prior[positive]/max(1e-100,float(prior[positive].sum()))
+    # Downstream kernels multiply by the global model prior. Scaling rows
+    # applies the gated mixture while preserving their joint expectation.
+    normalizer=float(effective@weights.sum(axis=1))
+    weights*=((effective/np.maximum(prior,1e-100))/max(1e-100,normalizer))[:,None]
     mix = memory['models'] @ weights
     return mix, weights
 

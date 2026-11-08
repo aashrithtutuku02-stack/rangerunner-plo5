@@ -55,7 +55,7 @@ errors, forfeits, exhausted banks, skipped decisions, and baseline losses/draws.
 Advanced opponents may draw; their confidence intervals remain in the reports.
 
 For accelerated discovery on duplicate deals (direct calls, without HTTP time-bank
-enforcement), including 26 policy families and eight selected search opponents:
+enforcement), including 30 named local policies and eight selected search opponents:
 
 ```sh
 python stress_benchmark.py --deals 1000 --seeds discovery-example
@@ -80,12 +80,12 @@ They cannot silently inherit the new action model. A negative-control self-play
 test verifies zero paired returns for identical frozen policies.
 
 ```sh
-python evaluate_candidate.py --candidate release --baseline release-f452 --opponents release-f452 nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
+python evaluate_candidate.py --candidate release --baseline release-52c5 --opponents release-52c5 independent-adaptive nit search024 --seeds my-new-seed-a my-new-seed-b --output comparison-results
 python tools/summarize_comparison.py comparison-results
 ```
 
-`release-f452` is the immediately previous release. `release-b15a` and
-`incumbent` select earlier releases for historical comparisons.
+`release-52c5` is the immediately previous release. `release-f452`,
+`release-b15a` and `incumbent` select earlier releases for historical comparisons.
 
 These offline comparisons use a generous internal bank to prevent host
 scheduling from reducing the policy's requested sample counts. They do not
@@ -113,11 +113,12 @@ summary groups shared deals across opponents before calculating uncertainty.
   It preserves the previous value formula while avoiding repeated response
   arrays and Python dispatch. It evaluates identical clipped all-in sizes once.
   Kernel equivalence is checked numerically and through common-deal regression.
-* `range_model.py` uses ordered probabilities whose uniform-rank averages match
-  the estimated fold/call/raise frequencies, even for selective opponents.
-  A closed-form intercept avoids repeatedly solving numerical calibration
-  problems during a match. This is a rank-model assumption, not a solved
-  model of an opponent's equity.
+* `range_model.py` mixes three value-focused models with two polarized models
+  that allow strong value bets and weak bluffs. Every model retains decreasing
+  fold probability with strength and calibrated uniform-rank action frequencies.
+  Closed-form intercepts and a conditional continuing-rank transform avoid
+  numerical calibration during play. See [POLARIZATION.md](POLARIZATION.md)
+  for the assumptions and derivation.
 * Hand learning includes verified final opponent calls, folds and checks,
   including preflop all-in showdowns. Chip totals and street consistency are
   checked so stale callbacks do not invent a missing action.
@@ -146,15 +147,18 @@ python train_preflop.py --samples 8192
 ```
 
 `reference_range.py` is the frozen original range strategy used by the local
-range-aware challengers. These and the other adversaries are testing policies,
-not independent elite poker engines. The prior search and parameter-search tools
-use discovery deals; final evaluation deals are separate.
+range-aware challengers. `independent_opponents.py` supplies value-focused,
+polarized and fold-adaptive challengers with separately written decision logic.
+All share project card primitives; none is an externally developed elite poker
+engine. The prior search and parameter-search tools use discovery deals;
+final evaluation deals are separate.
 
 `river_search.py`, `betting_context.py`, `river_precision.py` and their research
 adapters are **experimental testing tools**. River search, finer context reads,
 and extra sampling passed their numerical checks but did not establish a
-playing-strength improvement. Production retains the previous betting policy
-and uses the faster equivalent calculation. Experiment results are preserved.
+playing-strength improvement. Production uses the polarized/value likelihood
+family while retaining the previous action-value formula. Experiment results
+are preserved.
 
 Reproduce the numerical benchmarks:
 

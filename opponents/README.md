@@ -30,3 +30,10 @@ is byte-identical to the likelihood model in 52c5. Its test name is
 value-focused, polarized and fold-adaptive. Their decision logic imports no
 released strategy, likelihood model or bet kernel. They share the card engine
 and referee data types, so they are not external elite-bot validation.
+
+`polar20_3a4a.py` freezes the first polarized candidate's strategy from
+`3a4a16cfb63dc279165995d01325ddc94d1dbdfc`. Its helper imports point to the frozen
+research `polar_model.py` and `polar_bet_ev.py`. The polar, joint-conditioning and
+gated research adapters clone this base so later production changes cannot
+silently alter earlier experiments. It is an experimental reference, not the
+previous tournament release.
