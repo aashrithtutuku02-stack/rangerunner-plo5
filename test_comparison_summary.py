@@ -18,4 +18,15 @@ def test_shared_deals_are_clustered_instead_of_pretending_opponents_are_independ
     with pytest.raises(AssertionError):summary.summarize(rows)
     rows[1]['source_sha256']=rows[0]['source_sha256']
     rows[0]['policy']='first';rows[1]['policy']='second'
-    with pytest.raises(AssertionError):summary.summarize(rows)
+    with pytest.raises(AssertionError,match='Mixed candidate policies'):summary.summarize(rows)
+
+
+def test_additional_helpers_and_opponents_must_be_the_same_version():
+    rows=[dict(opponent=p,seed='s',delta=[1.,-1.],candidate=dict(paired=[1.,-1.]),
+               baseline=dict(paired=[0.,0.]),sample_mode='fixed-policy-sampling',
+               source_sha256={'strategy':'same'},additional_source_sha256={'opponent':'same'})
+          for p in ['a','b']]
+    assert summary.summarize(rows)['additional_source_sha256']=={'opponent':'same'}
+    rows[1]['additional_source_sha256']={'opponent':'changed'}
+    with pytest.raises(AssertionError,match='Mixed additional source versions'):
+        summary.summarize(rows)

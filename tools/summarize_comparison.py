@@ -14,7 +14,7 @@ def interval(values):
 def summarize(rows):
     assert rows,'No paired comparison records'
     opponents={r['opponent'] for r in rows}
-    seen=set();groups={};by_opponent={};sources=set();modes=set();baselines=set();policies=set()
+    seen=set();groups={};by_opponent={};sources=set();extras=set();modes=set();baselines=set();policies=set()
     for r in rows:
         key=(r['opponent'],r['seed']);assert key not in seen,'Duplicate opponent/seed'
         seen.add(key)
@@ -22,12 +22,14 @@ def summarize(rows):
         modes.add(r['sample_mode']);baselines.add(r.get('baseline_policy','incumbent'))
         policies.add(r.get('policy','unspecified'))
         sources.add(json.dumps(r['source_sha256'],sort_keys=True))
+        extras.add(json.dumps(r.get('additional_source_sha256',{}),sort_keys=True))
         assert len(r['delta'])==len(r['candidate']['paired'])==len(r['baseline']['paired'])
         for i,(delta,new,old) in enumerate(zip(r['delta'],r['candidate']['paired'],r['baseline']['paired'])):
             assert abs(delta-(new-old))<1e-12
             groups.setdefault((r['seed'],i),{})[r['opponent']]=delta
         by_opponent.setdefault(r['opponent'],[]).extend(r['delta'])
     assert len(sources)==1,'Mixed source versions'
+    assert len(extras)==1,'Mixed additional source versions'
     assert len(modes)==1,'Mixed sampling modes'
     assert len(baselines)==1,'Mixed baseline policies'
     assert len(policies)==1,'Mixed candidate policies'
@@ -40,7 +42,8 @@ def summarize(rows):
     return dict(mean_change=mean,ci=ci,opponents=len(opponents),independent_deal_clusters=len(clustered),
                 paired_policy_observations=sum(len(r['delta']) for r in rows),
                 played_hands=4*sum(len(r['delta']) for r in rows),
-                per_opponent=details,source_sha256=json.loads(next(iter(sources))))
+                per_opponent=details,source_sha256=json.loads(next(iter(sources))),
+                additional_source_sha256=json.loads(next(iter(extras))))
 
 
 if __name__=='__main__':

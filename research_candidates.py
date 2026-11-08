@@ -71,6 +71,12 @@ def finish_complete(module,result,memory,bayes=False,decay=False):
 
 
 def make(name):
+    if name=='release-52c5':
+        from opponents import release_52c5 as previous
+        return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)
+    if name in ('polar10','polar20','polar40'):
+        from research_polar import make as polar_candidate
+        return polar_candidate(name)
     if name=='release-f452':
         from opponents import release_f452 as previous
         return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)

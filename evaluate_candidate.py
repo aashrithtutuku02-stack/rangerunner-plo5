@@ -21,6 +21,13 @@ def main():
     a=p.parse_args();out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
     sources={name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
              for name in ['strategy.py','range_model.py','fast_engine.py','bet_ev.py','river_precision.py']}
+    extra_names=['research_candidates.py','research_polar.py','polar_model.py','polar_bet_ev.py',
+                 'independent_opponents.py','opponents/release_52c5.py','opponents/bet_ev_52c5.py',
+                 'opponents/release_b15a_model.py','adversaries.py','adversary_cases.json',
+                 'stress_benchmark.py','game.py','evaluator.py','preflop.npz',
+                 'native_engine.c','native_engine.so']
+    extra={n:hashlib.sha256((Path(__file__).parent/n).read_bytes()).hexdigest()
+           for n in extra_names if (Path(__file__).parent/n).exists()}
     summary=[]
     for name in a.opponents:
         differences=[];scores=[]
@@ -32,7 +39,8 @@ def main():
             candidate=run(Opponent(name),seed,a.deals,make(a.candidate),time_bank_seconds=80.,capture_samples=True)
             if name==a.baseline:assert all(x==0 for x in baseline['paired'])
             delta=[x-y for x,y in zip(candidate['paired'],baseline['paired'])]
-            r=dict(opponent=name,seed=seed,policy=a.candidate,baseline_policy=a.baseline,source_sha256=sources,sample_mode='fixed-policy-sampling',baseline=baseline,candidate=candidate,delta=delta)
+            r=dict(opponent=name,seed=seed,policy=a.candidate,baseline_policy=a.baseline,source_sha256=sources,
+                   additional_source_sha256=extra,sample_mode='fixed-policy-sampling',baseline=baseline,candidate=candidate,delta=delta)
             (out/f'{name}-{seed}.json').write_text(json.dumps(r,indent=2))
             differences.extend(delta);scores.extend(candidate['paired'])
             print(name,seed,'candidate',round(candidate['mean'],4),'change',round(statistics.mean(delta),4),flush=True)

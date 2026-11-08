@@ -58,9 +58,8 @@ def test_extra_samples_are_not_repeated_and_early_streets_are_excluded():
     with pytest.raises(ValueError):precision.extend(memory,cache)
 
 
-def test_compiled_release_matches_frozen_independent_vector_policy():
-    import agent
+def test_frozen_compiled_release_matches_frozen_vector_policy():
     from research_candidates import make
     from stress_benchmark import run
-    result=run(make('release-b15a'),'compiled-policy-mirror',40,agent,time_bank_seconds=80.)
+    result=run(make('release-b15a'),'compiled-policy-mirror',40,make('release-52c5'),time_bank_seconds=80.)
     assert result['paired']==[0.]*40

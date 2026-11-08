@@ -12,9 +12,9 @@ def test_compiled_raise_values_match_existing_joint_posterior_formula(cap_reache
     rng=np.random.default_rng(71)
     for _ in range(30):
         memory={};strategy.initialize(AgentConfig(),memory)
-        memory['models']=rng.dirichlet(np.ones(3))
+        memory['models']=rng.dirichlet(np.ones(len(strategy.SLOPES)))
         memory['counts'][3,1]=rng.uniform(.1,100,3)
-        q=rng.random((37,4));models=rng.dirichlet(np.ones(37),3)
+        q=rng.random((37,4));models=rng.dirichlet(np.ones(37),len(strategy.SLOPES))
         weights=memory['models']@models
         outcomes=rng.choice([0.,.5,1.],37);equity=float(weights@outcomes)
         obs=SimpleNamespace(street=3,to_call=0,raises_this_street=3 if cap_reached else 1,

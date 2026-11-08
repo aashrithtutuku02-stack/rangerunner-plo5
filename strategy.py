@@ -14,7 +14,7 @@ engine.warm_engine()
 range_model.warmup()
 bet_ev.warmup()
 
-SLOPES = np.array([0.0, 8.0, 16.0])
+SLOPES = np.array([0.0, 8.0, 16.0, -8.0, -16.0])
 
 
 def initialize(config, memory):
@@ -29,7 +29,7 @@ def initialize(config, memory):
                          [[0.0, 7.0, 5.0], [4.0, 6.0, 2.0], [5.0, 5.0, 2.0]],
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]],
                          [[0.0, 8.0, 4.0], [5.0, 5.0, 2.0], [6.0, 4.0, 2.0]]]),
-        models=np.array([0.10, 0.30, 0.60]),
+        models=np.array([0.10, 0.20, 0.50, 0.10, 0.10]),
     )
 
 

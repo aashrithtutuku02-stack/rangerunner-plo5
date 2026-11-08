@@ -6,7 +6,7 @@ import numpy as np
 
 import fast_engine as engine
 from opponents import release_b15a_model as range_model
-import bet_ev
+from opponents import bet_ev_52c5 as bet_ev
 from game import Action, Street
 
 # Prepare once, during startup. No runtime downloads or disk caches.

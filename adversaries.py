@@ -38,7 +38,14 @@ class Opponent:
         self.name = name
         self.params = params if params is not None else CASES.get(name)
         self.range_policy = None
-        if name=='release-f452':
+        if name.startswith('independent-'):
+            from independent_opponents import IndependentOpponent
+            self.range_policy=None
+            self.independent=IndependentOpponent(name)
+        elif name=='release-52c5':
+            from opponents import release_52c5
+            self.range_policy=release_52c5
+        elif name=='release-f452':
             from opponents import release_f452
             self.range_policy=release_f452
         elif name=='release-b15a':
@@ -56,6 +63,8 @@ class Opponent:
             self.range_policy=module
 
     def new_half(self, config, memory):
+        if hasattr(self,'independent'):
+            return self.independent.new_half(config,memory)
         if self.range_policy:
             self.range_policy.initialize(config,memory)
             if self.name=='range-tight':memory['models']=np.array([.1,.3,.6])
@@ -64,6 +73,8 @@ class Opponent:
                       key=None, eq=.5, seen=0, faced=0, folds=0, last=None)
 
     def choose_action(self, obs, memory):
+        if hasattr(self,'independent'):
+            return self.independent.choose_action(obs,memory)
         if self.range_policy:
             return self.range_policy.decide(obs,memory)
         legal = obs.legal_actions
@@ -126,9 +137,12 @@ class Opponent:
         return Action.CHECK_CALL
 
     def on_hand_end(self, result, memory):
+        if hasattr(self,'independent'):
+            return self.independent.on_hand_end(result,memory)
         if self.range_policy:self.range_policy.finish(result,memory)
 
 
 def names():
     return ['fold','call','pot','half','random',*PROFILES,'switcher','incumbent','release-b15a','release-f452',
-            'range-aware','range-tight','range-flat','opportunist','oscillating']
+            'range-aware','range-tight','range-flat','opportunist','oscillating','release-52c5',
+            'independent-value','independent-polar','independent-adaptive']
