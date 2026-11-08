@@ -41,6 +41,12 @@ the original server protocol are preserved. The environment variable
 
 ## Play and test
 
+The new opt-in bluff bot can be started with `python bluff_agent.py`. It mixes
+price-aware opening bluffs with checks and learns from observed folds. Fresh
+tests did **not** establish a reliable gain, so `agent.py` retains the proven
+tournament strategy. See [BLUFF_EXPERIMENTS.md](BLUFF_EXPERIMENTS.md) for modes,
+results and limitations before choosing the experimental entrypoint.
+
 In separate terminals:
 
 ```sh
@@ -91,7 +97,9 @@ python evaluate_candidate.py --candidate release --baseline release-9efa --oppon
 python tools/summarize_comparison.py comparison-results
 ```
 
-`release-9efa` is the immediately previous release. The caller read targets
+`release-9efa` is the caller-read comparison baseline. `release-3aa` freezes the
+validated tournament strategy used to evaluate the new bluff experiments.
+The caller read targets
 frequent-caller matchups; it is not a claim of improving every opponent matchup.
 `release-451b`, `release-52c5`, `release-f452`,
 `release-b15a` and `incumbent` select earlier releases for historical comparisons.

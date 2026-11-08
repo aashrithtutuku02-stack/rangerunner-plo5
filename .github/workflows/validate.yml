@@ -26,13 +26,17 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: python -m pytest -q
       - name: Full HTTP matches
-        run: python benchmark.py --deals 1000 --seeds ci-iteration7-calling --opponents random calling_station always_half always_pot reference_agent.py adversary:nit adversary:range-tight adversary:bluffer adversary:switcher adversary:release-9efa adversary:opportunist adversary:checkraise adversary:independent-value adversary:independent-polar adversary:independent-adaptive adversary:release-52c5 adversary:passive-value adversary:passive-trap adversary:caller-switcher adversary:caller-oscillating
+        run: python benchmark.py --deals 1000 --seeds ci-iteration8-bluffs --opponents random calling_station always_half always_pot reference_agent.py adversary:nit adversary:range-tight adversary:bluffer adversary:switcher adversary:release-3aa adversary:opportunist adversary:checkraise adversary:independent-value adversary:independent-polar adversary:independent-adaptive adversary:release-52c5 adversary:passive-value adversary:passive-trap adversary:caller-switcher adversary:caller-oscillating adversary:overfolder
       - name: Verify judge fault counters
         run: python tools/check_results.py benchmark-results
       - name: Fresh servers between duplicate halves
-        run: python tools/fresh_match.py --opponent adversary:release-9efa --seed ci-fresh-iteration7
+        run: python tools/fresh_match.py --opponent adversary:release-3aa --seed ci-fresh-iteration8
       - name: Verify fresh-process fault counters
         run: python tools/check_results.py fresh-results
+      - name: Opt-in mixed-bluff HTTP policy
+        run: python tools/fresh_match.py --agent bluff_agent.py --opponent adversary:overfolder --seed ci-experimental-bluffs --output bluff-results
+      - name: Verify opt-in bluff fault counters
+        run: python tools/check_results.py bluff-results
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -40,6 +44,7 @@ jobs:
           path: |
             benchmark-results/
             fresh-results/
+            bluff-results/
   scenarios:
     runs-on: ubuntu-latest
     timeout-minutes: 20

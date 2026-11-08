@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-08T17:06:11.798828+00:00",
+  "candidate": "bluff-pure",
+  "baseline": "release-3aa",
+  "seeds": [
+    "iteration8-foldonly-fresh-a",
+    "iteration8-foldonly-fresh-b"
+  ],
+  "deals": 750,
+  "opponents": [
+    "overfolder",
+    "nit",
+    "independent-adaptive",
+    "independent-polar",
+    "range-tight",
+    "call",
+    "pot",
+    "release-3aa"
+  ],
+  "acceptance": "Positive pooled shared-deal 95% interval; no significant head-to-head decline; otherwise keep bluff modes opt-in",
+  "source_sha256": {
+    "strategy.py": "825ffd2fd308ee34b2d4c8a3572d934c0001d41dd6c9ea9a77f8cf4d93f66924",
+    "bluff_read.py": "4934311a5546f56f3f6f91760b0baeae42d00c5864ee95d3c3317b5573075e25",
+    "bluff_pure.py": "b6d5a481be3c55cee09eb53adc34136bea60a1ca4cc2653d26118da764d316e3",
+    "research_bluff.py": "b7a3d482996ae76bc651e6ed5ac8ff3be86757cb5c498e1efe1eca6e81f31e6b",
+    "research_candidates.py": "d21cb1c1963ffafa10b5c6ac02955270b2f93992cbd379b8de4064313480ff01",
+    "evaluate_candidate.py": "3923cc528c193f849b0cdffa010286233b08c2ba1340a4ed9c9e10a90072016c",
+    "stress_benchmark.py": "8f48a38e7d758efed5a55239cf0b980b67b8972e9402b9a379432bd57557bc56",
+    "adversaries.py": "52cac033756e08791f2f201d8d46d61162a4496b67de36a02be214ef98738529"
+  }
+}

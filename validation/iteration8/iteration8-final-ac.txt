@@ -1,0 +1,30 @@
+overfolder iteration8-bluff-final-a candidate 1.6833 change 0.2527
+overfolder iteration8-bluff-final-c candidate 1.026 change 0.024
+POOLED {'opponent': 'overfolder', 'candidate_score': 1.3546666666666667, 'improvement': 0.13833333333333334, 'ci': [-0.08416048233137918, 0.36082714899804585], 'deals': 1500}
+nit iteration8-bluff-final-a candidate 1.3027 change 0.036
+nit iteration8-bluff-final-c candidate 1.324 change -0.016
+POOLED {'opponent': 'nit', 'candidate_score': 1.3133333333333332, 'improvement': 0.01, 'ci': [-0.01965855473217505, 0.039658554732175055], 'deals': 1500}
+range-tight iteration8-bluff-final-a candidate -0.228 change 0.0
+range-tight iteration8-bluff-final-c candidate -0.0067 change 0.0
+POOLED {'opponent': 'range-tight', 'candidate_score': -0.11733333333333333, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 1500}
+balanced iteration8-bluff-final-a candidate 3.308 change 0.0
+balanced iteration8-bluff-final-c candidate 3.1687 change 0.0
+POOLED {'opponent': 'balanced', 'candidate_score': 3.2383333333333333, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 1500}
+release-3aa iteration8-bluff-final-a candidate 0.0 change 0.0
+release-3aa iteration8-bluff-final-c candidate 0.0 change 0.0
+POOLED {'opponent': 'release-3aa', 'candidate_score': 0.0, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 1500}
+independent-adaptive iteration8-bluff-final-a candidate 1.2553 change -0.1493
+independent-adaptive iteration8-bluff-final-c candidate 1.8987 change 0.0253
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.577, 'improvement': -0.062, 'ci': [-0.47286542946219196, 0.34886542946219196], 'deals': 1500}
+independent-polar iteration8-bluff-final-a candidate 5.0233 change -0.084
+independent-polar iteration8-bluff-final-c candidate 4.728 change 0.0
+POOLED {'opponent': 'independent-polar', 'candidate_score': 4.875666666666667, 'improvement': -0.042, 'ci': [-0.19702452053982072, 0.1130245205398207], 'deals': 1500}
+call iteration8-bluff-final-a candidate 12.486 change 0.0
+call iteration8-bluff-final-c candidate 13.5147 change 0.0
+POOLED {'opponent': 'call', 'candidate_score': 13.000333333333334, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 1500}
+pot iteration8-bluff-final-a candidate 8.724 change 0.0
+pot iteration8-bluff-final-c candidate 8.3387 change 0.0
+POOLED {'opponent': 'pot', 'candidate_score': 8.531333333333333, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 1500}
+bluffer iteration8-bluff-final-a candidate 6.3113 change 0.0
+bluffer iteration8-bluff-final-c candidate 6.224 change 0.0
+POOLED {'opponent': 'bluffer', 'candidate_score': 6.267666666666667, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 1500}

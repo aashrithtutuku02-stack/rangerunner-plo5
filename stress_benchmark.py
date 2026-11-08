@@ -22,7 +22,7 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=
     paired = [0.0]*deals
     timings = []
     sample_counts={};expanded=set();max_decision=0.
-    read_decisions=0;read_hands=set();max_response_window=0
+    read_decisions=0;read_hands=set();max_response_window=0;bluff_decisions=0
     for seat in (0,1):
         hm, vm = {}, {}
         hero.new_half(config,hm);opponent.new_half(config,vm)
@@ -36,6 +36,7 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=
                 elapsed=time.perf_counter()-begin
                 cost[current]+=elapsed
                 if capture_samples and current==seat:
+                    bluff_decisions+=int(hm.get('bluff_override',False))
                     max_decision=max(max_decision,elapsed)
                     window=hm.get('response_window',())
                     max_response_window=max(max_response_window,len(window))
@@ -57,6 +58,7 @@ def run(opponent, seed, deals, hero=agent,time_bank_seconds=8.0,capture_samples=
     return dict(opponent=opponent.name,seed=seed,deals=deals,time_bank_seconds=time_bank_seconds,mean=mean,
                 ci=[mean-1.96*se,mean+1.96*se],timings=timings,paired=paired,
                 sampling=dict(samples_per_decision=sample_counts,expanded_boards=len(expanded),
+                              bluff_decisions=bluff_decisions,
                               calling_read_decisions=read_decisions,calling_read_hands=len(read_hands),
                               max_response_window=max_response_window,
                               max_decision_seconds=max_decision) if capture_samples else None)

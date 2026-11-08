@@ -1,0 +1,24 @@
+waiting for agent1 at http://localhost:5040 ...
+waiting for agent2 at http://localhost:5041 ...
+agent1 = winner / RangeRunner (http://localhost:5040)
+agent2 = winner / Adversary-overfolder (http://localhost:5041)
+
+Duplicate match: 1000 deals (2000 hands), seed iteration8-pure-cpu
+agent1: +1.296 bb/deal  (std 6.70, stderr 0.212)
+Confidence interval (z=1.96): [+0.881, +1.712] bb/deal
+Reason: interval [+0.881, +1.712] is entirely above 0
+half1: agent1 +1584 chips, agent2 -1584 chips
+half2: agent1 +1009 chips, agent2 -1009 chips
+Faults:
+  agent1 half1: thinking 2.41s of 8s (wall 4.15s), calls 1744, errors 0
+  agent1 half2: thinking 2.09s of 8s (wall 3.84s), calls 1754, errors 0
+  agent2 half1: thinking 0.20s of 8s (wall 1.84s), calls 2341, errors 0
+  agent2 half2: thinking 0.05s of 8s (wall 1.66s), calls 2321, errors 0
+Speed: 2000 hands in 11.93s (168 hands/s)
+
+============================================================
+  VERDICT: AGENT1 WINS  (winner / RangeRunner (http://localhost:5040))
+  Points: agent1 1, agent2 0
+============================================================
+RESULT: AGENT1_WIN
+1 full matches: no errors, forfeits, exhausted banks or skipped decisions.

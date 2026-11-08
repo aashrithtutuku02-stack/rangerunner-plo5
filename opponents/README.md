@@ -51,3 +51,8 @@ for its numerical tests. Production imports none of these research routers.
 `9efa86c1b7a6557be6b4cb508cced6d57a38432b`, with only helper imports redirected.
 This baseline preserves the exact probability speedups and the earlier raise
 margin. Its opponent/baseline name is `release-9efa`. It learns no caller read.
+
+`release_3aa.py` and `calling_3aa.py` freeze the validated caller strategy from
+`3aa177f6e9e98ea64cd3482a6b6c5bc35c50a8eb`. Math imports use the unchanged frozen
+9efa helpers; the caller-read import is redirected to its own frozen copy.
+Its comparison name is `release-3aa`.

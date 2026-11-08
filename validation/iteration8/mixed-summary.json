@@ -1,0 +1,174 @@
+{
+  "mean_change": 0.009483333333333333,
+  "ci": [
+    -0.029314453966140148,
+    0.04828112063280682
+  ],
+  "opponents": 10,
+  "independent_deal_clusters": 3000,
+  "paired_policy_observations": 30000,
+  "played_hands": 120000,
+  "per_seed": [
+    {
+      "seed": "iteration8-bluff-final-a",
+      "mean_change": 0.005533333333333334,
+      "deals": 750
+    },
+    {
+      "seed": "iteration8-bluff-final-b",
+      "mean_change": 0.01306666666666667,
+      "deals": 750
+    },
+    {
+      "seed": "iteration8-bluff-final-c",
+      "mean_change": 0.003333333333333331,
+      "deals": 750
+    },
+    {
+      "seed": "iteration8-bluff-final-d",
+      "mean_change": 0.016,
+      "deals": 750
+    }
+  ],
+  "per_opponent": [
+    {
+      "opponent": "balanced",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "bluffer",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "call",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "independent-adaptive",
+      "change": 0.08833333333333333,
+      "ci": [
+        -0.22076321810165,
+        0.39742988476831664
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "independent-polar",
+      "change": -0.06966666666666667,
+      "ci": [
+        -0.20727552233088387,
+        0.06794218899755054
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "nit",
+      "change": 0.005,
+      "ci": [
+        -0.009827884686528326,
+        0.019827884686528324
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "overfolder",
+      "change": 0.058833333333333335,
+      "ci": [
+        -0.09631533280168451,
+        0.21398199946835117
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "pot",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "range-tight",
+      "change": 0.012333333333333333,
+      "ci": [
+        -0.0972201986240109,
+        0.12188686529067758
+      ],
+      "deals": 3000
+    },
+    {
+      "opponent": "release-3aa",
+      "change": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "deals": 3000
+    }
+  ],
+  "source_sha256": {
+    "bet_ev.py": "0a43ca35720462b1525d45aa7e7893205678279133ab49ec3712a2c033ad73e6",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "range_model.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "river_precision.py": "c1f9464ab2989aba5a07a3af1067624a4702ee0ee5d039f91a1281a6ded7fbfe",
+    "strategy.py": "825ffd2fd308ee34b2d4c8a3572d934c0001d41dd6c9ea9a77f8cf4d93f66924"
+  },
+  "additional_source_sha256": {
+    "adversaries.py": "52cac033756e08791f2f201d8d46d61162a4496b67de36a02be214ef98738529",
+    "adversary_cases.json": "4766e77557aa3a0e2fbcb870cb675026f444bc4137766deb5ac0160b67b08231",
+    "bluff_read.py": "4934311a5546f56f3f6f91760b0baeae42d00c5864ee95d3c3317b5573075e25",
+    "calling_read.py": "c4db70b55289d20813190167ececd11b666b8a2540d822ebd86d0da63817ef5e",
+    "evaluate_candidate.py": "61ed4f067d6c43130a67b04a03a6cf538f63e03d4a7ecc9c70b692e1e4e7d871",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "independent_opponents.py": "4c65f91637e26e76552882b8bf152a345afdeb33d24ad626ed35517c9a7c9be8",
+    "model_learning.py": "2f8723a8042db872aba8aa8e1e12e2281d61678a171cc8d92d535ebbe300548f",
+    "native/plo5_fast.c": "c9c59de55a68cb652d567ab4aa2b2a7424606b2aefaf88c829daf1f8fe7aa856",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b",
+    "opponents/bet_ev_451b.py": "24d29da4950ac8c645df756df968979b85982e15e0aea1e87f78230dd44a642d",
+    "opponents/bet_ev_52c5.py": "5f97a6d410123da45dfc077002b625bfbc2cea566d986cb8c8ba0694220a41ea",
+    "opponents/bet_ev_9efa.py": "343ae585b21ea7467a9f796753cd46ff996aed123453639be0e7f857f86917d8",
+    "opponents/calling_3aa.py": "c4db70b55289d20813190167ececd11b666b8a2540d822ebd86d0da63817ef5e",
+    "opponents/model_451b.py": "8c407f53200cc8038b79a2d8e09fe79e9ce75040d0855d46e2c56f13b16a6b54",
+    "opponents/model_9efa.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "opponents/polar20_3a4a.py": "bf04c0cffc55b2627489b2b83853c476c11ae9b4242c3bb57c1d407286b366f4",
+    "opponents/release_3aa.py": "82fc20f1316519619b88aa0c439da2a3ab54a57d3fd7ce69490d68ea08945704",
+    "opponents/release_451b.py": "83870e95eb9c42a013cab0645c1f58962361be44eb16c048f4c2ae7cc1aead83",
+    "opponents/release_52c5.py": "eb00a34c15e70f0930584e93b1d3b5fb03659b19d672222e9b71eae846a0cb19",
+    "opponents/release_9efa.py": "63acb4305b8ccc1b56dd89fda9984acad9994864106cfd1c6d4b7938b3bea779",
+    "opponents/release_b15a_model.py": "d7a2370e8903a5756ef625db4c796f84b57db07e68f1a4cac178b3fffd7f8197",
+    "polar_bet_ev.py": "0a8550a8fdaf7468786fd7412c59030144c80ef22cc41f131f98c2036d1525f1",
+    "polar_model.py": "eb38da74a302f89656e7921df68393b313f3ddf978bcb69e124fe84d3479a2f0",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "range_precision.py": "c19ad219ee38664ff2c7fdc263d883a64320525e304a5f1619a3c7e818df99e5",
+    "reraise_ev.py": "f8e91f665098e83a052b5f41bc1f1b55ca6f0e06114859beb290f9611879ace3",
+    "research_bluff.py": "3a8e6215ce98ba7e9339bf6369cbf4f90a967579c8ac6dbdf34681dd05f3d6d2",
+    "research_candidates.py": "d21cb1c1963ffafa10b5c6ac02955270b2f93992cbd379b8de4064313480ff01",
+    "research_gated.py": "f6ab244e60c086982ee434803e4e741dea1eec73842bcd005221cd0ed0ba86c7",
+    "research_joint.py": "344e8d2d6a93028b7c41dc4915d80ec0f04ce59d9397f1ee89c29684278b5b41",
+    "research_learning.py": "8ef23cd8eaef86f16b303b1b536298fe261d660c5de2c17be937a49bd93c2b5a",
+    "research_polar.py": "a4e90dfa1d53c3b23d3bee94f5bd73eb94282e5ed90498b2fdeb50b2564d13bf",
+    "research_range_precision.py": "a529606e4d671b813003e5cb36ea074edfe6dd64336c26f84a36c61db1118b9a",
+    "research_recency.py": "817b2ccf1daa64a883898fcf0415a4936d95d2303b26b66e4f27b60636072552",
+    "research_reraise.py": "a353b5ac3947cb9324e8ea9f0547c73a0d8d809be2d4f1b9bfbfd3ab2c397b59",
+    "research_street.py": "2dddb67b9646ae0d0aed2072f5fa8c457a83a9cde3c3a835b1a9632225f495eb",
+    "street_learning.py": "aff635defcb7c2eb67f9ed1a327631fd2d3c433ac3bc3795fa96809f185624d7",
+    "stress_benchmark.py": "8f48a38e7d758efed5a55239cf0b980b67b8972e9402b9a379432bd57557bc56"
+  }
+}

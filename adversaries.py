@@ -44,6 +44,9 @@ class Opponent:
             from independent_opponents import IndependentOpponent
             self.range_policy=None
             self.independent=IndependentOpponent(name)
+        elif name=='release-3aa':
+            from opponents import release_3aa
+            self.range_policy=release_3aa
         elif name=='release-9efa':
             from opponents import release_9efa
             self.range_policy=release_9efa

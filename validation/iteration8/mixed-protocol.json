@@ -1,0 +1,47 @@
+{
+  "recorded_at_utc": "2026-11-08T16:59:43.838400+00:00",
+  "baseline": "3aa177f6e9e98ea64cd3482a6b6c5bc35c50a8eb",
+  "candidate": "25% price-aware opening-bluff mix; parameters frozen",
+  "seeds": [
+    "iteration8-bluff-final-a",
+    "iteration8-bluff-final-b",
+    "iteration8-bluff-final-c",
+    "iteration8-bluff-final-d"
+  ],
+  "deals": 750,
+  "opponents": [
+    "overfolder",
+    "nit",
+    "range-tight",
+    "balanced",
+    "release-3aa",
+    "independent-adaptive",
+    "independent-polar",
+    "call",
+    "pot",
+    "bluffer"
+  ],
+  "acceptance": "Positive pooled shared-deal 95% interval; no significant head-to-head decline; report seed uncertainty and individual regressions",
+  "source_sha256": {
+    "strategy.py": "825ffd2fd308ee34b2d4c8a3572d934c0001d41dd6c9ea9a77f8cf4d93f66924",
+    "bluff_read.py": "4934311a5546f56f3f6f91760b0baeae42d00c5864ee95d3c3317b5573075e25",
+    "calling_read.py": "c4db70b55289d20813190167ececd11b666b8a2540d822ebd86d0da63817ef5e",
+    "range_model.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "bet_ev.py": "0a43ca35720462b1525d45aa7e7893205678279133ab49ec3712a2c033ad73e6",
+    "stress_benchmark.py": "8f48a38e7d758efed5a55239cf0b980b67b8972e9402b9a379432bd57557bc56",
+    "evaluate_candidate.py": "61ed4f067d6c43130a67b04a03a6cf538f63e03d4a7ecc9c70b692e1e4e7d871",
+    "research_bluff.py": "3a8e6215ce98ba7e9339bf6369cbf4f90a967579c8ac6dbdf34681dd05f3d6d2",
+    "research_candidates.py": "d21cb1c1963ffafa10b5c6ac02955270b2f93992cbd379b8de4064313480ff01",
+    "adversaries.py": "52cac033756e08791f2f201d8d46d61162a4496b67de36a02be214ef98738529",
+    "opponents/release_3aa.py": "82fc20f1316519619b88aa0c439da2a3ab54a57d3fd7ce69490d68ea08945704",
+    "opponents/calling_3aa.py": "c4db70b55289d20813190167ececd11b666b8a2540d822ebd86d0da63817ef5e",
+    "opponents/model_9efa.py": "43bd381bc619a9345ca31fa1f13bfdbc8886563901b97fc5dbc65b64efce65d6",
+    "opponents/bet_ev_9efa.py": "343ae585b21ea7467a9f796753cd46ff996aed123453639be0e7f857f86917d8",
+    "game.py": "bc00e3c2d1bf64cbd36bf5553dae218767f11b20f388e5c417d989919877f2db",
+    "evaluator.py": "e2a151a4c41828a035030f490c91b81015d04bc209abfb860ca3d0dce649e0b4",
+    "fast_engine.py": "5e221ace7aaa58915714119053ed2130aa0b56636151eefe4b4f5f79b24f521f",
+    "equity_engine.py": "69abfc7e1d5898db7effc54856cc8967e04b9caeb11edf5dc8e5b59c7ee5e399",
+    "preflop.npz": "ce24e4c86030c6572be3b1ca508dea7fa59f9ff6884d472ebb36139d296aaee5",
+    "native/plo5_fast_linux_x86_64.so": "5ac629502aedc109b5eb4f7eb29034922a7022c9bce70c49d03d00211615dc8b"
+  }
+}

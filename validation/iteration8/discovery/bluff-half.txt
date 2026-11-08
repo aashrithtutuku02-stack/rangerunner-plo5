@@ -1,0 +1,16 @@
+overfolder iteration8-bluff-discovery-fixed candidate 0.792 change -0.034
+POOLED {'opponent': 'overfolder', 'candidate_score': 0.792, 'improvement': -0.034, 'ci': [-0.3698207100811962, 0.30182071008119626], 'deals': 500}
+nit iteration8-bluff-discovery-fixed candidate 0.807 change 0.12
+POOLED {'opponent': 'nit', 'candidate_score': 0.807, 'improvement': 0.12, 'ci': [-0.026020665625037992, 0.266020665625038], 'deals': 500}
+range-tight iteration8-bluff-discovery-fixed candidate 0.084 change 0.0
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.084, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 500}
+independent-adaptive iteration8-bluff-discovery-fixed candidate 1.962 change 0.872
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.962, 'improvement': 0.872, 'ci': [-0.033516004120654586, 1.7775160041206546], 'deals': 500}
+call iteration8-bluff-discovery-fixed candidate 14.519 change 0.0
+POOLED {'opponent': 'call', 'candidate_score': 14.519, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 500}
+pot iteration8-bluff-discovery-fixed candidate 8.634 change 0.0
+POOLED {'opponent': 'pot', 'candidate_score': 8.634, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 500}
+switcher iteration8-bluff-discovery-fixed candidate 2.511 change 0.0
+POOLED {'opponent': 'switcher', 'candidate_score': 2.511, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 500}
+release-3aa iteration8-bluff-discovery-fixed candidate 0.0 change 0.0
+POOLED {'opponent': 'release-3aa', 'candidate_score': 0.0, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 500}

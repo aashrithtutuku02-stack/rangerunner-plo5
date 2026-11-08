@@ -1,0 +1,82 @@
+[
+  {
+    "opponent": "overfolder",
+    "candidate_score": 0.934,
+    "improvement": 0.108,
+    "ci": [
+      -0.3410824410204275,
+      0.5570824410204275
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "nit",
+    "candidate_score": 0.807,
+    "improvement": 0.12,
+    "ci": [
+      -0.026020665625037992,
+      0.266020665625038
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "range-tight",
+    "candidate_score": 0.084,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "independent-adaptive",
+    "candidate_score": 1.648,
+    "improvement": 0.558,
+    "ci": [
+      -0.2657190427798036,
+      1.3817190427798036
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "call",
+    "candidate_score": 14.519,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "pot",
+    "candidate_score": 8.634,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "switcher",
+    "candidate_score": 2.511,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 500
+  },
+  {
+    "opponent": "release-3aa",
+    "candidate_score": 0.0,
+    "improvement": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "deals": 500
+  }
+]

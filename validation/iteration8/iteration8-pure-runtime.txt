@@ -1,0 +1,4 @@
+Running pure-cpu.txt
+Running pure-http.txt
+1 full matches: no errors, forfeits, exhausted banks or skipped decisions.
+RUNTIME CHECKS PASSED

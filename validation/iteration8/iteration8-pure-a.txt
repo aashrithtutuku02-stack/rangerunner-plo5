@@ -1,0 +1,16 @@
+overfolder iteration8-foldonly-fresh-a candidate 1.1767 change 0.1627
+POOLED {'opponent': 'overfolder', 'candidate_score': 1.1766666666666667, 'improvement': 0.16266666666666665, 'ci': [-0.093932983468381, 0.41926631680171433], 'deals': 750}
+nit iteration8-foldonly-fresh-a candidate 1.44 change 0.0
+POOLED {'opponent': 'nit', 'candidate_score': 1.44, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 750}
+independent-adaptive iteration8-foldonly-fresh-a candidate 1.9107 change 0.0307
+POOLED {'opponent': 'independent-adaptive', 'candidate_score': 1.9106666666666667, 'improvement': 0.030666666666666665, 'ci': [-0.62131303709658, 0.6826463704299133], 'deals': 750}
+independent-polar iteration8-foldonly-fresh-a candidate 3.784 change 0.0
+POOLED {'opponent': 'independent-polar', 'candidate_score': 3.784, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 750}
+range-tight iteration8-foldonly-fresh-a candidate 0.6293 change 0.0
+POOLED {'opponent': 'range-tight', 'candidate_score': 0.6293333333333333, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 750}
+call iteration8-foldonly-fresh-a candidate 12.838 change 0.0
+POOLED {'opponent': 'call', 'candidate_score': 12.838, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 750}
+pot iteration8-foldonly-fresh-a candidate 6.738 change 0.0
+POOLED {'opponent': 'pot', 'candidate_score': 6.738, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 750}
+release-3aa iteration8-foldonly-fresh-a candidate 0.0 change 0.0
+POOLED {'opponent': 'release-3aa', 'candidate_score': 0.0, 'improvement': 0.0, 'ci': [0.0, 0.0], 'deals': 750}

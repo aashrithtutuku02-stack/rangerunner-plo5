@@ -71,6 +71,12 @@ def finish_complete(module,result,memory,bayes=False,decay=False):
 
 
 def make(name):
+    if name=='release-3aa':
+        from opponents import release_3aa as previous
+        return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)
+    if name.startswith('bluff-'):
+        from research_bluff import make as bluff_candidate
+        return bluff_candidate(name)
     if name=='release-9efa':
         from opponents import release_9efa as previous
         return SimpleNamespace(new_half=previous.initialize,choose_action=previous.decide,on_hand_end=previous.finish,name=name)

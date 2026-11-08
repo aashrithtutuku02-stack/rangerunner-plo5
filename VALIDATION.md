@@ -1,5 +1,10 @@
 # Release validation — iteration 7
 
+The tournament policy is unchanged by the subsequent timed bluff experiment.
+New opt-in modes, fresh comparison results and their inconclusive intervals
+are documented in [BLUFF_EXPERIMENTS.md](BLUFF_EXPERIMENTS.md). They are not
+enabled by `agent.py`.
+
 Team **winner**, agent **RangeRunner**. The baseline is frozen release
 `9efa86c1b7a6557be6b4cb508cced6d57a38432b`.
 
